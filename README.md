@@ -1,6 +1,5 @@
 # questwer_flu
 
-A new Flutter project.
 Co-development: Q&A application 
 
 ## Getting Started
