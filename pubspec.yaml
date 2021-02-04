@@ -29,6 +29,23 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
 
+  # GetX
+  get: ^3.24.0
+
+  # 网络请求
+  dio_http_cache: ^0.2.6
+  dio: ^3.0.9
+
+  #  吐司
+  oktoast: ^2.0.1
+
+  #  本地存储
+  shared_preferences: ^0.5.7
+
+  # 后端支持
+  leancloud_storage: ^0.6.2
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
