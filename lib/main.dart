@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leancloud_storage/leancloud.dart';
+import 'package:questwer_flu/page/lead_pag.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'controller/user_controller.dart';
 import 'page/welcome_page.dart';
@@ -33,7 +34,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           visualDensity: VisualDensity.adaptivePlatformDensity,
           primaryColor: Colors.teal[300]),
-      home: Welcome(),
+      home: GetBuilder<UserController>(
+        init: UserController(),
+        initState: (data) async {
+          await UserController().isAuthenticated();
+        },
+        builder: (controller){
+          return controller.isAuth == 0.obs ? Welcome() : LeadPage();
+        },
+      ),
     );
   }
 }
+
