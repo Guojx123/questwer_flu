@@ -12,6 +12,12 @@ class ColorsTheme {
         end: Alignment.centerRight,
       );
 
+  static Gradient get kCardGradient => LinearGradient(
+    colors: [Color(0xFF0991b5), Color(0xFF56b0ba)],
+    end: Alignment.centerLeft,
+    begin: Alignment.centerRight,
+  );
+
   static Gradient get kWelcomeGradient => LinearGradient(
         colors: [Colors.cyan, Colors.teal],
         begin: Alignment.centerLeft,

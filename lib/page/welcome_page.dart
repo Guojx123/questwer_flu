@@ -131,10 +131,8 @@ class Welcome extends StatelessWidget {
   }
 
   _loginAnonymously() async {
-    LCUser currentUser = await LCUser.loginAnonymously();
-    PersistentStorage().setStorage("nickname", textEditingController.text);
-    print("currentUser: ");
-    print(currentUser);
+    await LCUser.loginAnonymously();
+    await PersistentStorage().setStorage("nickname", textEditingController.text);
     Get.to(LeadPage());
   }
 }

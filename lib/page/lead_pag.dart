@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
-import 'package:questwer_flu/widget/common_app_bar.dart';
+import 'package:questwer_flu/widget/scroll__behavior.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class LeadPage extends StatelessWidget {
@@ -32,28 +32,90 @@ class LeadPage extends StatelessWidget {
               rotation: 0,
             ),
           ),
-          Column(
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).padding.top,
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding,vertical: DefaultSize.basePadding),
-                width: MediaQuery.of(context).size.width,
-                child: Text(
-                  "hi,${PersistentStorage.get("nickname")}",
-                  textAlign:TextAlign.start,
-                  style: TextStyle(
-                    color: ColorsTheme.white,
-                    fontSize: 20
+          NestedScrollView(
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) {
+              return <Widget>[
+                SliverAppBar(
+                  backgroundColor: Colors.transparent,
+                  automaticallyImplyLeading: false,
+                  toolbarHeight: DefaultSize.defaultPadding * 3,
+                  brightness: Brightness.dark,
+                  title: Text(
+                    "hi , ${PersistentStorage.get("nickname")}",
+                    textAlign: TextAlign.start,
+                    style:
+                    TextStyle(color: ColorsTheme.white, fontSize: 20),
                   ),
+                )
+              ];
+            },
+            body: Container(
+              padding: EdgeInsets.symmetric(
+                  horizontal: DefaultSize.defaultPadding),
+              child: Container(
+                width: double.infinity,
+                child: ScrollConfiguration(
+                  behavior: OverScrollBehavior(),
+                  child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                      physics: BouncingScrollPhysics(),
+                      itemCount: 20,
+                      itemBuilder: (context, index) {
+                        return _buildQuestionBank();
+                      }),
                 ),
               ),
-              Expanded(
-                  child: Container()
-              ),
-            ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildQuestionBank() {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding),
+      padding: EdgeInsets.symmetric(
+          horizontal: DefaultSize.defaultPadding,
+          vertical: DefaultSize.basePadding),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        gradient: ColorsTheme.kCardGradient,
+      ),
+      child: Row(
+        children: [
+          Image.asset(
+            "assets/icon_questions.png",
+            width: DefaultSize.defaultPadding * 5,
+            height: DefaultSize.defaultPadding * 5,
           ),
+          Expanded(
+            child: Container(
+              padding:
+                  EdgeInsets.symmetric(horizontal: DefaultSize.basePadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "New Question List",
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.visible,
+                    style: TextStyle(
+                        fontSize: 20, height: 1.4, color: ColorsTheme.white),
+                  ),
+                  Text(
+                    "Test your love for music Test your love for music Test your love for music Test your love for music.",
+                    textAlign: TextAlign.start,
+                    maxLines: 3,
+                    overflow: TextOverflow.visible,
+                    style: TextStyle(fontSize: 16, color: ColorsTheme.white),
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
