@@ -45,6 +45,9 @@ dependencies:
   # 后端支持
   leancloud_storage: ^0.6.2
 
+  # 动画
+  simple_animations: ^2.5.0
+
 
 dev_dependencies:
   flutter_test:
