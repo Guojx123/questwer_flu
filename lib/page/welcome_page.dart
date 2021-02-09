@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -71,12 +72,15 @@ class Welcome extends StatelessWidget {
                     // 1/6
                     TextField(
                       controller: textEditingController,
+                      // showCursor: false,
+                      // cursorColor: ColorsTheme.primaryColor,
+                      cursorWidth: 1,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.transparent,
-                        labelText: "Enter your nickname",
+                        labelText: "Nice to meet you.",
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
                         ),
                       ),
                     ),
@@ -108,7 +112,7 @@ class Welcome extends StatelessWidget {
                         child: Text(
                           "Go",
                           style: Theme.of(context).textTheme.button.copyWith(
-                              color: Colors.black, fontWeight: FontWeight.w400),
+                              color: Colors.white, fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
@@ -124,4 +128,5 @@ class Welcome extends StatelessWidget {
       ),
     );
   }
+
 }
