@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:leancloud_storage/leancloud.dart';
+import 'package:questwer_flu/util/shared_preferences.dart';
+import 'controller/user_controller.dart';
 import 'page/welcome_page.dart';
+import 'package:get/get.dart';
 import 'service/restartService.dart';
 
 void main() => realRunApp();
@@ -11,13 +14,18 @@ void realRunApp() async {
       'gqvQGBzcYDUsxBzHcWRdl2D6-gzGzoHsz', 'YxjvCQ0bPOAktPpRlNGVGcUJ',
       server: 'https://gqvqgbzc.lc-cn-n1-shared.com');
   LCLogger.setLevel(LCLogger.DebugLevel);
+  WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(RestartWidget(child: MyApp() // new MaterialApp,
+  await PersistentStorage.init();
+
+  runApp(
+      RestartWidget(
+          child: MyApp() // new MaterialApp,
       ));
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
