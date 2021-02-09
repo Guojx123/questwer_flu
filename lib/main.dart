@@ -36,11 +36,11 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.teal[300]),
       home: GetBuilder<UserController>(
         init: UserController(),
-        initState: (data) async {
-          await UserController().isAuthenticated();
-        },
+        // initState: (data) async {
+        //   await UserController().isAuthenticated();
+        // },
         builder: (controller){
-          return controller.isAuth == 0.obs ? Welcome() : LeadPage();
+          return controller.isAuth.isTrue ? Welcome() : LeadPage();
         },
       ),
     );
