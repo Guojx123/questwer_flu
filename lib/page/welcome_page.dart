@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
+import 'package:questwer_flu/util/shared_preferences.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'lead_pag.dart';
@@ -90,7 +91,7 @@ class Welcome extends StatelessWidget {
                       onTap: () {
                         if (textEditingController.text != null &&
                             textEditingController.text.length > 0) {
-                          Get.to(LeadPage());
+                          _loginAnonymously();
                         } else {
                           Get.snackbar("Tips", "Please enter a nickname",
                               icon: Icon(Icons.messenger),
@@ -129,4 +130,11 @@ class Welcome extends StatelessWidget {
     );
   }
 
+  _loginAnonymously() async {
+    LCUser currentUser = await LCUser.loginAnonymously();
+    PersistentStorage().setStorage("nickname", textEditingController.text);
+    print("currentUser: ");
+    print(currentUser);
+    Get.to(LeadPage());
+  }
 }
