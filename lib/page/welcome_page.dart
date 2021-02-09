@@ -24,8 +24,8 @@ class Welcome extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xff651c93),
-                    Color(0xff184b96),
+                    Color(0xff0fbcdf),
+                    Color(0xff03203e),
                   ],
                   stops: [
                     0,

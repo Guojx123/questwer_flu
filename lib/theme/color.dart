@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ColorsTheme {
 
   static Color get black => Color(0xFF000000);
+  static Color get white => Color(0xFFffffff);
   static Color get primaryColor => Color(0xFF56b0ba);
 
   static Gradient get kPrimaryGradient => LinearGradient(

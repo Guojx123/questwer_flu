@@ -5,7 +5,7 @@ import 'package:questwer_flu/util/shared_preferences.dart';
 import 'controller/user_controller.dart';
 import 'page/welcome_page.dart';
 import 'package:get/get.dart';
-import 'service/restartService.dart';
+import 'service/restart_service.dart';
 
 void main() => realRunApp();
 
