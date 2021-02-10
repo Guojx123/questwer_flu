@@ -5,7 +5,7 @@ import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'lead_pag.dart';
+import 'home/lead_pag.dart';
 
 class Welcome extends StatelessWidget {
   TextEditingController textEditingController = TextEditingController();
@@ -58,7 +58,7 @@ class Welcome extends StatelessWidget {
                   horizontal: DefaultSize.defaultPadding),
               child: Column(
                 children: [
-                  Spacer(flex: 1),
+                  Spacer(),
                   //2/6
                   Text(
                     "Let's Play a Q&A.",
@@ -69,17 +69,24 @@ class Welcome extends StatelessWidget {
                   //     color: Colors.white)),
                   Spacer(),
                   // 1/6
-                  TextField(
-                    controller: textEditingController,
-                    // showCursor: false,
-                    // cursorColor: ColorsTheme.primaryColor,
-                    cursorWidth: 1,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.transparent,
-                      labelText: "Nice to meet you.",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                  Theme(
+                    data: new ThemeData(primaryColor: Color(0xff52abbe)),
+                    child: TextField(
+                      controller: textEditingController,
+                      // showCursor: false,
+                      cursorColor: ColorsTheme.primaryColor,
+                      cursorWidth: 1,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.transparent,
+                        labelText: "Nice to meet you.",
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: ColorsTheme.primaryColor),
+                        ),
+                        focusColor: ColorsTheme.primaryColor,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
                       ),
                     ),
                   ),
@@ -105,7 +112,7 @@ class Welcome extends StatelessWidget {
                       padding: EdgeInsets.all(DefaultSize.defaultPadding),
                       // 15
                       decoration: BoxDecoration(
-                        gradient: ColorsTheme.kWelcomeGradient,
+                        gradient: ColorsTheme.gWelcomeGradient,
                         borderRadius: BorderRadius.all(Radius.circular(12)),
                       ),
                       child: Text(

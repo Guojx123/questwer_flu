@@ -10,7 +10,6 @@ import 'package:questwer_flu/widget/scroll__behavior.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class LeadPage extends StatelessWidget {
-
   PopMenuController popMenuController = PopMenuController();
 
   @override
@@ -51,31 +50,29 @@ class LeadPage extends StatelessWidget {
                     "Hello!  ${PersistentStorage.get("nickname")}.",
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.ellipsis,
-                    style:
-                    TextStyle(color: ColorsTheme.white, fontSize: 20),
+                    style: TextStyle(color: ColorsTheme.white, fontSize: 20),
                   ),
                 )
               ];
             },
             body: Container(
-              padding: EdgeInsets.symmetric(
-                  horizontal: DefaultSize.defaultPadding),
-              child: Container(
-                width: double.infinity,
-                child: ScrollConfiguration(
-                  behavior: OverScrollBehavior(),
-                  child: ListView.builder(
-                      padding: EdgeInsets.zero,
-                      physics: BouncingScrollPhysics(),
-                      itemCount: 20,
-                      itemBuilder: (context, index) {
-                        final GlobalKey btnKey = GlobalKey();
-                        return QuestionBank(btnKey: btnKey,);
-                      }),
-                ),
+              width: double.infinity,
+              child: ScrollConfiguration(
+                behavior: OverScrollBehavior(),
+                child: ListView.builder(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: DefaultSize.defaultPadding),
+                    physics: BouncingScrollPhysics(),
+                    itemCount: 20,
+                    itemBuilder: (context, index) {
+                      final GlobalKey btnKey = GlobalKey();
+                      return QuestionBank(
+                        btnKey: btnKey,
+                      );
+                    }),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

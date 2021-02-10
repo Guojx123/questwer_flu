@@ -18,6 +18,12 @@ class ColorsTheme {
     begin: Alignment.centerRight,
   );
 
+  static Gradient get gWelcomeGradient => LinearGradient(
+    colors: [Color(0x880991b5), Color(0x9956b0ba)],
+    end: Alignment.centerLeft,
+    begin: Alignment.centerRight,
+  );
+
   static Gradient get kWelcomeGradient => LinearGradient(
         colors: [Colors.cyan, Colors.teal],
         begin: Alignment.centerLeft,

@@ -7,7 +7,6 @@ import 'package:questwer_flu/theme/size.dart';
 import 'package:get/get.dart';
 
 class QuestionBank extends StatefulWidget {
-
   final GlobalKey btnKey;
 
   const QuestionBank({Key key, this.btnKey}) : super(key: key);
@@ -17,7 +16,6 @@ class QuestionBank extends StatefulWidget {
 }
 
 class _QuestionBankState extends State<QuestionBank> {
-
   PopMenuController popMenuController = Get.put(PopMenuController());
 
   @override
@@ -30,9 +28,16 @@ class _QuestionBankState extends State<QuestionBank> {
           horizontal: DefaultSize.defaultPadding,
           vertical: DefaultSize.defaultPadding),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
-        gradient: ColorsTheme.rCardGradient,
-      ),
+          borderRadius: BorderRadius.circular(5),
+          gradient: ColorsTheme.rCardGradient,
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black12,
+                offset: Offset(2.0, 4.0), //阴影xy轴偏移量
+                blurRadius: 20.0, //阴影模糊程度
+                spreadRadius: 1.0 //阴影扩散程度
+                )
+          ]),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -47,7 +52,7 @@ class _QuestionBankState extends State<QuestionBank> {
           Expanded(
             child: Container(
               padding:
-              EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
+                  EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -66,10 +71,7 @@ class _QuestionBankState extends State<QuestionBank> {
                     maxLines: 3,
                     overflow: TextOverflow.visible,
                     style: TextStyle(
-                        fontSize: 16,
-                        color: ColorsTheme.white,
-                        height: 1.4
-                    ),
+                        fontSize: 16, color: ColorsTheme.white, height: 1.4),
                   ),
                 ],
               ),
@@ -83,7 +85,7 @@ class _QuestionBankState extends State<QuestionBank> {
                 alignment: Alignment.center,
                 child: GestureDetector(
                   key: widget.btnKey,
-                  onTap: (){
+                  onTap: () {
                     popMenuController.menu.show(widgetKey: widget.btnKey);
                   },
                   child: Icon(
