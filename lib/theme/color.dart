@@ -31,7 +31,7 @@ class ColorsTheme {
   );
 
   static Gradient get rCardGradient => LinearGradient(
-    colors: [Color(0x500991b5),Color(0x88872c25)],
+    colors: [Color(0x600991b5),Color(0x90872c25)],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
   );
