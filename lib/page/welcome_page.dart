@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/theme/color.dart';
@@ -76,6 +77,14 @@ class Welcome extends StatelessWidget {
                       // showCursor: false,
                       cursorColor: ColorsTheme.primaryColor,
                       cursorWidth: 1,
+                      keyboardType: TextInputType.text,
+                      inputFormatters: [
+                        new FilteringTextInputFormatter(
+                            new RegExp(
+                              '[a-zA-Z]|[\u4e00-\u9fa5]|[0-9]',
+                            ),
+                            allow: true),
+                      ],
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.transparent,
@@ -101,7 +110,7 @@ class Welcome extends StatelessWidget {
                         Get.snackbar("Tips", "Please enter a nickname",
                             icon: Icon(Icons.messenger),
                             snackPosition: SnackPosition.BOTTOM,
-                            backgroundGradient: ColorsTheme.kPrimaryGradient);
+                            backgroundGradient: ColorsTheme.gWelcomeGradient);
                       }
                     },
                     child: Container(
@@ -136,7 +145,7 @@ class Welcome extends StatelessWidget {
 
   _loginAnonymously() async {
     await LCUser.loginAnonymously();
-    await PersistentStorage().setStorage("nickname", textEditingController.text);
+    await PersistentStorage().setStorage("nickname", textEditingController.text.trim());
     Get.to(LeadPage());
   }
 }
