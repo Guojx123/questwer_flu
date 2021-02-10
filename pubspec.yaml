@@ -48,6 +48,8 @@ dependencies:
   # 动画
   simple_animations: ^2.5.0
 
+  # 弹出菜单
+  popup_menu: ^1.0.5
 
 dev_dependencies:
   flutter_test:
