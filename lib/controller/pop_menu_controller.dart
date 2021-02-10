@@ -1,30 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:popup_menu/popup_menu.dart';
+import 'package:questwer_flu/page/empty_page.dart';
+import 'package:questwer_flu/page/welcome_page.dart';
 
-class PopMenuController extends GetxController{
-
+class PopMenuController extends GetxController {
   PopupMenu menu;
 
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    menu = PopupMenu(
-
-        items: [
+    menu = PopupMenu(items: [
       // MenuItem(title: 'Copy', image: Image.asset('assets/copy.png')),
-      // MenuItem(title: 'Home', image: Icon(Icons.home, color: Colors.white,)),
+      // MenuItem(
+      //     title: 'Copy',
+      //     image: Icon(
+      //       Icons.copy,
+      //       color: Colors.white,
+      //     )),
       MenuItem(
-          title: 'Mail',
+          title: 'Delete',
           image: Icon(
-            Icons.mail,
+            Icons.delete,
             color: Colors.white,
           )),
       MenuItem(
-          title: 'Power',
+          title: 'Share',
           image: Icon(
-            Icons.power,
+            Icons.share,
             color: Colors.white,
           )),
       MenuItem(
@@ -33,14 +37,7 @@ class PopMenuController extends GetxController{
             Icons.settings,
             color: Colors.white,
           )),
-      MenuItem(
-          title: 'PopupMenu',
-          image: Icon(
-            Icons.menu,
-            color: Colors.white,
-          ))
     ], onClickMenu: onClickMenu, onDismiss: onDismiss, maxColumn: 4);
-
   }
 
   void stateChanged(bool isShow) {
@@ -54,5 +51,4 @@ class PopMenuController extends GetxController{
   void onDismiss() {
     print('Menu is dismiss');
   }
-
 }
