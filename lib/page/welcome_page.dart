@@ -5,7 +5,6 @@ import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'package:simple_animations/simple_animations.dart';
-
 import 'lead_pag.dart';
 
 class Welcome extends StatelessWidget {

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:popup_menu/popup_menu.dart';
-import 'package:questwer_flu/page/empty_page.dart';
-import 'package:questwer_flu/page/welcome_page.dart';
 
 class PopMenuController extends GetxController {
   PopupMenu menu;

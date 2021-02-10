@@ -26,10 +26,10 @@ class LeadPage extends StatelessWidget {
             child: PlasmaRenderer(
               type: PlasmaType.infinity,
               particles: 12,
-              color: Color(0x1b0991b5),
+              color: Color(0xA1448dc7),
               blur: 0.4,
               size: 1,
-              speed: 3,
+              speed: 2,
               offset: 0,
               blendMode: BlendMode.screen,
               variation1: 0,

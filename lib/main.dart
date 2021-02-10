@@ -18,6 +18,7 @@ void realRunApp() async {
   LCLogger.setLevel(LCLogger.DebugLevel);
   WidgetsFlutterBinding.ensureInitialized();
 
+  //数据持久化
   await PersistentStorage.init();
 
   runApp(

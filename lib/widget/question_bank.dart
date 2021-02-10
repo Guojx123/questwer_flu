@@ -31,7 +31,7 @@ class _QuestionBankState extends State<QuestionBank> {
           vertical: DefaultSize.defaultPadding),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        gradient: ColorsTheme.kCardGradient,
+        gradient: ColorsTheme.rCardGradient,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
