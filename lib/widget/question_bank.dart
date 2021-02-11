@@ -66,7 +66,7 @@ class _QuestionBankState extends State<QuestionBank> {
                         fontSize: 20, height: 1.4, color: ColorsTheme.white),
                   ),
                   Text(
-                    "Test your love music. ",
+                    "Test your love music.",
                     textAlign: TextAlign.start,
                     maxLines: 3,
                     overflow: TextOverflow.visible,

@@ -81,7 +81,7 @@ class Welcome extends StatelessWidget {
                       inputFormatters: [
                         new FilteringTextInputFormatter(
                             new RegExp(
-                              '[a-zA-Z]|[\u4e00-\u9fa5]|[0-9]',
+                              '[a-zA-Z]|[\u4e00-\u9fa5]|[0-9]|[`~!@#^&*()=|{}'',.<>《》/?~！@#￥……&*（）——|{}【】‘；：”“]',
                             ),
                             allow: true),
                       ],

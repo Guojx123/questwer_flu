@@ -5,6 +5,7 @@ class ColorsTheme {
   static Color get black => Color(0xFF000000);
   static Color get white => Color(0xFFffffff);
   static Color get primaryColor => Color(0xFF56b0ba);
+  static Color get tealBtnColor => Color(0xFF22ddCB);
 
   static Gradient get kPrimaryGradient => LinearGradient(
         colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
@@ -37,7 +38,7 @@ class ColorsTheme {
   );
 
   static Gradient get rCardGradient => LinearGradient(
-    colors: [Color(0x600991b5),Color(0x90873c25)],
+    colors: [Color(0x600991b5),Color(0x90993c25)],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
   );
