@@ -69,7 +69,6 @@ class Welcome extends StatelessWidget {
                   // Text("Trust me, it must be fun",style: Theme.of(context).textTheme.subtitle1.copyWith(
                   //     color: Colors.white)),
                   Spacer(),
-                  // 1/6
                   Theme(
                     data: new ThemeData(primaryColor: Color(0xff52abbe)),
                     child: TextField(
@@ -100,7 +99,6 @@ class Welcome extends StatelessWidget {
                     ),
                   ),
                   Spacer(),
-                  // 1/6
                   GestureDetector(
                     onTap: () {
                       if (textEditingController.text != null &&
@@ -120,7 +118,6 @@ class Welcome extends StatelessWidget {
                       margin: EdgeInsets.symmetric(
                           horizontal: DefaultSize.defaultPadding),
                       padding: EdgeInsets.all(DefaultSize.defaultPadding),
-                      // 15
                       decoration: BoxDecoration(
                         gradient: ColorsTheme.gWelcomeGradient,
                         borderRadius: BorderRadius.all(Radius.circular(12)),

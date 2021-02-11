@@ -4,6 +4,8 @@ import 'package:questwer_flu/theme/color.dart';
 class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   String title;
   bool canBack;
+  Widget actionWidget;
+  Function actionFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +30,16 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             Text(
               title ?? '',
-              style: TextStyle(
-                  fontSize: 21,
-                  color: ColorsTheme.black
+              style: TextStyle(fontSize: 21, color: ColorsTheme.black),
+            ),
+            Positioned(
+              right: 0,
+              child: GestureDetector(
+                onTap: actionFunction ?? () {},
+                behavior: HitTestBehavior.translucent,
+                child: actionWidget ?? Container(),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -42,5 +49,6 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => Size.fromHeight(44);
 
-  CommonAppBar(this.title, {this.canBack = true});
+  CommonAppBar(this.title,
+      {this.canBack = true, this.actionWidget, this.actionFunction});
 }

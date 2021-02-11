@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -11,7 +12,7 @@ class QuestionListController extends GetxController {
 
   @override
   void onInit() {
-    fetchQuestion();
+    fetchQuestionBank();
     refreshController = new RefreshController();
     super.onInit();
   }
@@ -23,16 +24,28 @@ class QuestionListController extends GetxController {
     super.onClose();
   }
 
-  void fetchQuestion() async {
+  void refreshList() async{
+    List<LCObject> questionBank = await ApiService.fetchQuestionList();
+    questionBankList.clear();
+    if(questionBank != null){
+      questionBankList.assignAll(questionBank);
+      debugPrint("刷新题库数据");
+    }
+    update();
+  }
+
+  void fetchQuestionBank() async {
     try {
       isLoading(true);
-      List<LCObject> questionBank = await ApiService.fetchQuestion();
+      List<LCObject> questionBank = await ApiService.fetchQuestionList();
       if(questionBank != null){
         questionBankList.assignAll(questionBank);
+        debugPrint("获取题库数据");
         isLoading(false);
       }
     } finally {
       isLoading(false);
     }
+    update();
   }
 }

@@ -9,42 +9,26 @@ import 'package:questwer_flu/service/key_value.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
+import 'package:questwer_flu/widget/background_widget.dart';
 import 'package:questwer_flu/widget/question_bank.dart';
 import 'package:questwer_flu/widget/scroll__behavior.dart';
 import 'package:questwer_flu/widget/smart_refresh_footer.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class LeadPage extends StatelessWidget {
-  PopMenuController popMenuController = PopMenuController();
+
+  PopMenuController popMenuController = Get.put(PopMenuController());
   QuestionListController questionListController =
-      Get.put(QuestionListController());
+  Get.put(QuestionListController());
 
   @override
   Widget build(BuildContext context) {
+
     return Material(
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Color(0xff00123d),
-              backgroundBlendMode: BlendMode.srcOver,
-            ),
-            child: PlasmaRenderer(
-              type: PlasmaType.infinity,
-              particles: 12,
-              color: Color(0xAc448dc7),
-              blur: 0,
-              size: 0.4,
-              speed: 0.2,
-              offset: 0,
-              blendMode: BlendMode.screen,
-              variation1: 0,
-              variation2: 0,
-              variation3: 0,
-              rotation: 1,
-            ),
-          ),
+          BackGroundWidget(blur: 0.6,),
           NestedScrollView(
             key: UniqueKey(),
             headerSliverBuilder:
@@ -69,7 +53,7 @@ class LeadPage extends StatelessWidget {
                     Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: DefaultSize.defaultPadding),
-                        child: Icon(Icons.settings))
+                        child: Icon(Icons.settings,color: ColorsTheme.white,))
                   ],
                 ),
               ];
@@ -87,8 +71,7 @@ class LeadPage extends StatelessWidget {
                       enablePullDown: true,
                       enablePullUp: false,
                       onRefresh: () {
-                        questionListController.questionBankList.clear();
-                        questionListController.fetchQuestion();
+                        questionListController.refreshList();
                         questionListController.refreshController
                             .refreshCompleted();
                         questionListController.refreshController.loadComplete();

@@ -3,6 +3,7 @@ import 'package:get/state_manager.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:popup_menu/popup_menu.dart';
 import 'package:questwer_flu/controller/pop_menu_controller.dart';
+import 'package:questwer_flu/page/answer/answer_question.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:get/get.dart';
@@ -29,6 +30,7 @@ class _QuestionBankState extends State<QuestionBank> {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: (){
+        Get.to(AnswerQuestion(id: _lcObject['id'],));
         print(_lcObject['id']);
       },
       child: Container(
