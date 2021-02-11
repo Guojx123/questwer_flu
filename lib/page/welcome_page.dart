@@ -108,6 +108,7 @@ class Welcome extends StatelessWidget {
                         _loginAnonymously();
                       } else {
                         Get.snackbar("Tips", "Please enter a nickname",
+                            colorText: ColorsTheme.white,
                             icon: Icon(Icons.messenger),
                             snackPosition: SnackPosition.BOTTOM,
                             backgroundGradient: ColorsTheme.gWelcomeGradient);

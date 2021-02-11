@@ -5,6 +5,9 @@ import 'package:popup_menu/popup_menu.dart';
 class PopMenuController extends GetxController {
   PopupMenu menu;
 
+  ScrollController scrollController;
+
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -36,6 +39,17 @@ class PopMenuController extends GetxController {
             color: Colors.white,
           )),
     ], onClickMenu: onClickMenu, onDismiss: onDismiss, maxColumn: 4);
+
+    scrollController = ScrollController(
+      keepScrollOffset: true
+    );
+  }
+
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    scrollController.dispose();
+    super.onClose();
   }
 
   void stateChanged(bool isShow) {
