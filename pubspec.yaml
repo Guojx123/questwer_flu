@@ -51,6 +51,9 @@ dependencies:
   # 弹出菜单
   popup_menu: ^1.0.5
 
+  #网络请求
+  http: ^0.12.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

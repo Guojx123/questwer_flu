@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/pop_menu_controller.dart';
+import 'package:questwer_flu/controller/question_list_controller.dart';
 import 'package:questwer_flu/service/key_value.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
@@ -11,7 +12,10 @@ import 'package:questwer_flu/widget/scroll__behavior.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class LeadPage extends StatelessWidget {
+
   PopMenuController popMenuController = PopMenuController();
+  QuestionListController questionListController =
+  Get.put(QuestionListController());
 
   @override
   Widget build(BuildContext context) {
@@ -72,18 +76,25 @@ class LeadPage extends StatelessWidget {
               child: ScrollConfiguration(
                 behavior: OverScrollBehavior(),
                 child: GetBuilder(
-                  init: PopMenuController(),
+                  init: QuestionListController(),
                   builder: (context ){
+                    if (questionListController.isLoading.value)
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    else
                     return ListView.builder(
                         controller: popMenuController.scrollController,
                         padding: EdgeInsets.symmetric(
                             horizontal: DefaultSize.defaultPadding),
                         physics: BouncingScrollPhysics(),
-                        itemCount: 20,
+                        itemCount: questionListController.questionBankList.length,
                         itemBuilder: (context, index) {
                           final GlobalKey btnKey = GlobalKey();
+                          var item = questionListController.questionBankList[index];
                           return QuestionBank(
                             btnKey: btnKey,
+                            lcObject: item,
                           );
                         });
                   },
@@ -99,8 +110,8 @@ class LeadPage extends StatelessWidget {
               margin:
               EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding * 2),
               padding: EdgeInsets.symmetric(
-                  horizontal: DefaultSize.defaultPadding * 2,
-                  vertical: DefaultSize.basePadding * 5),
+                  horizontal: DefaultSize.defaultPadding * 2.2,
+                  vertical: DefaultSize.basePadding * 6),
               decoration: BoxDecoration(
                   color: ColorsTheme.black.withOpacity(0.5),
                   borderRadius: BorderRadius.circular(25)),

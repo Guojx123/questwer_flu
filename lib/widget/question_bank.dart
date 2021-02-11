@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
+import 'package:leancloud_storage/leancloud.dart';
 import 'package:popup_menu/popup_menu.dart';
 import 'package:questwer_flu/controller/pop_menu_controller.dart';
 import 'package:questwer_flu/theme/color.dart';
@@ -8,8 +9,9 @@ import 'package:get/get.dart';
 
 class QuestionBank extends StatefulWidget {
   final GlobalKey btnKey;
+  final LCObject lcObject;
 
-  const QuestionBank({Key key, this.btnKey}) : super(key: key);
+  const QuestionBank({Key key, this.btnKey, this.lcObject}) : super(key: key);
 
   @override
   _QuestionBankState createState() => _QuestionBankState();
@@ -17,6 +19,8 @@ class QuestionBank extends StatefulWidget {
 
 class _QuestionBankState extends State<QuestionBank> {
   PopMenuController popMenuController = Get.put(PopMenuController());
+
+  LCObject get _lcObject => widget.lcObject;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +62,7 @@ class _QuestionBankState extends State<QuestionBank> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "New Question List",
+                    "${_lcObject["name"] ?? "New Question List"}",
                     textAlign: TextAlign.center,
                     maxLines: 1,
                     overflow: TextOverflow.visible,
@@ -66,12 +70,12 @@ class _QuestionBankState extends State<QuestionBank> {
                         fontSize: 20, height: 1.4, color: ColorsTheme.white),
                   ),
                   Text(
-                    "Test your love music.",
+                    "${_lcObject["description"] ?? "Test your love music."}",
                     textAlign: TextAlign.start,
                     maxLines: 3,
                     overflow: TextOverflow.visible,
                     style: TextStyle(
-                        fontSize: 16, color: ColorsTheme.white, height: 1.4),
+                        fontSize: 16, color: ColorsTheme.white.withOpacity(0.6), height: 1.4),
                   ),
                 ],
               ),
