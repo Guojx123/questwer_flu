@@ -1,16 +1,26 @@
 import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:questwer_flu/http/ApiService.dart';
-import 'package:questwer_flu/model/question_bank.dart';
 
 class QuestionListController extends GetxController {
   var isLoading = true.obs;
   var questionBankList = List<LCObject>().obs;
 
+  RefreshController refreshController;
+
   @override
   void onInit() {
     fetchQuestion();
+    refreshController = new RefreshController();
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    // TODO: implement onClose
+    refreshController.dispose();
+    super.onClose();
   }
 
   void fetchQuestion() async {
@@ -19,6 +29,7 @@ class QuestionListController extends GetxController {
       List<LCObject> questionBank = await ApiService.fetchQuestion();
       if(questionBank != null){
         questionBankList.assignAll(questionBank);
+        isLoading(false);
       }
     } finally {
       isLoading(false);

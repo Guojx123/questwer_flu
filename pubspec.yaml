@@ -36,10 +36,10 @@ dependencies:
   dio_http_cache: ^0.2.6
   dio: ^3.0.9
 
-  #  吐司
+  # 吐司
   oktoast: ^2.0.1
 
-  #  本地存储
+  # 本地存储
   shared_preferences: ^0.5.7
 
   # 后端支持
@@ -51,8 +51,11 @@ dependencies:
   # 弹出菜单
   popup_menu: ^1.0.5
 
-  #网络请求
+  # 网络请求
   http: ^0.12.2
+
+  # 刷新
+  pull_to_refresh: 1.6.3
 
 dev_dependencies:
   flutter_test:

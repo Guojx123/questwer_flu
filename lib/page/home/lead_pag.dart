@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:oktoast/oktoast.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:questwer_flu/controller/pop_menu_controller.dart';
 import 'package:questwer_flu/controller/question_list_controller.dart';
 import 'package:questwer_flu/service/key_value.dart';
@@ -9,13 +11,13 @@ import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'package:questwer_flu/widget/question_bank.dart';
 import 'package:questwer_flu/widget/scroll__behavior.dart';
+import 'package:questwer_flu/widget/smart_refresh_footer.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class LeadPage extends StatelessWidget {
-
   PopMenuController popMenuController = PopMenuController();
   QuestionListController questionListController =
-  Get.put(QuestionListController());
+      Get.put(QuestionListController());
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +67,8 @@ class LeadPage extends StatelessWidget {
                   ),
                   actions: [
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: DefaultSize.defaultPadding),
                         child: Icon(Icons.settings))
                   ],
                 ),
@@ -77,26 +80,29 @@ class LeadPage extends StatelessWidget {
                 behavior: OverScrollBehavior(),
                 child: GetBuilder(
                   init: QuestionListController(),
-                  builder: (context ){
-                    if (questionListController.isLoading.value)
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    else
-                    return ListView.builder(
-                        controller: popMenuController.scrollController,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: DefaultSize.defaultPadding),
-                        physics: BouncingScrollPhysics(),
-                        itemCount: questionListController.questionBankList.length,
-                        itemBuilder: (context, index) {
-                          final GlobalKey btnKey = GlobalKey();
-                          var item = questionListController.questionBankList[index];
-                          return QuestionBank(
-                            btnKey: btnKey,
-                            lcObject: item,
-                          );
-                        });
+                  builder: (context) {
+                    return SmartRefresher(
+                      physics: BouncingScrollPhysics(),
+                      controller: questionListController.refreshController,
+                      enablePullDown: true,
+                      enablePullUp: false,
+                      onRefresh: () {
+                        questionListController.questionBankList.clear();
+                        questionListController.fetchQuestion();
+                        questionListController.refreshController
+                            .refreshCompleted();
+                        questionListController.refreshController.loadComplete();
+                      },
+                      onLoading: () {
+                        questionListController.refreshController.loadComplete();
+                      },
+                      // header: WaterDropMaterialHeader(
+                      //   backgroundColor: ColorsTheme.primaryColor,
+                      //   distance: 30,
+                      // ),
+                      footer: RefreshFooter(),
+                      child: _buildList(questionListController.isLoading.value),
+                    );
                   },
                 ),
               ),
@@ -104,26 +110,51 @@ class LeadPage extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              print("sssssss");
+              // print("sssssss");
+              showToast("content");
             },
             child: Container(
-              margin:
-              EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding * 2),
+              margin: EdgeInsets.symmetric(
+                  vertical: DefaultSize.defaultPadding * 1),
               padding: EdgeInsets.symmetric(
                   horizontal: DefaultSize.defaultPadding * 2.2,
                   vertical: DefaultSize.basePadding * 6),
               decoration: BoxDecoration(
-                  color: ColorsTheme.black.withOpacity(0.5),
+                  color: ColorsTheme.white.withOpacity(0.5),
                   borderRadius: BorderRadius.circular(25)),
               child: Icon(
                 Icons.add,
-                color: ColorsTheme.white.withOpacity(0.8),
+                color: ColorsTheme.black.withOpacity(0.8),
                 size: DefaultSize.defaultPadding * 3,
               ),
             ),
-          )
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).padding.bottom,
+          ),
         ],
       ),
     );
+  }
+
+  Widget _buildList(bool isLoading) {
+    if (isLoading)
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    else
+      return ListView.builder(
+          controller: popMenuController.scrollController,
+          padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
+          // physics: NeverScrollableScrollPhysics(),
+          itemCount: questionListController.questionBankList.length,
+          itemBuilder: (context, index) {
+            final GlobalKey btnKey = GlobalKey();
+            var item = questionListController.questionBankList[index];
+            return QuestionBank(
+              btnKey: btnKey,
+              lcObject: item,
+            );
+          });
   }
 }
