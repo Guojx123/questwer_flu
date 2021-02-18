@@ -58,9 +58,9 @@ class AnswerQuestion extends StatelessWidget {
       onWillPop: () {
         if (_lastPressedAt == null ||
             DateTime.now().difference(_lastPressedAt).inSeconds > 1) {
-          print('再按一次 Back 按钮退出');
           showToast("Quickly double-click to exit.",
               position: ToastPosition.bottom);
+          print('再按一次 Back 按钮退出');
           _lastPressedAt = DateTime.now();
           return Future.value(false); // 不退出
         } else {
