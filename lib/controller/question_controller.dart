@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/http/ApiService.dart';
+import 'package:questwer_flu/model/question.dart';
 
 class QuestionController extends GetxController{
 
@@ -16,11 +17,11 @@ class QuestionController extends GetxController{
   bool _isAnswered = false;
   bool get isAnswered => this._isAnswered;
 
-  int _correctAns;
-  int get correctAns => this._correctAns;
+  String _correctAns;
+  String get correctAns => this._correctAns;
 
-  int _selectedAns;
-  int get selectedAns => this._selectedAns;
+  String _selectedAns;
+  String get selectedAns => this._selectedAns;
 
   RxInt _questionNumber = 1.obs;
   RxInt get questionNumber => this._questionNumber;
@@ -63,5 +64,42 @@ class QuestionController extends GetxController{
   void updateTheQnNum(int index) {
     _questionNumber.value = index + 1;
   }
+
+
+  void checkAns(Question question, String selectedAns) {
+    // because once user press any option then it will run
+    _isAnswered = true;
+    _correctAns = question.correctAnswer;
+    _selectedAns = selectedAns;
+
+    if (_correctAns == _selectedAns) _numOfCorrectAns++;
+
+    // It will stop the counter
+    // _animationController.stop();
+    update();
+
+    // Once user select an ans after 3s it will go to the next qn
+    // Future.delayed(Duration(seconds: 3), () {
+    //   nextQuestion();
+    // });
+  }
+
+  // void nextQuestion() {
+  //   if (_questionNumber.value != _questions.length) {
+  //     _isAnswered = false;
+  //     _pageController.nextPage(
+  //         duration: Duration(milliseconds: 250), curve: Curves.ease);
+  //
+  //     // Reset the counter
+  //     _animationController.reset();
+  //
+  //     // Then start it again
+  //     // Once timer is finish go to the next qn
+  //     _animationController.forward().whenComplete(nextQuestion);
+  //   } else {
+  //     // Get package provide us simple way to naviigate another page
+  //     Get.to(ScoreScreen());
+  //   }
+  // }
 
 }

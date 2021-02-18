@@ -1,7 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/question_controller.dart';
 import 'package:questwer_flu/model/question.dart';
+import 'package:questwer_flu/theme/color.dart';
+import 'package:questwer_flu/theme/size.dart';
+
+import 'option.dart';
 
 class QuestionCard extends StatefulWidget {
   final String name;
@@ -50,20 +56,41 @@ class _QuestionCardState extends State<QuestionCard> {
               subTitle: item["sub_title"],
               difficulty: item["difficulty"],
               answer: item["answer"],
-              correctAnswer: item["correctAnswer"],
+              correctAnswer: item["correct_answer"],
               ownedQb: item["ownedQB"],
               creator: item["creator"],
             ))
         .toList();
     Question item = _question[index];
-    return ListTile(
-      title: Text(
-        item.title,
-        style: TextStyle(color: Colors.white),
+    List answerDecode = json.decode(item.answer);
+    answerDecode.add(item.correctAnswer);
+    answerDecode.shuffle();
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding,vertical: DefaultSize.defaultPadding),
+      padding: EdgeInsets.all(DefaultSize.defaultPadding),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(25),
       ),
-      subtitle: Text(
-        item.subTitle,
-        style: TextStyle(color: Colors.white),
+      child: Column(
+        children: [
+          Text(
+            item.title,
+            style: Theme.of(context)
+                .textTheme
+                .headline6
+                .copyWith(color: ColorsTheme.black),
+          ),
+          SizedBox(height: DefaultSize.defaultPadding / 2),
+          ...List.generate(
+            answerDecode.length,
+                (index) => Option(
+              index: index,
+              text: answerDecode[index],
+              press: () => _questionController.checkAns(item, answerDecode[index]),
+            ),
+          ),
+        ],
       ),
     );
   }
