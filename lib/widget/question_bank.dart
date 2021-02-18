@@ -81,7 +81,7 @@ class _QuestionBankPageState extends State<QuestionBankPage> {
                       "${_questionBank.description ?? "Test your love music."}",
                       textAlign: TextAlign.start,
                       maxLines: 3,
-                      overflow: TextOverflow.visible,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           fontSize: 16, color: ColorsTheme.white.withOpacity(0.6), height: 1.4),
                     ),

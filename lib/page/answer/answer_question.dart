@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:questwer_flu/controller/question_controller.dart';
+import 'package:questwer_flu/page/score/score_screen.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
@@ -46,6 +47,7 @@ class AnswerQuestion extends StatelessWidget {
                   ),
                   actionFunction: () {
                     print("Tips: Skip this questionBank.");
+                    Get.to(ScoreScreen());
                   },
                 ),
                 Expanded(

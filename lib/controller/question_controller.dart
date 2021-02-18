@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/http/ApiService.dart';
 import 'package:questwer_flu/model/question.dart';
+import 'package:questwer_flu/page/score/score_screen.dart';
 
 class QuestionController extends GetxController{
 
@@ -49,6 +50,7 @@ class QuestionController extends GetxController{
   initValue(){
     _isAnswered = false;
     _questionNumber = 1.obs;
+    _numOfCorrectAns = 0;
   }
 
   /// 获取某一题库的题目数据
@@ -73,7 +75,6 @@ class QuestionController extends GetxController{
   void updateTheQnNum(int index) {
     _questionNumber.value = index + 1;
   }
-
 
   void checkAns(Question question, String selectedAns) {
     // because once user press any option then it will run
@@ -108,8 +109,7 @@ class QuestionController extends GetxController{
       // Once timer is finish go to the next qn
       // _animationController.forward().whenComplete(nextQuestion);
     } else {
-      // Get package provide us simple way to naviigate another page
-      // Get.to(ScoreScreen());
+      Get.to(ScoreScreen());
     }
   }
 
