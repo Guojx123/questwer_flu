@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:questwer_flu/http/ApiService.dart';
 
@@ -29,6 +30,7 @@ class QuestionListController extends GetxController {
     questionBankList.clear();
     if(questionBank != null){
       questionBankList.assignAll(questionBank);
+      showToast("Data refreshed",position: ToastPosition.bottom);
       debugPrint("刷新题库数据");
     }
     update();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:questwer_flu/controller/question_controller.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
@@ -16,39 +17,65 @@ class AnswerQuestion extends StatelessWidget {
   }) : super(key: key);
 
   QuestionController _questionController = Get.put(QuestionController());
+  DateTime _lastPressedAt; //上次点击时间
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      body: Stack(
-        children: [
-          BackGroundWidget(
-            blur: 0.0,
-          ),
-          Column(
-            children: [
-              CommonAppBar(
-                "",
-                canBack: false,
-                actionWidget: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: DefaultSize.defaultPadding * 3,
-                      vertical: DefaultSize.basePadding),
-                  child: Text(
-                    "Skip",
-                    style: TextStyle(color: Colors.white),
+    return WillPopScope(
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        body: Stack(
+          children: [
+            BackGroundWidget(
+              blur: 0.0,
+            ),
+            Column(
+              children: [
+                CommonAppBar(
+                  "",
+                  canBack: false,
+                  actionWidget: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: DefaultSize.defaultPadding * 3,
+                        vertical: DefaultSize.basePadding),
+                    child: Text(
+                      "Skip",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
+                  actionFunction: () {
+                    print("Tips: Skip this questionBank.");
+                  },
                 ),
-                actionFunction: () {
-                  print("Tips: Skip this questionBank.");
-                },
-              ),
-              Expanded(child: QuestionCard(name: name,)),
-            ],
-          ),
-        ],
+                Expanded(
+                  child: _buildList(_questionController.isLoading.value),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
+      onWillPop: () {
+        if (_lastPressedAt == null ||
+            DateTime.now().difference(_lastPressedAt).inSeconds > 1) {
+          print('再按一次 Back 按钮退出');
+          showToast("Quickly double-click to exit.",
+              position: ToastPosition.bottom);
+          _lastPressedAt = DateTime.now();
+          return Future.value(false); // 不退出
+        } else {
+          print('退出');
+          Navigator.of(context).pop(true);
+          return Future.value(true); // 退出
+        }
+      },
+    );
+  }
+
+  Widget _buildList(bool isLoading) {
+    return QuestionCard(
+      name: name,
+      isLoading: isLoading,
     );
   }
 }

@@ -3,25 +3,26 @@ import 'package:get/state_manager.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:popup_menu/popup_menu.dart';
 import 'package:questwer_flu/controller/pop_menu_controller.dart';
+import 'package:questwer_flu/model/question_bank.dart';
 import 'package:questwer_flu/page/answer/answer_question.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:get/get.dart';
 
-class QuestionBank extends StatefulWidget {
+class QuestionBankPage extends StatefulWidget {
   final GlobalKey btnKey;
-  final LCObject lcObject;
+  final QuestionBank questionBank;
 
-  const QuestionBank({Key key, this.btnKey, this.lcObject}) : super(key: key);
+  const QuestionBankPage({Key key, this.btnKey, this.questionBank}) : super(key: key);
 
   @override
-  _QuestionBankState createState() => _QuestionBankState();
+  _QuestionBankPageState createState() => _QuestionBankPageState();
 }
 
-class _QuestionBankState extends State<QuestionBank> {
+class _QuestionBankPageState extends State<QuestionBankPage> {
   PopMenuController popMenuController = Get.put(PopMenuController());
 
-  LCObject get _lcObject => widget.lcObject;
+  QuestionBank get _questionBank => widget.questionBank;
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +31,8 @@ class _QuestionBankState extends State<QuestionBank> {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: (){
-        Get.to(AnswerQuestion(name: _lcObject['name'],));
-        print(_lcObject['id']);
+        Get.to(AnswerQuestion(name: _questionBank.name,));
+        print(_questionBank.id);
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding),
@@ -69,7 +70,7 @@ class _QuestionBankState extends State<QuestionBank> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "${_lcObject["name"] ?? "New Question List"}",
+                      "${_questionBank.name ?? "New Question List"}",
                       textAlign: TextAlign.center,
                       maxLines: 1,
                       overflow: TextOverflow.visible,
@@ -77,7 +78,7 @@ class _QuestionBankState extends State<QuestionBank> {
                           fontSize: 20, height: 1.4, color: ColorsTheme.white),
                     ),
                     Text(
-                      "${_lcObject["description"] ?? "Test your love music."}",
+                      "${_questionBank.description ?? "Test your love music."}",
                       textAlign: TextAlign.start,
                       maxLines: 3,
                       overflow: TextOverflow.visible,

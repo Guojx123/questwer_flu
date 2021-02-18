@@ -5,6 +5,7 @@ import 'package:oktoast/oktoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:questwer_flu/controller/pop_menu_controller.dart';
 import 'package:questwer_flu/controller/question_list_controller.dart';
+import 'package:questwer_flu/model/question_bank.dart';
 import 'package:questwer_flu/service/key_value.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
@@ -15,21 +16,23 @@ import 'package:questwer_flu/widget/scroll__behavior.dart';
 import 'package:questwer_flu/widget/smart_refresh_footer.dart';
 
 class LeadPage extends StatelessWidget {
-
   PopMenuController popMenuController = Get.put(PopMenuController());
   QuestionListController questionListController =
-  Get.put(QuestionListController());
+      Get.put(QuestionListController());
 
-  bool _addRefreshValue = true; ///是否添加刷新
+  bool _addRefreshValue = true;
+
+  ///是否添加刷新
 
   @override
   Widget build(BuildContext context) {
-
     return Material(
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          BackGroundWidget(blur: 0.6,),
+          BackGroundWidget(
+            blur: 0.6,
+          ),
           NestedScrollView(
             key: UniqueKey(),
             headerSliverBuilder:
@@ -55,7 +58,10 @@ class LeadPage extends StatelessWidget {
                     Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: DefaultSize.defaultPadding),
-                        child: Icon(Icons.settings,color: ColorsTheme.white,))
+                        child: Icon(
+                          Icons.settings,
+                          color: ColorsTheme.white,
+                        ))
                   ],
                 ),
               ];
@@ -67,27 +73,33 @@ class LeadPage extends StatelessWidget {
                 child: GetBuilder(
                   init: QuestionListController(),
                   builder: (context) {
-                    return _addRefresh() ? SmartRefresher(
-                      physics: BouncingScrollPhysics(),
-                      controller: questionListController.refreshController,
-                      enablePullDown: true,
-                      enablePullUp: false,
-                      onRefresh: () {
-                        questionListController.refreshList();
-                        questionListController.refreshController
-                            .refreshCompleted();
-                        questionListController.refreshController.loadComplete();
-                      },
-                      onLoading: () {
-                        questionListController.refreshController.loadComplete();
-                      },
-                      // header: WaterDropMaterialHeader(
-                      //   backgroundColor: ColorsTheme.primaryColor,
-                      //   distance: 30,
-                      // ),
-                      footer: RefreshFooter(),
-                      child: _buildList(questionListController.isLoading.value),
-                    ) : _buildList(questionListController.isLoading.value);
+                    return _addRefresh()
+                        ? SmartRefresher(
+                            physics: BouncingScrollPhysics(),
+                            controller:
+                                questionListController.refreshController,
+                            enablePullDown: true,
+                            enablePullUp: false,
+                            onRefresh: () {
+                              questionListController.refreshList();
+                              questionListController.refreshController
+                                  .refreshCompleted();
+                              questionListController.refreshController
+                                  .loadComplete();
+                            },
+                            onLoading: () {
+                              questionListController.refreshController
+                                  .loadComplete();
+                            },
+                            // header: WaterDropMaterialHeader(
+                            //   backgroundColor: ColorsTheme.primaryColor,
+                            //   distance: 30,
+                            // ),
+                            footer: RefreshFooter(),
+                            child: _buildList(
+                                questionListController.isLoading.value),
+                          )
+                        : _buildList(questionListController.isLoading.value);
                   },
                 ),
               ),
@@ -135,15 +147,26 @@ class LeadPage extends StatelessWidget {
           itemCount: questionListController.questionBankList.length,
           itemBuilder: (context, index) {
             final GlobalKey btnKey = GlobalKey();
-            var item = questionListController.questionBankList[index];
-            return QuestionBank(
+            List<QuestionBank> questionBank =
+                questionListController.questionBankList
+                    .map((item) => QuestionBank(
+                          id: item["id"],
+                          name: item["name"],
+                          description: item["description"],
+                          share: item["share"],
+                          owner: item["owner"],
+                          shareId: item["shareId"],
+                        ))
+                    .toList();
+            var item = questionBank[index];
+            return QuestionBankPage(
               btnKey: btnKey,
-              lcObject: item,
+              questionBank: item,
             );
           });
   }
 
-  _addRefresh(){
+  _addRefresh() {
     return _addRefreshValue;
   }
 }
