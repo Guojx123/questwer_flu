@@ -13,12 +13,10 @@ class ApiService {
     return questionBankList;
   }
 
-  static fetchQuestion(num id) async {
+  static fetchQuestion(String name) async {
     LCQuery<LCObject> query = LCQuery('question');
-    query.whereEqualTo('ownedQB', id.toString());
+    query.whereEqualTo('ownedQB', name);
     List<LCObject> questionList = await query.find();
-    print("questionList:");
-    print(questionList);
     return questionList;
   }
 

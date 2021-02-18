@@ -14,13 +14,14 @@ class QuestionController extends GetxController{
     super.onInit();
   }
 
-  fetchQuestion(num id) async {
+  fetchQuestion(String name) async {
     try {
       isLoading(true);
-      List<LCObject> question = await ApiService.fetchQuestion(id);
+      List<LCObject> question = await ApiService.fetchQuestion(name);
       if(question != null){
         questionList.assignAll(question);
         debugPrint("获取题目数据");
+        print(questionList);
         isLoading(false);
       }
     } finally {

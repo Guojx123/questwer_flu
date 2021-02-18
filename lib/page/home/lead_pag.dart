@@ -13,13 +13,14 @@ import 'package:questwer_flu/widget/background_widget.dart';
 import 'package:questwer_flu/widget/question_bank.dart';
 import 'package:questwer_flu/widget/scroll__behavior.dart';
 import 'package:questwer_flu/widget/smart_refresh_footer.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 class LeadPage extends StatelessWidget {
 
   PopMenuController popMenuController = Get.put(PopMenuController());
   QuestionListController questionListController =
   Get.put(QuestionListController());
+
+  bool _addRefreshValue = true; ///是否添加刷新
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +38,10 @@ class LeadPage extends StatelessWidget {
                 SliverAppBar(
                   backgroundColor: Colors.transparent,
                   automaticallyImplyLeading: false,
-                  toolbarHeight: DefaultSize.defaultPadding * 3,
+                  toolbarHeight: DefaultSize.defaultPadding * 4,
                   brightness: Brightness.dark,
                   elevation: 0,
+                  floating: true,
                   title: Text(
                     "Hi !  ${PersistentStorage.get("nickname")}.",
                     textAlign: TextAlign.start,
@@ -65,7 +67,7 @@ class LeadPage extends StatelessWidget {
                 child: GetBuilder(
                   init: QuestionListController(),
                   builder: (context) {
-                    return SmartRefresher(
+                    return _addRefresh() ? SmartRefresher(
                       physics: BouncingScrollPhysics(),
                       controller: questionListController.refreshController,
                       enablePullDown: true,
@@ -85,7 +87,7 @@ class LeadPage extends StatelessWidget {
                       // ),
                       footer: RefreshFooter(),
                       child: _buildList(questionListController.isLoading.value),
-                    );
+                    ) : _buildList(questionListController.isLoading.value);
                   },
                 ),
               ),
@@ -139,5 +141,9 @@ class LeadPage extends StatelessWidget {
               lcObject: item,
             );
           });
+  }
+
+  _addRefresh(){
+    return _addRefreshValue;
   }
 }

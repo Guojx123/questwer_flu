@@ -30,7 +30,7 @@ class _QuestionBankState extends State<QuestionBank> {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: (){
-        Get.to(AnswerQuestion(id: _lcObject['id'],));
+        Get.to(AnswerQuestion(name: _lcObject['name'],));
         print(_lcObject['id']);
       },
       child: Container(
