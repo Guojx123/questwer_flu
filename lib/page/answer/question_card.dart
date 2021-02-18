@@ -66,28 +66,40 @@ class _QuestionCardState extends State<QuestionCard> {
     answerDecode.add(item.correctAnswer);
     answerDecode.shuffle();
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding,vertical: DefaultSize.defaultPadding),
+      margin: EdgeInsets.symmetric(
+          horizontal: DefaultSize.defaultPadding,
+          vertical: DefaultSize.defaultPadding),
       padding: EdgeInsets.all(DefaultSize.defaultPadding),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: ColorsTheme.white.withOpacity(0.94),
         borderRadius: BorderRadius.circular(25),
       ),
       child: Column(
         children: [
-          Text(
-            item.title,
-            style: Theme.of(context)
-                .textTheme
-                .headline6
-                .copyWith(color: ColorsTheme.black),
+          ListTile(
+            title: Text(
+              item.title,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline5
+                  .copyWith(color: ColorsTheme.black),
+            ),
+            subtitle: Text(
+              item.subTitle,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  .copyWith(color: ColorsTheme.black),
+            ),
           ),
           SizedBox(height: DefaultSize.defaultPadding / 2),
           ...List.generate(
             answerDecode.length,
-                (index) => Option(
+            (index) => Option(
               index: index,
               text: answerDecode[index],
-              press: () => _questionController.checkAns(item, answerDecode[index]),
+              press: () =>
+                  _questionController.checkAns(item, answerDecode[index]),
             ),
           ),
         ],

@@ -30,7 +30,7 @@ class QuestionListController extends GetxController {
     questionBankList.clear();
     if(questionBank != null){
       questionBankList.assignAll(questionBank);
-      showToast("Data refreshed",position: ToastPosition.bottom);
+      // showToast("Data refreshed",position: ToastPosition.bottom);
       debugPrint("刷新题库数据");
     }
     update();

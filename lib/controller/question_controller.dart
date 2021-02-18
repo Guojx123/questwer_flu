@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/http/ApiService.dart';
@@ -33,13 +34,21 @@ class QuestionController extends GetxController{
   void onInit() {
     // TODO: implement onInit
     _pageController = PageController();
+    initValue();
     super.onInit();
   }
 
   @override
   void onClose() {
     super.onClose();
+    _isAnswered = true;
     _pageController.dispose();
+    _numOfCorrectAns = 0;
+  }
+
+  initValue(){
+    _isAnswered = false;
+    _questionNumber = 1.obs;
   }
 
   /// 获取某一题库的题目数据
@@ -71,7 +80,6 @@ class QuestionController extends GetxController{
     _isAnswered = true;
     _correctAns = question.correctAnswer;
     _selectedAns = selectedAns;
-
     if (_correctAns == _selectedAns) _numOfCorrectAns++;
 
     // It will stop the counter
@@ -79,27 +87,30 @@ class QuestionController extends GetxController{
     update();
 
     // Once user select an ans after 3s it will go to the next qn
-    // Future.delayed(Duration(seconds: 3), () {
-    //   nextQuestion();
-    // });
+    Future.delayed(Duration(seconds: 3), () {
+      nextQuestion();
+    });
   }
 
-  // void nextQuestion() {
-  //   if (_questionNumber.value != _questions.length) {
-  //     _isAnswered = false;
-  //     _pageController.nextPage(
-  //         duration: Duration(milliseconds: 250), curve: Curves.ease);
-  //
-  //     // Reset the counter
-  //     _animationController.reset();
-  //
-  //     // Then start it again
-  //     // Once timer is finish go to the next qn
-  //     _animationController.forward().whenComplete(nextQuestion);
-  //   } else {
-  //     // Get package provide us simple way to naviigate another page
-  //     Get.to(ScoreScreen());
-  //   }
-  // }
+  void nextQuestion() {
+    print("number");
+    print(_questionNumber.value);
+    print(questionList.length);
+    if (_questionNumber.value != questionList.length) {
+      _isAnswered = false;
+      _pageController.nextPage(
+          duration: Duration(milliseconds: 250), curve: Curves.ease);
+
+      // Reset the counter
+      // _animationController.reset();
+
+      // Then start it again
+      // Once timer is finish go to the next qn
+      // _animationController.forward().whenComplete(nextQuestion);
+    } else {
+      // Get package provide us simple way to naviigate another page
+      // Get.to(ScoreScreen());
+    }
+  }
 
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:questwer_flu/controller/question_controller.dart';
+import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
 import 'package:questwer_flu/widget/common_app_bar.dart';
@@ -40,7 +41,7 @@ class AnswerQuestion extends StatelessWidget {
                         vertical: DefaultSize.basePadding),
                     child: Text(
                       "Skip",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: ColorsTheme.white,fontSize: DefaultSize.fontSize),
                     ),
                   ),
                   actionFunction: () {
@@ -65,6 +66,7 @@ class AnswerQuestion extends StatelessWidget {
           return Future.value(false); // 不退出
         } else {
           print('退出');
+          _questionController.initValue();
           Navigator.of(context).pop(true);
           return Future.value(true); // 退出
         }

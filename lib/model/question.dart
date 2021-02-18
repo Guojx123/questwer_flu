@@ -38,34 +38,34 @@ class Question {
   Acl acl;
 
   factory Question.fromJson(Map<String, dynamic> json) => Question(
-    answer: json["answer"],
-    correctAnswer: json["correct_answer"],
-    creator: json["creator"],
-    difficulty: json["difficulty"],
-    ownedQb: json["ownedQB"],
-    subTitle: json["sub_title"],
-    title: json["title"],
-    id: json["id"],
-    objectId: json["objectId"],
-    createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
-    acl: Acl.fromJson(json["ACL"]),
-  );
+        answer: json["answer"],
+        correctAnswer: json["correct_answer"],
+        creator: json["creator"],
+        difficulty: json["difficulty"],
+        ownedQb: json["ownedQB"],
+        subTitle: json["sub_title"],
+        title: json["title"],
+        id: json["id"],
+        objectId: json["objectId"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+        acl: Acl.fromJson(json["ACL"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "answer": answer,
-    "correct_answer": correctAnswer,
-    "creator": creator,
-    "difficulty": difficulty,
-    "ownedQB": ownedQb,
-    "sub_title": subTitle,
-    "title": title,
-    "id": id,
-    "objectId": objectId,
-    "createdAt": createdAt.toIso8601String(),
-    "updatedAt": updatedAt.toIso8601String(),
-    "ACL": acl.toJson(),
-  };
+        "answer": answer,
+        "correct_answer": correctAnswer,
+        "creator": creator,
+        "difficulty": difficulty,
+        "ownedQB": ownedQb,
+        "sub_title": subTitle,
+        "title": title,
+        "id": id,
+        "objectId": objectId,
+        "createdAt": createdAt.toIso8601String(),
+        "updatedAt": updatedAt.toIso8601String(),
+        "ACL": acl.toJson(),
+      };
 }
 
 class Acl {
@@ -76,12 +76,12 @@ class Acl {
   Empty empty;
 
   factory Acl.fromJson(Map<String, dynamic> json) => Acl(
-    empty: Empty.fromJson(json["*"]),
-  );
+        empty: Empty.fromJson(json["*"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "*": empty.toJson(),
-  };
+        "*": empty.toJson(),
+      };
 }
 
 class Empty {
@@ -92,10 +92,10 @@ class Empty {
   bool read;
 
   factory Empty.fromJson(Map<String, dynamic> json) => Empty(
-    read: json["read"],
-  );
+        read: json["read"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "read": read,
-  };
+        "read": read,
+      };
 }

@@ -36,16 +36,26 @@ class Option extends StatelessWidget {
             return getTheRightColor() == kRedColor ? Icons.close : Icons.done;
           }
 
-          return InkWell(
+          return GestureDetector(
+            behavior: HitTestBehavior.translucent,
             onTap: qnController.isAnswered ? (){} : press,
+            // onTap: press,
             child: Container(
-              margin: EdgeInsets.only(top: DefaultSize.defaultPadding),
+              margin: EdgeInsets.only(top: DefaultSize.defaultPadding * 2),
               padding: EdgeInsets.all(DefaultSize.defaultPadding),
               decoration: BoxDecoration(
-                border: qnController.isAnswered ? Border.all(
-                    color: getTheRightColor()) : Border.all(color: kWhiteColor),
-                borderRadius: BorderRadius.circular(10),
-              ),
+                  border: qnController.isAnswered
+                      ? Border.all(color: getTheRightColor())
+                      : Border.all(color: kWhiteColor),
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                        color: ColorsTheme.greyWhite,
+                        offset: Offset(2.0, 6.0), //阴影xy轴偏移量
+                        blurRadius: 10.0, //阴影模糊程度
+                        spreadRadius: 3.0 //阴影扩散程度
+                        )
+                  ]),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -61,12 +71,17 @@ class Option extends StatelessWidget {
                           ? Colors.transparent
                           : getTheRightColor(),
                       borderRadius: BorderRadius.circular(50),
-                      border: !qnController.isAnswered ? Border.all(
-                          color: getTheRightColor()) : Border.all(color: kWhiteColor),
+                      border: !qnController.isAnswered
+                          ? Border.all(color: getTheRightColor())
+                          : Border.all(color: kWhiteColor),
                     ),
                     child: getTheRightColor() == kGrayColor
                         ? null
-                        : Icon(getTheRightIcon(), size: 16,color: ColorsTheme.white,),
+                        : Icon(
+                            getTheRightIcon(),
+                            size: 16,
+                            color: ColorsTheme.white,
+                          ),
                   )
                 ],
               ),

@@ -11,6 +11,7 @@ class ColorsTheme {
 
   static Color get black => Color(0xFF000000);
   static Color get white => Color(0xFFffffff);
+  static Color get greyWhite => Color(0xFFf7f7f7);
   static Color get primaryColor => Color(0xFF56b0ba);
   static Color get tealBtnColor => Color(0xFF22ddCB);
 
