@@ -33,78 +33,7 @@ class LeadPage extends StatelessWidget {
           BackGroundWidget(
             blur: 0.6,
           ),
-          NestedScrollView(
-            key: UniqueKey(),
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) {
-              return <Widget>[
-                SliverAppBar(
-                  backgroundColor: Colors.transparent,
-                  automaticallyImplyLeading: false,
-                  toolbarHeight: DefaultSize.defaultPadding * 4,
-                  brightness: Brightness.dark,
-                  elevation: 0,
-                  floating: true,
-                  title: Text(
-                    "Hi !  ${PersistentStorage.get("nickname")}.",
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        color: ColorsTheme.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  actions: [
-                    Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: DefaultSize.defaultPadding),
-                        child: Icon(
-                          Icons.settings,
-                          color: ColorsTheme.white,
-                        ))
-                  ],
-                ),
-              ];
-            },
-            body: Container(
-              width: double.infinity,
-              child: ScrollConfiguration(
-                behavior: OverScrollBehavior(),
-                child: GetBuilder(
-                  init: QuestionListController(),
-                  builder: (context) {
-                    return _addRefresh()
-                        ? SmartRefresher(
-                            physics: BouncingScrollPhysics(),
-                            controller:
-                                questionListController.refreshController,
-                            enablePullDown: true,
-                            enablePullUp: false,
-                            onRefresh: () {
-                              questionListController.refreshList();
-                              questionListController.refreshController
-                                  .refreshCompleted();
-                              questionListController.refreshController
-                                  .loadComplete();
-                            },
-                            onLoading: () {
-                              questionListController.refreshController
-                                  .loadComplete();
-                            },
-                            // header: WaterDropMaterialHeader(
-                            //   backgroundColor: ColorsTheme.primaryColor,
-                            //   distance: 30,
-                            // ),
-                            footer: RefreshFooter(),
-                            child: _buildList(
-                                questionListController.isLoading.value),
-                          )
-                        : _buildList(questionListController.isLoading.value);
-                  },
-                ),
-              ),
-            ),
-          ),
+          _buildCustomScrollView(),
           GestureDetector(
             onTap: () {
               // print("sssssss");
@@ -130,6 +59,153 @@ class LeadPage extends StatelessWidget {
             height: MediaQuery.of(context).padding.bottom,
           ),
         ],
+      ),
+    );
+  }
+  Widget _buildCustomScrollView(){
+    return Container(
+      key: UniqueKey(),
+      width: double.infinity,
+      child: ScrollConfiguration(
+        behavior: OverScrollBehavior(),
+        child: GetBuilder(
+          init: QuestionListController(),
+          builder: (context) {
+            return _addRefresh()
+                ? Column(
+              children: [
+                AppBar(
+                  backgroundColor: Colors.transparent,
+                  automaticallyImplyLeading: false,
+                  toolbarHeight: DefaultSize.defaultPadding * 4,
+                  brightness: Brightness.dark,
+                  elevation: 0,
+                  title: Text(
+                    "Hi !  ${PersistentStorage.get("nickname")}.",
+                    textAlign: TextAlign.start,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: ColorsTheme.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  actions: [
+                    Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: DefaultSize.defaultPadding),
+                        child: Icon(
+                          Icons.settings,
+                          color: ColorsTheme.white,
+                        ))
+                  ],
+                ),
+                Expanded(
+                  child: SmartRefresher(
+                    physics: BouncingScrollPhysics(),
+                    controller:
+                    questionListController.refreshController,
+                    enablePullDown: true,
+                    enablePullUp: false,
+                    onRefresh: () {
+                      questionListController.refreshList();
+                      questionListController.refreshController
+                          .refreshCompleted();
+                      questionListController.refreshController
+                          .loadComplete();
+                    },
+                    onLoading: () {
+                      questionListController.refreshController
+                          .loadComplete();
+                    },
+                    // header: WaterDropMaterialHeader(
+                    //   backgroundColor: ColorsTheme.primaryColor,
+                    //   distance: 30,
+                    // ),
+                    footer: RefreshFooter(),
+                    child: _buildList(
+                        questionListController.isLoading.value),
+                  ),
+                )
+              ],
+            )
+                : _buildList(questionListController.isLoading.value);
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNestedScrollView(){
+    return NestedScrollView(
+      key: UniqueKey(),
+      headerSliverBuilder:
+          (BuildContext context, bool innerBoxIsScrolled) {
+        return <Widget>[
+          SliverAppBar(
+            backgroundColor: Colors.transparent,
+            automaticallyImplyLeading: false,
+            toolbarHeight: DefaultSize.defaultPadding * 4,
+            brightness: Brightness.dark,
+            elevation: 0,
+            floating: true,
+            title: Text(
+              "Hi !  ${PersistentStorage.get("nickname")}.",
+              textAlign: TextAlign.start,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                  color: ColorsTheme.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            actions: [
+              Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: DefaultSize.defaultPadding),
+                  child: Icon(
+                    Icons.settings,
+                    color: ColorsTheme.white,
+                  ))
+            ],
+          ),
+        ];
+      },
+      body: Container(
+        width: double.infinity,
+        child: ScrollConfiguration(
+          behavior: OverScrollBehavior(),
+          child: GetBuilder(
+            init: QuestionListController(),
+            builder: (context) {
+              return _addRefresh()
+                  ? SmartRefresher(
+                physics: BouncingScrollPhysics(),
+                controller:
+                questionListController.refreshController,
+                enablePullDown: true,
+                enablePullUp: false,
+                onRefresh: () {
+                  questionListController.refreshList();
+                  questionListController.refreshController
+                      .refreshCompleted();
+                  questionListController.refreshController
+                      .loadComplete();
+                },
+                onLoading: () {
+                  questionListController.refreshController
+                      .loadComplete();
+                },
+                // header: WaterDropMaterialHeader(
+                //   backgroundColor: ColorsTheme.primaryColor,
+                //   distance: 30,
+                // ),
+                footer: RefreshFooter(),
+                child: _buildList(
+                    questionListController.isLoading.value),
+              )
+                  : _buildList(questionListController.isLoading.value);
+            },
+          ),
+        ),
       ),
     );
   }

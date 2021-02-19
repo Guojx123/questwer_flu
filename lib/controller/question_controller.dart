@@ -75,6 +75,10 @@ class QuestionController extends GetxController
     _animationController.forward().whenComplete(nextQuestion);
   }
 
+  pageDispose(){
+    _pageController.dispose();
+  }
+
   /// 获取某一题库的题目数据
   fetchQuestion(String name) async {
     try {
