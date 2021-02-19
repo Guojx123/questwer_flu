@@ -62,7 +62,6 @@ class AnswerQuestion extends StatelessWidget {
       ),
       onWillPop: () {
         return Future.value(false); // 不退出
-
         // if (_lastPressedAt == null ||
         //     DateTime.now().difference(_lastPressedAt).inSeconds > 1) {
         //   print('再按一次 Back 按钮退出');

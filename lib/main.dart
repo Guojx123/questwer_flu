@@ -25,7 +25,6 @@ void realRunApp() async {
       'gqvQGBzcYDUsxBzHcWRdl2D6-gzGzoHsz', 'YxjvCQ0bPOAktPpRlNGVGcUJ',
       server: 'https://gqvqgbzc.lc-cn-n1-shared.com');
   LCLogger.setLevel(LCLogger.DebugLevel);
-  WidgetsFlutterBinding.ensureInitialized();
 
   //数据持久化
   await PersistentStorage.init();
@@ -39,6 +38,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       home: OKToast(
+        position: ToastPosition.bottom,
         child: MaterialApp(
           title: 'Q&A',
           theme: _buildThemeStyle(),
