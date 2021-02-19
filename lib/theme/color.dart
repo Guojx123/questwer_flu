@@ -11,7 +11,9 @@ class ColorsTheme {
 
   static Color get black => Color(0xFF000000);
   static Color get white => Color(0xFFffffff);
+  static Color get grey => Color(0xffb8b8b8);
   static Color get greyWhite => Color(0xFFf7f7f7);
+  static Color get greyBlue => Color(0xFF3f4768);
   static Color get primaryColor => Color(0xFF56b0ba);
   static Color get tealBtnColor => Color(0xFF22ddCB);
 
@@ -20,6 +22,12 @@ class ColorsTheme {
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
       );
+
+  static Gradient get gPrimaryGradient => LinearGradient(
+    colors: [Color(0xdd0991b5),Color(0xdd993c25)],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
 
   static Gradient get kCardGradient => LinearGradient(
     colors: [Color(0xFF0991b5), Color(0xFF56b0ba)],

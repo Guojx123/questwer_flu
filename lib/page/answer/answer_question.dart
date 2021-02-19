@@ -8,6 +8,7 @@ import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
 import 'package:questwer_flu/widget/common_app_bar.dart';
 
+import 'progress_bar.dart';
 import 'question_card.dart';
 
 class AnswerQuestion extends StatelessWidget {
@@ -31,31 +32,62 @@ class AnswerQuestion extends StatelessWidget {
             BackGroundWidget(
               blur: 0.0,
             ),
-            Column(
-              children: [
-                CommonAppBar(
-                  "",
-                  canBack: false,
-                  actionWidget: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: DefaultSize.defaultPadding * 3,
-                        vertical: DefaultSize.basePadding),
-                    child: Text(
-                      "Skip",
-                      style: TextStyle(
-                          color: ColorsTheme.white,
-                          fontSize: DefaultSize.fontSize),
+            SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CommonAppBar(
+                    "",
+                    canBack: false,
+                    actionWidget: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: DefaultSize.defaultPadding * 2,
+                          vertical: DefaultSize.basePadding),
+                      child: Text(
+                        "Skip",
+                        style: TextStyle(
+                            color: ColorsTheme.white,
+                            fontSize: DefaultSize.fontSize),
+                      ),
+                    ),
+                    actionFunction: () {
+                      print("Tips: Skip this questionBank.");
+                      Get.to(ScoreScreen());
+                    },
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding),
+                      child: ProgressBar()),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
+                    child: Obx(
+                          () => Text.rich(
+                        TextSpan(
+                          text:
+                          "Question ${_questionController.questionNumber.value}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline4
+                              .copyWith(color: kSecondaryColor),
+                          children: [
+                            TextSpan(
+                              text: " / ${_questionController.questionList.length}",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline5
+                                  .copyWith(color: kSecondaryColor),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                  actionFunction: () {
-                    print("Tips: Skip this questionBank.");
-                    Get.to(ScoreScreen());
-                  },
-                ),
-                Expanded(
-                  child: _buildList(_questionController.isLoading.value),
-                ),
-              ],
+                  Divider(thickness: 1.5),
+                  Expanded(
+                    child: _buildList(_questionController.isLoading.value),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

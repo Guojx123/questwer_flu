@@ -72,8 +72,8 @@ class Option extends StatelessWidget {
                           : getTheRightColor(),
                       borderRadius: BorderRadius.circular(50),
                       border: !qnController.isAnswered
-                          ? Border.all(color: getTheRightColor())
-                          : Border.all(color: kWhiteColor),
+                          ? Border.all(color: ColorsTheme.grey)
+                          : Border.all(color: ColorsTheme.greyWhite),
                     ),
                     child: getTheRightColor() == kGrayColor
                         ? null
