@@ -39,7 +39,6 @@ class ScoreScreen extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Get.offAll(LeadPage());
-                  _qnController.initValue();
                 },
                 child: Container(
                   width: double.infinity,

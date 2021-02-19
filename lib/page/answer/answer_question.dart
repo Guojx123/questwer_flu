@@ -56,22 +56,25 @@ class AnswerQuestion extends StatelessWidget {
                     },
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding),
+                      padding: EdgeInsets.symmetric(
+                          vertical: DefaultSize.defaultPadding),
                       child: ProgressBar()),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: DefaultSize.defaultPadding),
                     child: Obx(
-                          () => Text.rich(
+                      () => Text.rich(
                         TextSpan(
                           text:
-                          "Question ${_questionController.questionNumber.value}",
+                              "Question ${_questionController.questionNumber.value}",
                           style: Theme.of(context)
                               .textTheme
                               .headline4
                               .copyWith(color: kSecondaryColor),
                           children: [
                             TextSpan(
-                              text: " / ${_questionController.questionList.length}",
+                              text:
+                                  " / ${_questionController.questionList.length}",
                               style: Theme.of(context)
                                   .textTheme
                                   .headline5

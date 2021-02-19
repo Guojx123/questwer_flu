@@ -3,6 +3,7 @@ import 'package:get/state_manager.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:popup_menu/popup_menu.dart';
 import 'package:questwer_flu/controller/pop_menu_controller.dart';
+import 'package:questwer_flu/controller/question_controller.dart';
 import 'package:questwer_flu/model/question_bank.dart';
 import 'package:questwer_flu/page/answer/answer_question.dart';
 import 'package:questwer_flu/theme/color.dart';
@@ -13,7 +14,8 @@ class QuestionBankPage extends StatefulWidget {
   final GlobalKey btnKey;
   final QuestionBank questionBank;
 
-  const QuestionBankPage({Key key, this.btnKey, this.questionBank}) : super(key: key);
+  const QuestionBankPage({Key key, this.btnKey, this.questionBank})
+      : super(key: key);
 
   @override
   _QuestionBankPageState createState() => _QuestionBankPageState();
@@ -21,6 +23,7 @@ class QuestionBankPage extends StatefulWidget {
 
 class _QuestionBankPageState extends State<QuestionBankPage> {
   PopMenuController popMenuController = Get.put(PopMenuController());
+  QuestionController questionController = Get.put(QuestionController());
 
   QuestionBank get _questionBank => widget.questionBank;
 
@@ -30,8 +33,11 @@ class _QuestionBankPageState extends State<QuestionBankPage> {
 
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
-      onTap: (){
-        Get.to(AnswerQuestion(name: _questionBank.name,));
+      onTap: () {
+        Get.to(AnswerQuestion(
+          name: _questionBank.name,
+        ));
+        questionController.initValue();
         print(_questionBank.id);
       },
       child: Container(
@@ -48,7 +54,7 @@ class _QuestionBankPageState extends State<QuestionBankPage> {
                   offset: Offset(2.0, 4.0), //阴影xy轴偏移量
                   blurRadius: 20.0, //阴影模糊程度
                   spreadRadius: 1.0 //阴影扩散程度
-                  )
+                  ),
             ]),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,8 +69,8 @@ class _QuestionBankPageState extends State<QuestionBankPage> {
             ),
             Expanded(
               child: Container(
-                padding:
-                    EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
+                padding: EdgeInsets.symmetric(
+                    horizontal: DefaultSize.defaultPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -83,7 +89,9 @@ class _QuestionBankPageState extends State<QuestionBankPage> {
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                          fontSize: 16, color: ColorsTheme.white.withOpacity(0.6), height: 1.4),
+                          fontSize: 16,
+                          color: ColorsTheme.white.withOpacity(0.6),
+                          height: 1.4),
                     ),
                   ],
                 ),
