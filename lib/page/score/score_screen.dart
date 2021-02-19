@@ -33,7 +33,7 @@ class ScoreScreen extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .headline4
-                    .copyWith(color: kSecondaryColor),
+                    .copyWith(color: ColorsTheme.greyWhite),
               ),
               Spacer(flex: 2),
               GestureDetector(

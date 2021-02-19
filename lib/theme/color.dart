@@ -15,7 +15,9 @@ class ColorsTheme {
   static Color get greyWhite => Color(0xFFf7f7f7);
   static Color get greyBlue => Color(0xFF3f4768);
   static Color get primaryColor => Color(0xFF56b0ba);
-  static Color get tealBtnColor => Color(0xFF22ddCB);
+  static Color get teal => Color(0xFF22ddCB);
+  static Color get pink => Color(0xDCFD23F3);
+  static Color get purple => Color(0x979193EF);
 
   static Gradient get kPrimaryGradient => LinearGradient(
         colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
@@ -24,7 +26,7 @@ class ColorsTheme {
       );
 
   static Gradient get gPrimaryGradient => LinearGradient(
-    colors: [Color(0xdd0991b5),Color(0xdd993c25)],
+    colors: [Color(0xdd0991b5),Color(0xdd7939f1)],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
   );
@@ -54,8 +56,15 @@ class ColorsTheme {
   );
 
   static Gradient get rCardGradient => LinearGradient(
+    colors: [Color(0x4347e2c6),Color(0x979193EF)],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
+
+  static Gradient get bCardGradient => LinearGradient(
     colors: [Color(0x600991b5),Color(0x90993c25)],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
   );
+
 }

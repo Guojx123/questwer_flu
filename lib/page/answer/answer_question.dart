@@ -107,7 +107,7 @@ class AnswerQuestion extends StatelessWidget {
                                   value: timestamp,
                                   direction: Axis.vertical,
                                   backgroundColor: Colors.grey[300],
-                                  valueColor: AlwaysStoppedAnimation(ColorsTheme.primaryColor),
+                                  valueColor: AlwaysStoppedAnimation(ColorsTheme.purple),
                                   shapePath: _buildSpeechBubblePath(),
                                   center: Text(
                                     "${(timestamp * 60).round()} s",

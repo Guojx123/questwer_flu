@@ -31,7 +31,8 @@ class LeadPage extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         children: [
           BackGroundWidget(
-            blur: 0.6,
+            blur: 0.0,
+            bgColor: Color(0xac96d9ff),
           ),
           _buildCustomScrollView(),
           GestureDetector(

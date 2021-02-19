@@ -4,10 +4,11 @@ import 'package:simple_animations/simple_animations.dart';
 class BackGroundWidget extends StatelessWidget {
 
   final double blur;
+  final Color bgColor;
 
   BackGroundWidget({
     Key key,
-    this.blur = 0.0,
+    this.blur = 0.0, this.bgColor = Colors.blueGrey,
   }) : super(key: key);
 
   @override
@@ -20,7 +21,7 @@ class BackGroundWidget extends StatelessWidget {
       child: PlasmaRenderer(
         type: PlasmaType.infinity,
         particles: 12,
-        color: Color(0xAc448dc7),
+        color: bgColor,
         blur: blur,
         size: 0.4,
         speed: 0.2,

@@ -90,7 +90,7 @@ class _QuestionBankPageState extends State<QuestionBankPage> {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           fontSize: 16,
-                          color: ColorsTheme.white.withOpacity(0.6),
+                          color: ColorsTheme.grey,
                           height: 1.4),
                     ),
                   ],
