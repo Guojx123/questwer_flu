@@ -8,7 +8,7 @@ import 'package:questwer_flu/page/score/score_screen.dart';
 class QuestionController extends GetxController
     with SingleGetTickerProviderMixin {
   /// 获取题目数据
-  RxBool isLoading = false.obs;
+  var isLoading = true.obs;
   RxList<LCObject> questionList = List<LCObject>().obs;
 
   /// 页面控制
@@ -76,18 +76,17 @@ class QuestionController extends GetxController
   }
 
   /// 获取某一题库的题目数据
-  fetchQuestion(String name) async {
+  void fetchQuestion(String name) async {
     try {
       isLoading(true);
       List<LCObject> question = await ApiService.fetchQuestion(name);
       if (question != null) {
         questionList.assignAll(question);
-        isLoading(false);
         debugPrint("获取题目数据");
-        print(questionList);
+        isLoading(false);
+
       }
     } finally {
-      print("执行结束");
       isLoading(false);
     }
     update();

@@ -45,7 +45,7 @@ class AnswerQuestion extends StatelessWidget {
                           horizontal: DefaultSize.defaultPadding * 2,
                           vertical: DefaultSize.basePadding),
                       child: Text(
-                        "Skip",
+                        "Finish Stage",
                         style: TextStyle(
                             color: ColorsTheme.white,
                             fontSize: DefaultSize.fontSize),
@@ -62,7 +62,7 @@ class AnswerQuestion extends StatelessWidget {
                   //     child: ProgressBar()),
                   Padding(
                     padding: EdgeInsets.symmetric(
-                        horizontal: DefaultSize.defaultPadding),
+                        horizontal: DefaultSize.defaultPadding,vertical: DefaultSize.basePadding * 4),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
