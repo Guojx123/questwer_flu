@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:leancloud_storage/leancloud.dart';
-import 'file:///E:/questwer_flu/lib/page/home/lead_pag.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'controller/user_controller.dart';
+import 'page/home/lead_pag.dart';
 import 'page/welcome_page.dart';
 import 'package:get/get.dart';
 import 'service/restart_service.dart';
