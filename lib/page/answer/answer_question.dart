@@ -42,7 +42,9 @@ class AnswerQuestion extends StatelessWidget {
                         vertical: DefaultSize.basePadding),
                     child: Text(
                       "Skip",
-                      style: TextStyle(color: ColorsTheme.white,fontSize: DefaultSize.fontSize),
+                      style: TextStyle(
+                          color: ColorsTheme.white,
+                          fontSize: DefaultSize.fontSize),
                     ),
                   ),
                   actionFunction: () {
@@ -59,19 +61,19 @@ class AnswerQuestion extends StatelessWidget {
         ),
       ),
       onWillPop: () {
-        if (_lastPressedAt == null ||
-            DateTime.now().difference(_lastPressedAt).inSeconds > 1) {
-          showToast("Quickly double-click to exit.",
-              position: ToastPosition.bottom);
-          print('再按一次 Back 按钮退出');
-          _lastPressedAt = DateTime.now();
-          return Future.value(false); // 不退出
-        } else {
-          print('退出');
-          _questionController.initValue();
-          Navigator.of(context).pop(true);
-          return Future.value(true); // 退出
-        }
+        return Future.value(false); // 不退出
+
+        // if (_lastPressedAt == null ||
+        //     DateTime.now().difference(_lastPressedAt).inSeconds > 1) {
+        //   print('再按一次 Back 按钮退出');
+        //   _lastPressedAt = DateTime.now();
+        //   return Future.value(false); // 不退出
+        // } else {
+        //   print('退出');
+        //   _questionController.initValue();
+        //   Navigator.of(context).pop(true);
+        //   return Future.value(true); // 退出
+        // }
       },
     );
   }
