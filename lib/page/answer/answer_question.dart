@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:questwer_flu/controller/question_controller.dart';
 import 'package:questwer_flu/page/score/score_screen.dart';
@@ -55,34 +56,74 @@ class AnswerQuestion extends StatelessWidget {
                       Get.to(ScoreScreen());
                     },
                   ),
-                  Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: DefaultSize.defaultPadding),
-                      child: ProgressBar()),
+                  // Padding(
+                  //     padding: EdgeInsets.symmetric(
+                  //         vertical: DefaultSize.defaultPadding),
+                  //     child: ProgressBar()),
                   Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: DefaultSize.defaultPadding),
-                    child: Obx(
-                      () => Text.rich(
-                        TextSpan(
-                          text:
-                              "Question ${_questionController.questionNumber.value}",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline4
-                              .copyWith(color: kSecondaryColor),
-                          children: [
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Obx(
+                              () => Text.rich(
                             TextSpan(
                               text:
-                                  " / ${_questionController.questionList.length}",
+                              "Question ",
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline5
-                                  .copyWith(color: kSecondaryColor),
+                                  .headline4
+                                  .copyWith(color: ColorsTheme.greyWhite),
+                              children: [
+                                TextSpan(
+                                  text:
+                                  "${_questionController.questionNumber.value}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline4
+                                      .copyWith(color: ColorsTheme.greyWhite),
+                                ),
+                                TextSpan(
+                                  text:
+                                  " / ${_questionController.questionList.length}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline5
+                                      .copyWith(color: kSecondaryColor),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
+                        Offstage(
+                          offstage: false,
+                          child: Container(
+                            child: GetBuilder<QuestionController>(
+                              init: QuestionController(),
+                              builder: (controller) {
+                                double timestamp = controller.animation.value;
+                                return LiquidCustomProgressIndicator(
+                                  value: timestamp,
+                                  direction: Axis.vertical,
+                                  backgroundColor: Colors.grey[300],
+                                  valueColor: AlwaysStoppedAnimation(ColorsTheme.primaryColor),
+                                  shapePath: _buildSpeechBubblePath(),
+                                  center: Text(
+                                    "${(timestamp * 60).round()} s",
+                                    style: TextStyle(
+                                      color: ColorsTheme.greyWhite,
+                                      height: 0.6,
+                                      fontSize: DefaultSize.fontSize,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                );
+                              }
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Divider(thickness: 1.5),
@@ -117,5 +158,17 @@ class AnswerQuestion extends StatelessWidget {
       name: name,
       isLoading: isLoading,
     );
+  }
+
+  Path _buildSpeechBubblePath() {
+    return Path()
+      ..moveTo(26, 0)
+      ..quadraticBezierTo(0, 0, 0, 19)
+      ..quadraticBezierTo(0, 38, 12, 38)
+      ..quadraticBezierTo(12, 48, 2.5, 48)
+      ..quadraticBezierTo(18, 48, 20, 38)
+      ..quadraticBezierTo(50, 38, 50, 19)
+      ..quadraticBezierTo(50, 0, 25, 0)
+      ..close();
   }
 }
