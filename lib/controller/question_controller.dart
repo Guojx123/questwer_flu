@@ -119,6 +119,7 @@ class QuestionController extends GetxController
   void nextQuestion() {
     if (_questionNumber.value != questionList.length) {
       _isAnswered = false;
+      if(_pageController != null)
       _pageController?.nextPage(
           duration: Duration(milliseconds: 250), curve: Curves.ease);
 

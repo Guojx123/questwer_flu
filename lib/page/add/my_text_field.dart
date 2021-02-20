@@ -41,6 +41,7 @@ class MyTextField extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(12)),
             borderSide: BorderSide(
               width: 1,
+              color: rPinkColor,
               style: BorderStyle.none,
             ),
           ),

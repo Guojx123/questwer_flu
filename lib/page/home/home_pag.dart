@@ -310,7 +310,6 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-
               ///desc
 
               ///choose or form
@@ -335,7 +334,6 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-
               ///btn
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
