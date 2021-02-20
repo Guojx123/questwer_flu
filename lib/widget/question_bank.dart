@@ -37,8 +37,8 @@ class _QuestionBankPageState extends State<QuestionBankPage> {
         Get.to(AnswerQuestion(
           name: _questionBank.name,
         ));
+        questionController.onStart();
         questionController.initValue();
-        print(_questionBank.id);
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding),
