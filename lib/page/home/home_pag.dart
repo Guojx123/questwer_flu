@@ -37,7 +37,6 @@ class HomePage extends StatelessWidget {
           _buildCustomScrollView(),
           GestureDetector(
             onTap: () {
-              // print("sssssss");
               showToast("content");
             },
             child: Container(

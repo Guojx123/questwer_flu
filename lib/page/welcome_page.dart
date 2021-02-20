@@ -6,7 +6,7 @@ import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'home/lead_pag.dart';
+import 'home/home_pag.dart';
 
 class Welcome extends StatelessWidget {
   TextEditingController textEditingController = TextEditingController();
