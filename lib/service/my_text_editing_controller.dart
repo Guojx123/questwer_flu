@@ -8,6 +8,25 @@ class MyTextEditingController extends TextEditingController {
   })
       : super(text: text);
 
+//  void initState() {
+//    // TODO: implement initState
+//    _controller.addListener(() {
+//      final text = _controller.text.toLowerCase();
+//      _controller.value = _controller.value.copyWith(
+//        text: text,
+//        selection:
+//        TextSelection(baseOffset: text.length, extentOffset: text.length),
+//        composing: TextRange.empty,
+//      );
+//    });
+//  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
 // 增加editingTextStyle参数，让他随时可变自定义，默认灰色---↑↑↑↑↑↑↑↑↑↑↑↑↑
   final TextStyle editingTextStyle;
 

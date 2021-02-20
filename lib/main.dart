@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:leancloud_storage/leancloud.dart';
-import 'file:///E:/questwer_flu/lib/page/home/home_page.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'controller/user_controller.dart';
-import 'page/home/lead_pag.dart';
+import 'page/home/home_page.dart';
 import 'page/welcome_page.dart';
 import 'package:get/get.dart';
 import 'service/restart_service.dart';
@@ -29,6 +29,7 @@ void realRunApp() async {
 
   //数据持久化
   await PersistentStorage.init();
+  await GetStorage.init();
 
   runApp(RestartWidget(child: MyApp() // new MaterialApp,
       ));

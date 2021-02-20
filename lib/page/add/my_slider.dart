@@ -11,6 +11,12 @@ class _MySliderState extends State<MySlider> {
   double _sliderValue = 0.0;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding),

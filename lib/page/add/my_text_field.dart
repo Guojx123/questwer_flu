@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:questwer_flu/service/my_text_editing_controller.dart';
+import 'package:get/get.dart';
+import 'package:questwer_flu/controller/create_controller.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
+import 'package:get_storage/get_storage.dart';
+
 
 class MyTextField extends StatelessWidget {
   final int maxLines;
@@ -23,6 +26,11 @@ class MyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    CreateController _createController = Get.put(CreateController());
+    /// 解决：删除时，输入框光标位置不正确
+    _createController.iniStateTextController(inputController);
+
     return Padding(
       padding: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding),
       child: TextField(
@@ -32,6 +40,9 @@ class MyTextField extends StatelessWidget {
         minLines: minLines,
         cursorColor: ColorsTheme.primaryColor,
         cursorWidth: 1,
+        onChanged: (value){
+          _createController.setText(value,inputController);
+        },
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: TextStyle(
