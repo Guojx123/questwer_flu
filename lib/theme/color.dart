@@ -12,6 +12,7 @@ const rCloseGreyColor = Color(0xFFB0B2ED);
 const rTextColor = Color(0xFF797BCE);
 const rTextWhiteColor = Color(0xFFE2E1F3);
 const rTextWhiteColor4B = Color(0x4bE2E1F3);
+const rTextWhiteColor20 = Color(0x20E2E1F3);
 
 const rBlueColor = Color(0xFF393A59);
 const rLightBlueColor = Color(0xFF6976B9);

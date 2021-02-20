@@ -39,7 +39,7 @@ class MyTextField extends StatelessWidget {
             fontSize: hintTextSize,
           ),
           filled: true,
-          fillColor: rTextWhiteColor4B,
+          fillColor: rTextWhiteColor20,
           contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           isDense: true,
           border: OutlineInputBorder(

@@ -6,7 +6,9 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:questwer_flu/controller/pop_menu_controller.dart';
 import 'package:questwer_flu/controller/question_list_controller.dart';
 import 'package:questwer_flu/model/question_bank.dart';
+import 'package:questwer_flu/page/add/my_slider.dart';
 import 'package:questwer_flu/page/add/my_text_field.dart';
+import 'package:questwer_flu/page/add/question_bank_textfield.dart';
 import 'package:questwer_flu/service/key_value.dart';
 import 'package:questwer_flu/service/my_text_editing_controller.dart';
 import 'package:questwer_flu/service/scroll__behavior.dart';
@@ -24,9 +26,6 @@ class HomePage extends StatelessWidget {
       Get.put(QuestionListController());
 
   bool _addRefreshValue = true;
-
-  final _inputTitleController = MyTextEditingController();
-  final _inputDescController = MyTextEditingController();
 
   ///是否添加刷新
 
@@ -249,118 +248,105 @@ class HomePage extends StatelessWidget {
 
   void _createQB() {
     Get.bottomSheet(
-      Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: DefaultSize.defaultPadding * 2,
-            vertical: DefaultSize.defaultPadding),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    color: rTagGreyColor,
-                    borderRadius:
-                        BorderRadius.circular(DefaultSize.middleSize)),
-                width: DefaultSize.largeSize,
-                height: DefaultSize.smallSize,
-              ),
-
-              ///topNav
-              Container(
-                margin: EdgeInsets.symmetric(vertical: DefaultSize.middleSize),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(DefaultSize.middleSize),
-                      ),
-                      child: Icon(
-                        Icons.read_more,
-                        color: rDeepPurpleColor,
-                        size: DefaultSize.smallSize * 6,
-                      ),
-                    ),
-                    Text(
-                      "Create Question Bank",
-                      style: TextStyle(
-                          color: rDeepPurpleColor,
-                          fontSize: DefaultSize.middleFontSize),
-                    ),
-                    GestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Container(
+      ScrollConfiguration(
+        behavior: OverScrollBehavior(),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: DefaultSize.defaultPadding * 2,
+              vertical: DefaultSize.defaultPadding),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: rTagGreyColor,
+                      borderRadius:
+                          BorderRadius.circular(DefaultSize.middleSize)),
+                  width: DefaultSize.largeSize,
+                  height: DefaultSize.smallSize,
+                ),
+                ///topNav
+                Container(
+                  margin:
+                      EdgeInsets.symmetric(vertical: DefaultSize.middleSize),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
                         padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),
                         decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(DefaultSize.middleSize),
-                          color: rLightPurpleColor.withOpacity(0.8),
                         ),
                         child: Icon(
-                          Icons.close,
+                          Icons.read_more,
                           color: rDeepPurpleColor,
+                          size: DefaultSize.smallSize * 6,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              ///desc
-
-              ///choose or form
-              ScrollConfiguration(
-                behavior: OverScrollBehavior(),
-                child: Theme(
-                  data: new ThemeData(primaryColor: rLightBlueColor),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      MyTextField(
-                        maxLines: 2,
-                        minLines: 1,
-                        inputController: _inputTitleController,
-                        hintText: "Title...",
-                        hintTextSize: 18.0,
+                      Text(
+                        "",
+                        style: TextStyle(
+                            color: rDeepPurpleColor,
+                            fontSize: DefaultSize.middleFontSize),
                       ),
-                      MyTextField(
-                        maxLines: 6,
-                        minLines: 3,
-                        inputController: _inputDescController,
-                        hintText: "Add some description...",
-                        hintTextSize: 16.0,
+                      GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(DefaultSize.middleSize),
+                            color: rLightPurpleColor.withOpacity(0.8),
+                          ),
+                          child: Icon(
+                            Icons.close,
+                            color: rDeepPurpleColor,
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ),
-              ///btn
-              GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: () {},
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: DefaultSize.defaultPadding * 8,
-                      vertical: DefaultSize.defaultPadding * 1.4),
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.circular(DefaultSize.largeSize / 2),
-                    color: rLightPurpleColor.withOpacity(0.8),
-                  ),
-                  child: Text(
-                    "Continue",
-                    style: TextStyle(
-                      color: rDeepPurpleColor,
-                      fontSize: DefaultSize.smallFontSize,
+
+                ///desc
+                _buildInstruction(),
+
+                ///choose or form
+                AddTextFieldWidget(),
+                _buildDifficulty(),
+                MySlider(),
+                SizedBox(
+                  height: DefaultSize.defaultPadding,
+                ),
+
+                ///btn
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {},
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: DefaultSize.defaultPadding * 8,
+                        vertical: DefaultSize.defaultPadding * 1.4),
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.circular(DefaultSize.largeSize / 2),
+                      color: rLightPurpleColor.withOpacity(0.8),
+                    ),
+                    child: Text(
+                      "Continue",
+                      style: TextStyle(
+                        color: rDeepPurpleColor,
+                        fontSize: DefaultSize.smallFontSize,
+                      ),
                     ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -374,6 +360,53 @@ class HomePage extends StatelessWidget {
       elevation: 0,
       backgroundColor: rMiddlePurpleColor,
       isScrollControlled: true,
+    );
+  }
+
+  Widget _buildInstruction() {
+    return _buildTitleWidget(
+      Text(
+        "Add a description to your new question bank.",
+        style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
+      ),
+      title: "Create Question Bank",
+    );
+  }
+
+  Widget _buildDifficulty() {
+    return _buildTitleWidget(
+      Text(
+        "Set overall difficulty for your question bank.",
+        style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
+      ),
+      title: "Set difficulty",
+    );
+  }
+
+  Widget _buildTitleWidget(Widget content, {String title}) {
+    return Container(
+      width: double.maxFinite,
+      padding: EdgeInsets.symmetric(
+          horizontal: DefaultSize.defaultPadding,
+          vertical: DefaultSize.defaultPadding),
+      decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.6),
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "$title",
+            style: TextStyle(
+                height: 1.6,
+                color: ColorsTheme.black,
+                fontSize: DefaultSize.middleFontSize,
+                fontWeight: FontWeight.w500),
+          ),
+          content
+        ],
+      ),
     );
   }
 }

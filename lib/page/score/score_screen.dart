@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/question_controller.dart';
-import 'package:questwer_flu/page/home/home_pag.dart';
+import 'package:questwer_flu/page/home/home_page.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/widget/background_widget.dart';

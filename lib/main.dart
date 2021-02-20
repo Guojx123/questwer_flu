@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:leancloud_storage/leancloud.dart';
-import 'file:///E:/questwer_flu/lib/page/home/home_pag.dart';
+import 'file:///E:/questwer_flu/lib/page/home/home_page.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'controller/user_controller.dart';
 import 'page/welcome_page.dart';
