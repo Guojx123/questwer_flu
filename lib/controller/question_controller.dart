@@ -111,6 +111,7 @@ class QuestionController extends GetxController
 
     // 时间倒数结束，跳转到下一题
     Future.delayed(Duration(seconds: 3), () {
+      if(_pageController != null)
       nextQuestion();
     });
   }

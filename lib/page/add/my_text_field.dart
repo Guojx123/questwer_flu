@@ -8,14 +8,18 @@ class MyTextField extends StatelessWidget {
   final int minLines;
   final TextEditingController inputController;
   final TextInputType textInputType;
+  final String hintText;
+  final double hintTextSize;
 
-  const MyTextField(
-      {Key key,
-      this.maxLines = 1,
-      this.minLines = 1,
-      @required this.inputController,
-      this.textInputType = TextInputType.multiline})
-      : super(key: key);
+  const MyTextField({
+    Key key,
+    this.maxLines = 1,
+    this.minLines = 1,
+    @required this.inputController,
+    this.textInputType = TextInputType.multiline,
+    this.hintText = 'Please enter.',
+    this.hintTextSize = 14.0,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,22 +32,24 @@ class MyTextField extends StatelessWidget {
         minLines: minLines,
         cursorColor: ColorsTheme.primaryColor,
         cursorWidth: 1,
-        decoration: const InputDecoration(
-          hintText: 'Please enter.',
-          hintStyle: TextStyle(color: rTagGreyColor),
+        decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: TextStyle(
+            color: rTagGreyColor,
+            fontSize: hintTextSize,
+          ),
           filled: true,
           fillColor: rTextWhiteColor4B,
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           isDense: true,
-          border: const OutlineInputBorder(
+          border: OutlineInputBorder(
             gapPadding: 0,
             borderRadius: BorderRadius.all(Radius.circular(12)),
-            borderSide: BorderSide(
-              width: 1,
-              color: rPinkColor,
-              style: BorderStyle.none,
-            ),
+            // borderSide: BorderSide(
+            //   width: 0.1,
+            //   color: Colors.transparent,
+            //   style: BorderStyle.none,
+            // ),
           ),
         ),
       ),
