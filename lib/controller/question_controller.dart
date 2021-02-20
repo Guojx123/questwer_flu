@@ -62,16 +62,16 @@ class QuestionController extends GetxController
   void onClose() {
     super.onClose();
     _isAnswered = true;
-    _pageController.dispose();
+    _pageController?.dispose();
     _numOfCorrectAns = 0;
-    _animationController.dispose();
+    _animationController?.dispose();
   }
 
   initValue() {
     _isAnswered = false;
     _questionNumber = 1.obs;
     _numOfCorrectAns = 0;
-    _animationController.reset();
+    _animationController?.reset();
     _animationController.forward().whenComplete(nextQuestion);
   }
 
@@ -119,11 +119,11 @@ class QuestionController extends GetxController
   void nextQuestion() {
     if (_questionNumber.value != questionList.length) {
       _isAnswered = false;
-      _pageController.nextPage(
+      _pageController?.nextPage(
           duration: Duration(milliseconds: 250), curve: Curves.ease);
 
       // 重置计时器
-      _animationController.reset();
+      _animationController?.reset();
 
       // 重新开始
       // 计时器结束后，转到下一个问题

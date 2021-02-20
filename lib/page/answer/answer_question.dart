@@ -110,10 +110,10 @@ class AnswerQuestion extends StatelessWidget {
                                   valueColor: AlwaysStoppedAnimation(ColorsTheme.purple),
                                   shapePath: _buildSpeechBubblePath(),
                                   center: Text(
-                                    "${(timestamp * 60).round()} s",
+                                    "${60 - (timestamp * 60).round()} s",
                                     style: TextStyle(
-                                      color: ColorsTheme.greyWhite,
-                                      height: 0.6,
+                                      color: rBlueColor,
+                                      height: 0.8,
                                       fontSize: DefaultSize.fontSize,
                                       fontWeight: FontWeight.bold,
                                     ),
