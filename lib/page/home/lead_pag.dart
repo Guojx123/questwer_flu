@@ -15,7 +15,7 @@ import 'package:questwer_flu/widget/question_bank.dart';
 import 'package:questwer_flu/widget/scroll__behavior.dart';
 import 'package:questwer_flu/widget/smart_refresh_footer.dart';
 
-class LeadPage extends StatelessWidget {
+class HomePage extends StatelessWidget {
   PopMenuController popMenuController = Get.put(PopMenuController());
   QuestionListController questionListController =
       Get.put(QuestionListController());

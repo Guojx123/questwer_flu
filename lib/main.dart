@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
             //   await UserController().isAuthenticated();
             // },
             builder: (controller) {
-              return controller.isAuth.isTrue ? Welcome() : LeadPage();
+              return controller.isAuth.isTrue ? Welcome() : HomePage();
             },
           ),
           /// 字体大小不随系统改变
