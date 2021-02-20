@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/question_controller.dart';
-import 'package:questwer_flu/page/home/lead_pag.dart';
+import 'package:questwer_flu/page/home/home_page.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
@@ -38,7 +38,7 @@ class ScoreScreen extends StatelessWidget {
               Spacer(flex: 2),
               GestureDetector(
                 onTap: () {
-                  Get.offAll(LeadPage());
+                  Get.offAll(HomePage());
                 },
                 child: Container(
                   width: double.infinity,

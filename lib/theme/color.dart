@@ -7,6 +7,25 @@ const kGrayColor = Color(0xFF5c5c5c);
 const kWhiteColor = Color(0xFFffffff);
 const kBlackColor = Color(0xFF101010);
 
+const rTagGreyColor = Color(0xFF636E84);
+const rCloseGreyColor = Color(0xFFB0B2ED);
+const rTextColor = Color(0xFF797BCE);
+const rTextWhiteColor = Color(0xFFE2E1F3);
+const rTextWhiteColor4B = Color(0x4bE2E1F3);
+const rTextWhiteColor20 = Color(0x20E2E1F3);
+
+const rBlueColor = Color(0xFF393A59);
+const rLightBlueColor = Color(0xFF6976B9);
+const rMiddleBlueColor = Color(0xFF6060A0);
+
+const rPurpleColor = Color(0xFF8287E2);
+const rLightPurpleColor = Color(0xFFABADEF);
+const rMiddlePurpleColor = Color(0xFF8B91E5);
+const rMiddlePurpleColorE6 = Color(0xE68B91E5);
+const rDeepPurpleColor = Color(0xFF525487);
+
+const rPinkColor = Color(0xFFE660A0);
+
 class ColorsTheme {
 
   static Color get black => Color(0xFF000000);
@@ -57,6 +76,12 @@ class ColorsTheme {
 
   static Gradient get rCardGradient => LinearGradient(
     colors: [Color(0x4347e2c6),Color(0x979193EF)],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
+
+  static Gradient get aCardGradient => LinearGradient(
+    colors: [Colors.blueGrey,Color(0x979193EF)],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
   );

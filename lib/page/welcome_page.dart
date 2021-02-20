@@ -5,8 +5,9 @@ import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
+import 'package:questwer_flu/widget/background_widget.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'home/lead_pag.dart';
+import 'home/home_page.dart';
 
 class Welcome extends StatelessWidget {
   TextEditingController textEditingController = TextEditingController();
@@ -16,37 +17,9 @@ class Welcome extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                tileMode: TileMode.mirror,
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xff0fbcdf),
-                  Color(0xff03203e),
-                ],
-                stops: [
-                  0,
-                  1,
-                ],
-              ),
-              backgroundBlendMode: BlendMode.srcOver,
-            ),
-            child: PlasmaRenderer(
-              type: PlasmaType.infinity,
-              particles: 14,
-              color: Color(0x44ffffff),
-              blur: 0.16,
-              size: 0.21,
-              speed: 0.91,
-              offset: 1.3,
-              blendMode: BlendMode.screen,
-              variation1: 0.31,
-              variation2: 0.3,
-              variation3: 0.13,
-              rotation: -0.79,
-            ),
+          BackGroundWidget(
+            blur: 0.2,
+            size: 0.35,
           ),
           Container(
             width: double.infinity,
@@ -60,7 +33,6 @@ class Welcome extends StatelessWidget {
               child: Column(
                 children: [
                   Spacer(),
-                  //2/6
                   Text(
                     "Let's Play a Q&A.",
                     style: Theme.of(context).textTheme.headline4.copyWith(
@@ -130,7 +102,6 @@ class Welcome extends StatelessWidget {
                     ),
                   ),
                   Spacer(flex: 2),
-                  // it will take 2/6 spaces
                 ],
                 crossAxisAlignment: CrossAxisAlignment.start,
               ),
@@ -144,6 +115,6 @@ class Welcome extends StatelessWidget {
   _loginAnonymously() async {
     await LCUser.loginAnonymously();
     await PersistentStorage().setStorage("nickname", textEditingController.text.trim());
-    Get.to(LeadPage());
+    Get.to(HomePage());
   }
 }

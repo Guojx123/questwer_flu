@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:leancloud_storage/leancloud.dart';
+import 'file:///E:/questwer_flu/lib/page/home/home_page.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'controller/user_controller.dart';
 import 'page/home/lead_pag.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
             //   await UserController().isAuthenticated();
             // },
             builder: (controller) {
-              return controller.isAuth.isTrue ? Welcome() : LeadPage();
+              return controller.isAuth.isTrue ? Welcome() : HomePage();
             },
           ),
           /// 字体大小不随系统改变
