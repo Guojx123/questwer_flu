@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:questwer_flu/controller/create_controller.dart';
 import 'package:questwer_flu/controller/pop_menu_controller.dart';
 import 'package:questwer_flu/controller/question_list_controller.dart';
 import 'package:questwer_flu/model/question_bank.dart';
@@ -19,6 +20,8 @@ class HomePage extends StatelessWidget {
   PopMenuController popMenuController = Get.put(PopMenuController());
   QuestionListController questionListController =
       Get.put(QuestionListController());
+
+  CreateController createController = Get.put(CreateController());
 
   bool _addRefreshValue = true;
 
@@ -242,6 +245,7 @@ class HomePage extends StatelessWidget {
   }
 
   void _createQB() {
+    createController.initAll();
     Get.bottomSheet(
       ScrollConfiguration(
         behavior: OverScrollBehavior(),

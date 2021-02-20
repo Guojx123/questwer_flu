@@ -115,6 +115,7 @@ class AddPageView extends StatelessWidget {
               onTap: () {
                 bool isTextNull = _createController.checkInputNull();
                 print("$isTextNull sd");
+                _createController.nextPage(!isTextNull);
               },
               child: Container(
                 padding: EdgeInsets.symmetric(
@@ -162,7 +163,7 @@ class AddPageView extends StatelessWidget {
         "Set overall difficulty for your question bank.",
         style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
       ),
-      title: "Set difficulty",
+      title: "Set Difficulty",
     );
   }
 

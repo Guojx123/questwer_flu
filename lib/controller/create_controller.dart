@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:questwer_flu/page/home/home_page.dart';
 import 'package:questwer_flu/service/my_text_editing_controller.dart';
 
 class CreateController extends GetxController{
@@ -17,6 +18,7 @@ class CreateController extends GetxController{
     // TODO: implement onInit
     inputTitleController.clear();
     inputDescController.clear();
+    _pageController = PageController();
     super.onInit();
   }
 
@@ -27,6 +29,12 @@ class CreateController extends GetxController{
     inputDescController.dispose();
     _pageController.dispose();
     super.onClose();
+  }
+
+  initAll(){
+    inputTitleController.clear();
+    inputDescController.clear();
+    _pageController = PageController();
   }
 
   bool checkInputNull(){
@@ -56,6 +64,17 @@ class CreateController extends GetxController{
         composing: TextRange.empty,
       );
     });
+  }
+
+  /// 跳转到下一页
+  void nextPage(bool isNoNull) {
+    if (isNoNull && _pageController != null) {
+      print("ahhhh");
+        _pageController?.nextPage(
+            duration: Duration(milliseconds: 50), curve: Curves.ease);
+    } else {
+      Get.to(HomePage());
+    }
   }
 
 }

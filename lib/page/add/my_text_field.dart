@@ -38,8 +38,8 @@ class MyTextField extends StatelessWidget {
         controller: inputController,
         maxLines: maxLines,
         minLines: minLines,
-        cursorColor: ColorsTheme.primaryColor,
-        cursorWidth: 1,
+        cursorColor: rTextColor,
+        cursorWidth: 2,
         onChanged: (value){
           _createController.setText(value,inputController);
         },
