@@ -26,7 +26,6 @@ class MultiSelectionWidget extends StatelessWidget {
                   return GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
-                      controller.setSelectValue(value);
                       onChange(value);
                     },
                     child: Container(
@@ -47,7 +46,6 @@ class MultiSelectionWidget extends StatelessWidget {
                             value: value,
                             groupValue: selectValue,
                             onChanged: (value) {
-                              controller.setSelectValue(value);
                               onChange(value);
                             },
                           ),

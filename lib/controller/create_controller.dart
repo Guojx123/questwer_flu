@@ -236,6 +236,8 @@ class CreateController extends GetxController {
 
   void setSelectValue(String value) {
     _selectValue = value;
+    print("your select");
+    print(_selectValue);
     update();
   }
 }
