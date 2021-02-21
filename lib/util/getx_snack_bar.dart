@@ -31,8 +31,8 @@ class GetXSnackBar{
 
   void noEnterNickname(){
     Get.snackbar("Tips:", "Please enter a nickname.",
-        colorText: rRedColor,
-        icon: Icon(Icons.messenger,color: rRedColor,),
+        colorText: rOrangeColor,
+        icon: Icon(Icons.messenger,color: rOrangeColor,),
         snackPosition: SnackPosition.BOTTOM,
         backgroundGradient: ColorsTheme.gWelcomeGradient);
   }

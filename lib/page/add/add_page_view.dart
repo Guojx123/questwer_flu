@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/create_controller.dart';
+import 'package:questwer_flu/page/home/home_page.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'add_question_bank_page.dart';
@@ -52,7 +53,78 @@ class AddPageView extends StatelessWidget {
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-                  Get.back();
+                  ///计算用户创建的题目数
+                  Get.dialog(
+                      Material(
+                        color: Colors.transparent,
+                        child: Center(
+                            child: Container(
+                          height: DefaultSize.middleSize * 20,
+                          margin: EdgeInsets.symmetric(
+                              horizontal: DefaultSize.defaultPadding * 2),
+                          padding: EdgeInsets.only(
+                              top: DefaultSize.defaultPadding * 3,
+                              bottom: DefaultSize.defaultPadding * 2,
+                              right: DefaultSize.defaultPadding * 2,
+                              left: DefaultSize.defaultPadding * 2),
+                          decoration: BoxDecoration(
+                              color: kMilkWhiteColor,
+                              borderRadius: BorderRadius.circular(25)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "ARE YOU SURE?",
+                                style: TextStyle(
+                                  fontSize: DefaultSize.middleFontSize * 1.2,
+                                  color: rDeepRedColor,
+                                ),
+                              ),
+                              SizedBox(
+                                height: DefaultSize.defaultPadding * 2,
+                              ),
+                              Text(
+                                "A total of {1} question has been created. Are you sure to exit the editing?",
+                                maxLines: 2,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: DefaultSize.smallFontSize * 1.2,
+                                  color: rBlueColor,
+                                ),
+                              ),
+                              SizedBox(
+                                height: DefaultSize.defaultPadding * 2.5,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  GestureDetector(
+                                      behavior: HitTestBehavior.translucent,
+                                      onTap: () {
+                                        Get.back();
+                                      },
+                                      child: Icon(
+                                        Icons.close_rounded,
+                                        size: DefaultSize.middleSize * 3,
+                                      )),
+                                  GestureDetector(
+                                      behavior: HitTestBehavior.translucent,
+                                      onTap: () {
+                                        Get.offAll(() => HomePage());
+                                      },
+                                      child: Icon(
+                                        Icons.outdoor_grill,
+                                        size: DefaultSize.middleSize * 3,
+                                      )),
+                                ],
+                              ),
+                            ],
+                          ),
+                        )),
+                      ),
+                      barrierDismissible: false,
+                      barrierColor: rBlueColor2C);
                 },
                 child: Container(
                   padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),

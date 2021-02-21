@@ -133,6 +133,24 @@ class CreateQuestion extends StatelessWidget {
               children: [
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
+                  onTap: () {
+                    _createController.clearBQuestionInput();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(DefaultSize.middleSize),
+                      color: rLightPurpleColor,
+                    ),
+                    child: Container(
+                      width: DefaultSize.middleSize * 3.2,
+                      height: DefaultSize.middleSize * 3.2,
+                      child: Image.asset("assets/icon_clear.png"),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () async {
                     ///校验
                     bool isTextNull = _createController.checkBQInputNull();
@@ -155,23 +173,10 @@ class CreateQuestion extends StatelessWidget {
                     } else {
                       GetXSnackBar().netError();
                     }
-
                   },
-                  child: Container(
-                    padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(DefaultSize.middleSize),
-                      color: rLightPurpleColor,
-                    ),
-                    child: Container(
-                      width: DefaultSize.middleSize * 3.2,
-                      height: DefaultSize.middleSize * 3.2,
-                      child: Image.asset("assets/icon_clear.png"),
-                    ),
+                  child: MyBottom(
+                    text: "Create",
                   ),
-                ),
-                MyBottom(
-                  text: "Create",
                 ),
               ],
             )
