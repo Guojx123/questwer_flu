@@ -10,7 +10,6 @@ import 'my_slider.dart';
 import 'question_bank_textfield.dart';
 
 class CreateQuestionBank extends StatelessWidget {
-
   CreateController _createController = Get.put(CreateController());
 
   @override
@@ -73,16 +72,42 @@ class CreateQuestionBank extends StatelessWidget {
     );
   }
 
-  Widget _buildBtn(){
+  Widget _buildBtn() {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
-      onTap: () {
-        if(_createController.difficulty == ""){
+      onTap: () async {
+        bool isTextNull = _createController.checkInputNull();
+        if (_createController.difficulty == "") {
+          Get.snackbar("Tips", "Tell me how difficult the question is.",
+              colorText: rBlueColor,
+              icon: Icon(Icons.messenger),
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundGradient: ColorsTheme.gWelcomeGradient);
           return;
         }
-        bool isTextNull = _createController.checkInputNull();
         print("isTextNull $isTextNull");
-        _createController.nextPage(!isTextNull);
+        if (isTextNull) {
+          Get.snackbar("Tips", "I found that you haven't filled out the form.",
+              colorText: rBlueColor,
+              icon: Icon(Icons.messenger),
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundGradient: ColorsTheme.gWelcomeGradient);
+          return;
+        }
+        String inputName = _createController.inputTitleController.text.trim();
+        String inputDesc = _createController.inputDescController.text.trim();
+
+        bool isCreateSuccess =
+            await _createController.createQuestionBank(inputName, inputDesc);
+        if (isCreateSuccess) {
+          _createController.nextPage(!isTextNull);
+        } else {
+          Get.snackbar("Creation failed", "We encountered an unknown error.",
+              colorText: rBlueColor,
+              icon: Icon(Icons.messenger),
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundGradient: ColorsTheme.gWelcomeGradient);
+        }
       },
       child: MyBottom(
         text: "Continue",

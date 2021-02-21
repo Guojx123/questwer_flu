@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/page/home/home_page.dart';
 import 'package:questwer_flu/service/my_text_editing_controller.dart';
 
@@ -68,7 +69,7 @@ class CreateController extends GetxController {
     super.onClose();
   }
 
-  clearNQuestionInput(){
+  clearNQuestionInput() {
     print("clearNQuestionInput");
     inputNQTitleController.clear();
     inputNQDescController.clear();
@@ -79,7 +80,7 @@ class CreateController extends GetxController {
     update();
   }
 
-  clearBQuestionInput(){
+  clearBQuestionInput() {
     print("clearBQuestionInput");
     inputBQTitleController.clear();
     inputBQDescController.clear();
@@ -87,7 +88,6 @@ class CreateController extends GetxController {
     inputBOtherAnswerController.clear();
     update();
   }
-
 
   initAll() {
     inputTitleController.clear();
@@ -128,6 +128,26 @@ class CreateController extends GetxController {
     });
   }
 
+  Future<bool> createQuestionBank(String name ,String description) async {
+    LCUser currentUser = await LCUser.getCurrent();
+    // 构建对象
+    LCObject newQuestion = LCObject("question_bank");
+    // 为属性赋值
+    newQuestion['name'] = name;
+    newQuestion['description'] = description;
+    newQuestion['owner'] = currentUser.username;
+    newQuestion['share'] = "false";
+    newQuestion['shareId'] = "public";
+    // 将对象保存到云端
+    try {
+      await newQuestion.save();
+      return true;
+    } catch (e) {
+      print(e);
+    }
+    return false;
+  }
+
   /// 跳转到下一页
   void nextPage(bool isNoNull) {
     if (isNoNull && _pageController != null) {
@@ -139,12 +159,12 @@ class CreateController extends GetxController {
 //    }
   }
 
-  void setDifficulty(String string){
+  void setDifficulty(String string) {
     _difficulty = string;
     update();
   }
 
-  void setSelectValue(String value){
+  void setSelectValue(String value) {
     _selectValue = value;
     update();
   }
