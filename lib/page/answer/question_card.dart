@@ -64,9 +64,10 @@ class _QuestionCardState extends State<QuestionCard> {
         .toList();
 
     Question item = _question[index];
-    /// 解析字符串
+    /// 解析json字符串
     List answerList = json.decode(item.answer);
 //    answerList.add(item.correctAnswer);
+    /// 打乱顺序
     answerList.shuffle();
     /// 直接使用数组，不需要解析
 //    List answerList = item.answer;

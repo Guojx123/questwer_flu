@@ -78,13 +78,14 @@ class CreateQuestionBank extends StatelessWidget {
       onTap: () async {
         ///效验
         bool isTextNull = _createController.checkQBInputNull();
-        if (_createController.difficulty == "") {
-          GetXSnackBar().noTellMeDifficulty();
-          return;
-        }
         print("isTextNull $isTextNull");
         if (isTextNull) {
           GetXSnackBar().noFillForm();
+          return;
+        }
+
+        if (_createController.difficulty == "") {
+          GetXSnackBar().noTellMeDifficulty();
           return;
         }
 

@@ -81,6 +81,7 @@ class CreateQuestion extends StatelessWidget {
                       inputName,
                       inputDesc,
                       inputCorrectAnswer,
+                      false,
                       firstOption: firstOption,
                       secondOption: secondOption,
                       threeOption: threeOption,
@@ -132,10 +133,29 @@ class CreateQuestion extends StatelessWidget {
               children: [
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
-                  onTap: () {
+                  onTap: () async {
                     ///校验
                     bool isTextNull = _createController.checkBQInputNull();
-                    _createController.clearBQuestionInput();
+                    if (isTextNull) {
+                      GetXSnackBar().noFillForm();
+                      return;
+                    }
+                    String inputBQTitle = _createController.inputBQTitleController.text.trim();
+                    String inputBQDesc = _createController.inputBQDescController.text.trim();
+
+                    bool isCreateSuccess = await _createController.createQuestion(
+                      inputBQTitle,
+                      inputBQDesc,
+                      _createController.selectValue,
+                      true,
+                    );
+                    if (isCreateSuccess) {
+                      GetXSnackBar().createSuccess();
+                      _createController.clearBQuestionInput();
+                    } else {
+                      GetXSnackBar().netError();
+                    }
+
                   },
                   child: Container(
                     padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),

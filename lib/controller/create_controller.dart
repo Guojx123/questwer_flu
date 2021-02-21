@@ -185,13 +185,20 @@ class CreateController extends GetxController {
   }
 
   /// 创建题目
-  Future<bool> createQuestion(String title ,String subTitle,String correctAnswer,{String firstOption,String secondOption,String threeOption}) async {
-
+  Future<bool> createQuestion(String title ,String subTitle,String correctAnswer,bool isBoolQuestion,{String firstOption,String secondOption,String threeOption}) async {
     List answerList = List();
-    answerList.add(firstOption);
-    answerList.add(secondOption);
-    answerList.add(threeOption);
-    answerList.add(correctAnswer);
+
+    // 判断是否bool选择
+    if(isBoolQuestion){
+      answerList.add("true");
+      answerList.add("false");
+      answerList.add("nuknow");
+    }else{
+      answerList.add(firstOption);
+      answerList.add(secondOption);
+      answerList.add(threeOption);
+      answerList.add(correctAnswer);
+    }
 
     LCUser currentUser = await LCUser.getCurrent();
     // 构建对象
