@@ -79,7 +79,7 @@ class _CustomTabState extends State<CustomTab> with TickerProviderStateMixin {
                           highlightColor: Colors.transparent,
                           onPressed: null,
                           child: Text(
-                            'multiple choice',
+                            'Multiple-Choice',
                             style: TextStyle(color: left, fontSize: 16.0),
                           ),
                         ),

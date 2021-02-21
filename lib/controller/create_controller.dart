@@ -29,6 +29,10 @@ class CreateController extends GetxController {
 
   PageController get pageController => this._pageController;
 
+  String _difficulty;
+
+  String get difficulty => this._difficulty;
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -105,5 +109,10 @@ class CreateController extends GetxController {
     } else {
       Get.to(HomePage());
     }
+  }
+
+  void setDifficulty(String string){
+    _difficulty = string;
+    update();
   }
 }

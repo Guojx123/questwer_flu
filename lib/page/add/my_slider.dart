@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:questwer_flu/controller/create_controller.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 
@@ -9,6 +11,7 @@ class MySlider extends StatefulWidget {
 
 class _MySliderState extends State<MySlider> {
   double _sliderValue = 0.0;
+  CreateController _createController = Get.put(CreateController());
 
   @override
   void initState() {
@@ -36,6 +39,7 @@ class _MySliderState extends State<MySlider> {
             setState(() {
               _sliderValue = v;
             });
+            _createController.setDifficulty(_getDifficulty(_sliderValue.toString()));
           },
         ),
       ),
