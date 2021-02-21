@@ -21,6 +21,7 @@ class CreateQuestion extends StatelessWidget {
     );
   }
 
+  /// 创建单项选择题页面
   Widget _buildCreateNQuestion() {
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -44,7 +45,7 @@ class CreateQuestion extends StatelessWidget {
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   onTap: () {
-
+                    _createController.clearNQuestionInput();
                   },
                   child: Container(
                     padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),
@@ -70,6 +71,7 @@ class CreateQuestion extends StatelessWidget {
     );
   }
 
+  /// 创建判断题页面
   Widget _buildCreateBQuestion() {
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -79,7 +81,7 @@ class CreateQuestion extends StatelessWidget {
         child: Column(
           children: [
             _buildCreateNQTitle(),
-            NQuestionTextFieldWidget(),
+            BQuestionTextFieldWidget(),
             _buildCreateNQCorrectAnswer(),
             MultiSelectionWidget(
               'Bool',
@@ -98,7 +100,7 @@ class CreateQuestion extends StatelessWidget {
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   onTap: () {
-
+                    _createController.clearBQuestionInput();
                   },
                   child: Container(
                     padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),

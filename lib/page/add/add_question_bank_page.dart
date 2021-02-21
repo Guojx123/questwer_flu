@@ -42,7 +42,7 @@ class CreateQuestionBank extends StatelessWidget {
             MySlider(),
 
             SizedBox(
-              height: DefaultSize.defaultPadding,
+              height: DefaultSize.defaultPadding * 4,
             ),
 
             /// btn

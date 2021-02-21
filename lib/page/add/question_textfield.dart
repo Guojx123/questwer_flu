@@ -104,3 +104,34 @@ class NQuestionCorrectAnswerTextFieldWidget extends StatelessWidget {
 }
 
 /// b 判断题
+class BQuestionTextFieldWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<CreateController>(
+        init: CreateController(),
+        builder: (controller) {
+          return Theme(
+            data: ThemeData(primaryColor: rLightBlueColor),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                MyTextField(
+                  maxLines: 2,
+                  minLines: 1,
+                  inputController: controller.inputBQTitleController,
+                  hintText: "Title...",
+                  hintTextSize: 18.0,
+                ),
+                MyTextField(
+                  maxLines: 6,
+                  minLines: 3,
+                  inputController: controller.inputBQDescController,
+                  hintText: "Add some description...",
+                  hintTextSize: 16.0,
+                ),
+              ],
+            ),
+          );
+        });
+  }
+}

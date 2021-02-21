@@ -24,8 +24,8 @@ class AddTextFieldWidget extends StatelessWidget {
                   hintTextSize: 18.0,
                 ),
                 MyTextField(
-                  maxLines: 6,
-                  minLines: 3,
+                  maxLines: 8,
+                  minLines: 4,
                   inputController: controller.inputDescController,
                   hintText: "Add some description...",
                   hintTextSize: 16.0,

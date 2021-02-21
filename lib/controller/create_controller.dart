@@ -68,6 +68,27 @@ class CreateController extends GetxController {
     super.onClose();
   }
 
+  clearNQuestionInput(){
+    print("clearNQuestionInput");
+    inputNQTitleController.clear();
+    inputNQDescController.clear();
+    inputOtherFAnswerController.clear();
+    inputOtherSAnswerController.clear();
+    inputOtherTAnswerController.clear();
+    inputCorrectAnswerController.clear();
+    update();
+  }
+
+  clearBQuestionInput(){
+    print("clearBQuestionInput");
+    inputBQTitleController.clear();
+    inputBQDescController.clear();
+    inputBCorrectAnswerController.clear();
+    inputBOtherAnswerController.clear();
+    update();
+  }
+
+
   initAll() {
     inputTitleController.clear();
     inputDescController.clear();
