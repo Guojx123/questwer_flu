@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/create_controller.dart';
-import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
+import 'package:questwer_flu/util/getx_snack_bar.dart';
 import 'package:questwer_flu/widget/title_widget.dart';
 
 import 'my_bottom.dart';
@@ -78,35 +78,22 @@ class CreateQuestionBank extends StatelessWidget {
       onTap: () async {
         bool isTextNull = _createController.checkInputNull();
         if (_createController.difficulty == "") {
-          Get.snackbar("Tips", "Tell me how difficult the question is.",
-              colorText: rBlueColor,
-              icon: Icon(Icons.messenger),
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundGradient: ColorsTheme.gWelcomeGradient);
+          GetXSnackBar().noTellMeDifficulty();
           return;
         }
         print("isTextNull $isTextNull");
         if (isTextNull) {
-          Get.snackbar("Tips", "I found that you haven't filled out the form.",
-              colorText: rBlueColor,
-              icon: Icon(Icons.messenger),
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundGradient: ColorsTheme.gWelcomeGradient);
+          GetXSnackBar().noFillForm();
           return;
         }
         String inputName = _createController.inputTitleController.text.trim();
         String inputDesc = _createController.inputDescController.text.trim();
-
         bool isCreateSuccess =
             await _createController.createQuestionBank(inputName, inputDesc);
         if (isCreateSuccess) {
           _createController.nextPage(!isTextNull);
         } else {
-          Get.snackbar("Creation failed", "We encountered an unknown error.",
-              colorText: rBlueColor,
-              icon: Icon(Icons.messenger),
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundGradient: ColorsTheme.gWelcomeGradient);
+          GetXSnackBar().netError();
         }
       },
       child: MyBottom(

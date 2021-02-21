@@ -4,6 +4,7 @@ import 'package:questwer_flu/controller/create_controller.dart';
 import 'package:questwer_flu/page/add/my_bottom.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
+import 'package:questwer_flu/util/getx_snack_bar.dart';
 import 'package:questwer_flu/widget/multi_selection_widget.dart';
 import 'package:questwer_flu/widget/title_widget.dart';
 import 'custom_tab.dart';
@@ -61,7 +62,7 @@ class CreateQuestion extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () async {
                     String inputName = _createController.inputNQTitleController.text.trim();
                     String inputDesc = _createController.inputNQDescController.text.trim();
                     String inputCorrectAnswer = _createController.inputCorrectAnswerController.text.trim();
@@ -70,7 +71,7 @@ class CreateQuestion extends StatelessWidget {
                     String secondOption = _createController.inputOtherSAnswerController.text.trim();
                     String threeOption = _createController.inputOtherTAnswerController.text.trim();
                     ///缺少效验
-                    _createController.createQuestion(
+                    bool isCreateSuccess = await _createController.createQuestion(
                       inputName,
                       inputDesc,
                       inputCorrectAnswer,
@@ -78,6 +79,12 @@ class CreateQuestion extends StatelessWidget {
                       secondOption: secondOption,
                       threeOption: threeOption,
                     );
+                    if (isCreateSuccess) {
+
+                      _createController.clearNQuestionInput();
+                    } else {
+                      GetXSnackBar().netError();
+                    }
                   },
                   child: MyBottom(
                     text: "Create",

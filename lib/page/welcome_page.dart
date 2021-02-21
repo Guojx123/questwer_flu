@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
+import 'package:questwer_flu/util/getx_snack_bar.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -79,11 +80,7 @@ class Welcome extends StatelessWidget {
                           textEditingController.text.length > 0) {
                         _loginAnonymously();
                       } else {
-                        Get.snackbar("Tips", "Please enter a nickname",
-                            colorText: ColorsTheme.white,
-                            icon: Icon(Icons.messenger),
-                            snackPosition: SnackPosition.BOTTOM,
-                            backgroundGradient: ColorsTheme.gWelcomeGradient);
+                        GetXSnackBar().noEnterNickname();
                       }
                     },
                     child: Container(
