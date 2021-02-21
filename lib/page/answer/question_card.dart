@@ -33,7 +33,8 @@ class _QuestionCardState extends State<QuestionCard> {
 
   @override
   Widget build(BuildContext context) {
-    if (_questionController.isLoading.value && _questionController.questionList.length > 0)
+    if (_questionController.isLoading.value &&
+        _questionController.questionList.length > 0)
       return Center(
         child: CircularProgressIndicator(),
       );

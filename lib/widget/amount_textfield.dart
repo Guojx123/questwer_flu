@@ -36,18 +36,13 @@ class AmountTextField extends StatelessWidget {
             ),
             focusColor: rTagGreyColor,
             labelText: labelText ?? "",
-            labelStyle: TextStyle(
-              fontSize: DefaultSize.smallFontSize
-            ),
+            labelStyle: TextStyle(fontSize: DefaultSize.smallFontSize),
             prefixText: prefixText ?? "",
             suffixText: suffixText ?? "",
-            suffixStyle: TextStyle(color: rTextColor, fontSize: DefaultSize.smallFontSize)
-        ),
+            suffixStyle: TextStyle(
+                color: rTextColor, fontSize: DefaultSize.smallFontSize)),
         validator: (value) {
-          return value
-              .trim()
-              .length > 0 ? null : "not null";
-        }
-    );
+          return value.trim().length > 0 ? null : "not null";
+        });
   }
 }

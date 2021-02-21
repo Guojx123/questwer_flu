@@ -1,8 +1,7 @@
 import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
 
-class UserController extends GetxController{
-
+class UserController extends GetxController {
   var isAuth = false.obs;
 
   @override
@@ -23,5 +22,4 @@ class UserController extends GetxController{
     }
     update();
   }
-
 }

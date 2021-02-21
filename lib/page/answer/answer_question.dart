@@ -62,15 +62,15 @@ class AnswerQuestion extends StatelessWidget {
                   //     child: ProgressBar()),
                   Padding(
                     padding: EdgeInsets.symmetric(
-                        horizontal: DefaultSize.defaultPadding,vertical: DefaultSize.basePadding * 4),
+                        horizontal: DefaultSize.defaultPadding,
+                        vertical: DefaultSize.basePadding * 4),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Obx(
-                              () => Text.rich(
+                          () => Text.rich(
                             TextSpan(
-                              text:
-                              "Question ",
+                              text: "Question ",
                               style: Theme.of(context)
                                   .textTheme
                                   .headline4
@@ -78,7 +78,7 @@ class AnswerQuestion extends StatelessWidget {
                               children: [
                                 TextSpan(
                                   text:
-                                  "${_questionController.questionNumber.value}",
+                                      "${_questionController.questionNumber.value}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline4
@@ -86,7 +86,7 @@ class AnswerQuestion extends StatelessWidget {
                                 ),
                                 TextSpan(
                                   text:
-                                  " / ${_questionController.questionList.length}",
+                                      " / ${_questionController.questionList.length}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline5
@@ -100,27 +100,27 @@ class AnswerQuestion extends StatelessWidget {
                           offstage: false,
                           child: Container(
                             child: GetBuilder<QuestionController>(
-                              init: QuestionController(),
-                              builder: (controller) {
-                                double timestamp = controller.animation.value;
-                                return LiquidCustomProgressIndicator(
-                                  value: timestamp,
-                                  direction: Axis.vertical,
-                                  backgroundColor: Colors.grey[300],
-                                  valueColor: AlwaysStoppedAnimation(ColorsTheme.purple),
-                                  shapePath: _buildSpeechBubblePath(),
-                                  center: Text(
-                                    "${60 - (timestamp * 60).round()} s",
-                                    style: TextStyle(
-                                      color: rBlueColor,
-                                      height: 0.8,
-                                      fontSize: DefaultSize.fontSize,
-                                      fontWeight: FontWeight.bold,
+                                init: QuestionController(),
+                                builder: (controller) {
+                                  double timestamp = controller.animation.value;
+                                  return LiquidCustomProgressIndicator(
+                                    value: timestamp,
+                                    direction: Axis.vertical,
+                                    backgroundColor: Colors.grey[300],
+                                    valueColor: AlwaysStoppedAnimation(
+                                        ColorsTheme.purple),
+                                    shapePath: _buildSpeechBubblePath(),
+                                    center: Text(
+                                      "${60 - (timestamp * 60).round()} s",
+                                      style: TextStyle(
+                                        color: rBlueColor,
+                                        height: 0.8,
+                                        fontSize: DefaultSize.fontSize,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                );
-                              }
-                            ),
+                                  );
+                                }),
                           ),
                         ),
                       ],

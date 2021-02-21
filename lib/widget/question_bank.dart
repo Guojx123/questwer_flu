@@ -89,9 +89,7 @@ class _QuestionBankPageState extends State<QuestionBankPage> {
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                          fontSize: 16,
-                          color: ColorsTheme.grey,
-                          height: 1.4),
+                          fontSize: 16, color: ColorsTheme.grey, height: 1.4),
                     ),
                   ],
                 ),

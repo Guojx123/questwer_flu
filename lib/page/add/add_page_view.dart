@@ -11,35 +11,35 @@ import 'question_bank_textfield.dart';
 import 'question_textfield.dart';
 
 class AddPageView extends StatelessWidget {
-
   CreateController _createController = Get.put(CreateController());
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children:[
+      children: [
         /// tag icon
         Container(
-          margin: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding * 1.2),
+          margin:
+              EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding * 1.2),
           decoration: BoxDecoration(
               color: rTagGreyColor,
-              borderRadius:
-              BorderRadius.circular(DefaultSize.middleSize)),
+              borderRadius: BorderRadius.circular(DefaultSize.middleSize)),
           width: DefaultSize.largeSize,
           height: DefaultSize.smallSize,
         ),
+
         /// topNav
         Container(
-          margin:
-          EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding* 1.2,vertical: DefaultSize.middleSize),
+          margin: EdgeInsets.symmetric(
+              horizontal: DefaultSize.defaultPadding * 1.2,
+              vertical: DefaultSize.middleSize),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),
                 decoration: BoxDecoration(
-                  borderRadius:
-                  BorderRadius.circular(DefaultSize.middleSize),
+                  borderRadius: BorderRadius.circular(DefaultSize.middleSize),
                 ),
                 child: Icon(
                   Icons.read_more,
@@ -61,8 +61,7 @@ class AddPageView extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),
                   decoration: BoxDecoration(
-                    borderRadius:
-                    BorderRadius.circular(DefaultSize.middleSize),
+                    borderRadius: BorderRadius.circular(DefaultSize.middleSize),
                     color: rLightPurpleColor.withOpacity(0.8),
                   ),
                   child: Icon(
@@ -84,11 +83,11 @@ class AddPageView extends StatelessWidget {
             ],
           ),
         ),
-      ] ,
+      ],
     );
   }
 
-  Widget _buildCreateQB(){
+  Widget _buildCreateQB() {
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: DefaultSize.defaultPadding * 2,
@@ -96,7 +95,6 @@ class AddPageView extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-
             /// instruction
             _buildInstruction(),
 
@@ -126,7 +124,7 @@ class AddPageView extends StatelessWidget {
                     vertical: DefaultSize.defaultPadding * 1.4),
                 decoration: BoxDecoration(
                   borderRadius:
-                  BorderRadius.circular(DefaultSize.largeSize / 2),
+                      BorderRadius.circular(DefaultSize.largeSize / 2),
                   color: rLightPurpleColor.withOpacity(0.8),
                 ),
                 child: Text(
@@ -163,6 +161,4 @@ class AddPageView extends StatelessWidget {
       title: "Set Difficulty",
     );
   }
-
-
 }

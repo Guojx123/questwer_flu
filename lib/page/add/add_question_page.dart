@@ -14,7 +14,7 @@ class CreateQuestion extends StatelessWidget {
     );
   }
 
-  Widget _buildCreateQuestion(){
+  Widget _buildCreateQuestion() {
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: DefaultSize.defaultPadding * 2,
@@ -34,7 +34,7 @@ class CreateQuestion extends StatelessWidget {
     );
   }
 
-  Widget _buildCreateNQTitle(){
+  Widget _buildCreateNQTitle() {
     return TitleWidget(
       Text(
         "Add a description to your new question.",
@@ -44,7 +44,7 @@ class CreateQuestion extends StatelessWidget {
     );
   }
 
-  Widget _buildCreateNQOption(){
+  Widget _buildCreateNQOption() {
     return TitleWidget(
       Text(
         "Add options to your new question.",
@@ -54,7 +54,7 @@ class CreateQuestion extends StatelessWidget {
     );
   }
 
-  Widget _buildCreateNQCorrectAnswer(){
+  Widget _buildCreateNQCorrectAnswer() {
     return TitleWidget(
       Text(
         "Add the correct answer to your new question.",

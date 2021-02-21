@@ -3,14 +3,15 @@ import 'package:questwer_flu/theme/size.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class BackGroundWidget extends StatelessWidget {
-
   final double blur;
   final Color bgColor;
   final double size;
 
   BackGroundWidget({
     Key key,
-    this.blur = 0.0, this.bgColor = Colors.blueGrey, this.size = smallSize,
+    this.blur = 0.0,
+    this.bgColor = Colors.blueGrey,
+    this.size = smallSize,
   }) : super(key: key);
 
   @override
@@ -41,7 +42,7 @@ class BackGroundWidget extends StatelessWidget {
 class GradientBackGroundWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           tileMode: TileMode.mirror,
@@ -74,5 +75,4 @@ class GradientBackGroundWidget extends StatelessWidget {
       ),
     );
   }
-
 }

@@ -252,8 +252,8 @@ class HomePage extends StatelessWidget {
         child: AddPageView(),
       ),
       shape: CustomRoundedRectangleBorder(
-         borderRadius: BorderRadius.vertical(
-             top: Radius.circular(DefaultSize.middleSize * 2)),
+        borderRadius: BorderRadius.vertical(
+            top: Radius.circular(DefaultSize.middleSize * 2)),
 //        borderRadius: BorderRadius.circular(25.0),
         borderWidth: 10.0,
         bgColor: rMiddlePurpleColor,
@@ -265,5 +265,4 @@ class HomePage extends StatelessWidget {
       isScrollControlled: true,
     );
   }
-
 }

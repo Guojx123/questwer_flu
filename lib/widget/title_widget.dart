@@ -3,15 +3,14 @@ import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 
 class TitleWidget extends StatelessWidget {
-
   final Widget content;
   final String title;
 
-  const TitleWidget(this.content,{Key key,  this.title}) : super(key: key);
+  const TitleWidget(this.content, {Key key, this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return _buildTitleWidget(content,title: title);
+    return _buildTitleWidget(content, title: title);
   }
 
   Widget _buildTitleWidget(Widget content, {String title}) {

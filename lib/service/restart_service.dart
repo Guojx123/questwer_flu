@@ -7,7 +7,7 @@ class RestartWidget extends StatefulWidget {
 
   static restartApp(BuildContext context) {
     final _RestartWidgetState state =
-    context.findAncestorStateOfType<_RestartWidgetState>();
+        context.findAncestorStateOfType<_RestartWidgetState>();
     state.restartApp();
   }
 

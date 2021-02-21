@@ -28,8 +28,8 @@ class Welcome extends StatelessWidget {
           ),
           SafeArea(
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: DefaultSize.defaultPadding),
+              padding:
+                  EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
               child: Column(
                 children: [
                   Spacer(),
@@ -52,7 +52,8 @@ class Welcome extends StatelessWidget {
                       inputFormatters: [
                         new FilteringTextInputFormatter(
                             new RegExp(
-                              '[a-zA-Z]|[\u4e00-\u9fa5]|[0-9]|[`~!@#^&*()=|{}'',.<>《》/?~！@#￥……&*（）——|{}【】‘；：”“]',
+                              '[a-zA-Z]|[\u4e00-\u9fa5]|[0-9]|[`~!@#^&*()=|{}'
+                              ',.<>《》/?~！@#￥……&*（）——|{}【】‘；：”“]',
                             ),
                             allow: true),
                       ],
@@ -61,7 +62,8 @@ class Welcome extends StatelessWidget {
                         fillColor: Colors.transparent,
                         labelText: "Nice to meet you.",
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: ColorsTheme.primaryColor),
+                          borderSide:
+                              BorderSide(color: ColorsTheme.primaryColor),
                         ),
                         focusColor: ColorsTheme.primaryColor,
                         border: OutlineInputBorder(
@@ -114,7 +116,8 @@ class Welcome extends StatelessWidget {
 
   _loginAnonymously() async {
     await LCUser.loginAnonymously();
-    await PersistentStorage().setStorage("nickname", textEditingController.text.trim());
+    await PersistentStorage()
+        .setStorage("nickname", textEditingController.text.trim());
     Get.to(() => HomePage());
   }
 }

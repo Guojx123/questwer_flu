@@ -4,7 +4,6 @@ import 'dart:ui' as ui;
 import 'package:questwer_flu/theme/color.dart';
 
 class CustomRoundedRectangleBorder extends ShapeBorder {
-
   final double borderWidth;
   final BorderRadius borderRadius;
   final Color bgColor;
@@ -13,8 +12,7 @@ class CustomRoundedRectangleBorder extends ShapeBorder {
     this.borderWidth = 1.0,
     this.borderRadius = BorderRadius.zero,
     this.bgColor = rLightPurpleColor,
-  })
-      : assert(borderRadius != null);
+  }) : assert(borderRadius != null);
 
   @override
   EdgeInsetsGeometry get dimensions {
@@ -54,20 +52,22 @@ class CustomRoundedRectangleBorder extends ShapeBorder {
   }
 
   @override
-  Path getInnerPath(Rect rect, { TextDirection textDirection }) {
+  Path getInnerPath(Rect rect, {TextDirection textDirection}) {
     return new Path()
-      ..addRRect(borderRadius.resolve(textDirection).toRRect(rect).deflate(
-          borderWidth));
+      ..addRRect(borderRadius
+          .resolve(textDirection)
+          .toRRect(rect)
+          .deflate(borderWidth));
   }
 
   @override
-  Path getOuterPath(Rect rect, { TextDirection textDirection }) {
+  Path getOuterPath(Rect rect, {TextDirection textDirection}) {
     return new Path()
       ..addRRect(borderRadius.resolve(textDirection).toRRect(rect));
   }
 
   @override
-  void paint(Canvas canvas, Rect rect, { TextDirection textDirection }) {
+  void paint(Canvas canvas, Rect rect, {TextDirection textDirection}) {
     rect = rect.deflate(borderWidth / 2.0);
 
     Paint paint;

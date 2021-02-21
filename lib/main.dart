@@ -53,6 +53,7 @@ class MyApp extends StatelessWidget {
               return controller.isAuth.isTrue ? Welcome() : HomePage();
             },
           ),
+
           /// 字体大小不随系统改变
           builder: (context, widget) {
             return MediaQuery(

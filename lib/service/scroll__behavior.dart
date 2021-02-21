@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class OverScrollBehavior extends ScrollBehavior{
-
+class OverScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildViewportChrome(BuildContext context, Widget child, AxisDirection axisDirection) {
+  Widget buildViewportChrome(
+      BuildContext context, Widget child, AxisDirection axisDirection) {
     switch (getPlatform(context)) {
       case TargetPlatform.iOS:
         return child;
@@ -19,5 +19,4 @@ class OverScrollBehavior extends ScrollBehavior{
     }
     return null;
   }
-
 }

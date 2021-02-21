@@ -11,7 +11,6 @@ import 'my_text_field.dart';
 /// a 选择题
 /// 1.题目标题、描述
 class NQuestionTextFieldWidget extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CreateController>(
@@ -39,14 +38,12 @@ class NQuestionTextFieldWidget extends StatelessWidget {
               ],
             ),
           );
-        }
-    );
+        });
   }
 }
 
 /// 2.题目选项
 class NQuestionOptionTextFieldWidget extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CreateController>(
@@ -84,14 +81,12 @@ class NQuestionOptionTextFieldWidget extends StatelessWidget {
               ],
             ),
           );
-        }
-    );
+        });
   }
 }
 
 /// 3.题目正确答案
 class NQuestionCorrectAnswerTextFieldWidget extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CreateController>(
@@ -104,8 +99,7 @@ class NQuestionCorrectAnswerTextFieldWidget extends StatelessWidget {
               labelText: "Correct Answer",
             ),
           );
-        }
-    );
+        });
   }
 }
 

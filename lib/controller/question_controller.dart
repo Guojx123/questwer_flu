@@ -84,7 +84,6 @@ class QuestionController extends GetxController
         questionList.assignAll(question);
         debugPrint("获取题目数据");
         isLoading(false);
-
       }
     } finally {
       isLoading(false);
@@ -110,8 +109,7 @@ class QuestionController extends GetxController
 
     // 时间倒数结束，跳转到下一题
     Future.delayed(Duration(seconds: 3), () {
-      if(_pageController != null)
-      nextQuestion();
+      if (_pageController != null) nextQuestion();
     });
   }
 
@@ -119,9 +117,9 @@ class QuestionController extends GetxController
   void nextQuestion() {
     if (_questionNumber.value != questionList.length) {
       _isAnswered = false;
-      if(_pageController != null)
-      _pageController?.nextPage(
-          duration: Duration(milliseconds: 250), curve: Curves.ease);
+      if (_pageController != null)
+        _pageController?.nextPage(
+            duration: Duration(milliseconds: 250), curve: Curves.ease);
 
       // 重置计时器
       _animationController?.reset();

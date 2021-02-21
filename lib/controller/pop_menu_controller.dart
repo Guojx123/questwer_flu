@@ -7,7 +7,6 @@ class PopMenuController extends GetxController {
 
   ScrollController scrollController;
 
-
   @override
   void onInit() {
     // TODO: implement onInit
@@ -40,9 +39,7 @@ class PopMenuController extends GetxController {
           )),
     ], onClickMenu: onClickMenu, onDismiss: onDismiss, maxColumn: 4);
 
-    scrollController = ScrollController(
-      keepScrollOffset: true
-    );
+    scrollController = ScrollController(keepScrollOffset: true);
   }
 
   @override

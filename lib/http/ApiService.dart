@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'package:leancloud_storage/leancloud.dart';
 
 class ApiService {
-
   static var client = http.Client();
 
   static fetchQuestionList() async {
@@ -19,7 +18,4 @@ class ApiService {
     List<LCObject> questionList = await query.find();
     return questionList;
   }
-
-
-
 }

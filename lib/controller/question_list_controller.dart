@@ -25,10 +25,10 @@ class QuestionListController extends GetxController {
     super.onClose();
   }
 
-  void refreshList() async{
+  void refreshList() async {
     List<LCObject> questionBank = await ApiService.fetchQuestionList();
     questionBankList.clear();
-    if(questionBank != null){
+    if (questionBank != null) {
       questionBankList.assignAll(questionBank);
       // showToast("Data refreshed",position: ToastPosition.bottom);
       debugPrint("刷新题库数据");
@@ -40,7 +40,7 @@ class QuestionListController extends GetxController {
     try {
       isLoading(true);
       List<LCObject> questionBank = await ApiService.fetchQuestionList();
-      if(questionBank != null){
+      if (questionBank != null) {
         questionBankList.assignAll(questionBank);
         debugPrint("获取题库数据");
         isLoading(false);

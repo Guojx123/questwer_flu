@@ -38,7 +38,7 @@ class Option extends StatelessWidget {
 
           return GestureDetector(
             behavior: HitTestBehavior.translucent,
-            onTap: qnController.isAnswered ? (){} : press,
+            onTap: qnController.isAnswered ? () {} : press,
             // onTap: press,
             child: Container(
               margin: EdgeInsets.only(top: DefaultSize.defaultPadding * 2),
