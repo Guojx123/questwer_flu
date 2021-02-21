@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/page/home/home_page.dart';
+import 'dart:convert';
 import 'package:questwer_flu/service/my_text_editing_controller.dart';
 
 class CreateController extends GetxController {
@@ -177,7 +178,7 @@ class CreateController extends GetxController {
     newQ['ownedQB'] = _ownedQB;
     newQ['difficulty'] = "1";
     newQ['correct_answer'] = correctAnswer;
-    newQ['answer'] = answerList;
+    newQ['answer'] = json.encode(answerList);
     // 将对象保存到云端
     try {
       await newQ.save();

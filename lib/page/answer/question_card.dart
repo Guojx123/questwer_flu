@@ -65,9 +65,11 @@ class _QuestionCardState extends State<QuestionCard> {
 
     Question item = _question[index];
     /// 解析字符串
-    List answerDecode = json.decode(item.answer);
-    answerDecode.add(item.correctAnswer);
-    answerDecode.shuffle();
+    List answerList = json.decode(item.answer);
+//    answerList.add(item.correctAnswer);
+    answerList.shuffle();
+    /// 直接使用数组，不需要解析
+//    List answerList = item.answer;
     return Container(
       margin: EdgeInsets.symmetric(
           horizontal: DefaultSize.defaultPadding,
@@ -97,12 +99,12 @@ class _QuestionCardState extends State<QuestionCard> {
           ),
           SizedBox(height: DefaultSize.defaultPadding / 2),
           ...List.generate(
-            answerDecode.length,
+            answerList.length,
             (index) => Option(
               index: index,
-              text: answerDecode[index],
+              text: answerList[index],
               press: () =>
-                  _questionController.checkAns(item, answerDecode[index]),
+                  _questionController.checkAns(item, answerList[index]),
             ),
           ),
         ],
