@@ -63,6 +63,12 @@ class CreateQuestion extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () async {
+                    ///效验
+                    bool isTextNull = _createController.checkNQInputNull();
+                    if (isTextNull) {
+                      GetXSnackBar().noFillForm();
+                      return;
+                    }
                     String inputName = _createController.inputNQTitleController.text.trim();
                     String inputDesc = _createController.inputNQDescController.text.trim();
                     String inputCorrectAnswer = _createController.inputCorrectAnswerController.text.trim();
@@ -70,7 +76,7 @@ class CreateQuestion extends StatelessWidget {
                     String firstOption = _createController.inputOtherFAnswerController.text.trim();
                     String secondOption = _createController.inputOtherSAnswerController.text.trim();
                     String threeOption = _createController.inputOtherTAnswerController.text.trim();
-                    ///缺少效验
+
                     bool isCreateSuccess = await _createController.createQuestion(
                       inputName,
                       inputDesc,
@@ -80,7 +86,7 @@ class CreateQuestion extends StatelessWidget {
                       threeOption: threeOption,
                     );
                     if (isCreateSuccess) {
-
+                      GetXSnackBar().createSuccess();
                       _createController.clearNQuestionInput();
                     } else {
                       GetXSnackBar().netError();

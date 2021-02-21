@@ -76,7 +76,8 @@ class CreateQuestionBank extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () async {
-        bool isTextNull = _createController.checkInputNull();
+        ///效验
+        bool isTextNull = _createController.checkQBInputNull();
         if (_createController.difficulty == "") {
           GetXSnackBar().noTellMeDifficulty();
           return;
@@ -86,6 +87,7 @@ class CreateQuestionBank extends StatelessWidget {
           GetXSnackBar().noFillForm();
           return;
         }
+
         String inputName = _createController.inputTitleController.text.trim();
         String inputDesc = _createController.inputDescController.text.trim();
         bool isCreateSuccess =

@@ -8,7 +8,7 @@ class GetXSnackBar{
   void netError(){
     Get.snackbar("Creation failed", "We encountered an unknown error.",
         colorText: rBlueColor,
-        icon: Icon(Icons.messenger),
+        icon: Icon(Icons.messenger,color: rBlueColor,),
         snackPosition: SnackPosition.BOTTOM,
         backgroundGradient: ColorsTheme.gWelcomeGradient);
   }
@@ -16,7 +16,7 @@ class GetXSnackBar{
   void noFillForm(){
     Get.snackbar("Yep！", "I found that you haven't filled out the form.",
         colorText: rBlueColor,
-        icon: Icon(Icons.messenger),
+        icon: Icon(Icons.messenger,color: rBlueColor,),
         snackPosition: SnackPosition.BOTTOM,
         backgroundGradient: ColorsTheme.gWelcomeGradient);
   }
@@ -24,24 +24,24 @@ class GetXSnackBar{
   void noTellMeDifficulty(){
     Get.snackbar("Yep！", "Tell me how difficult the question is.",
         colorText: rBlueColor,
-        icon: Icon(Icons.messenger),
+        icon: Icon(Icons.messenger,color: rBlueColor,),
         snackPosition: SnackPosition.BOTTOM,
         backgroundGradient: ColorsTheme.gWelcomeGradient);
   }
 
   void noEnterNickname(){
     Get.snackbar("Tips:", "Please enter a nickname.",
-        colorText: ColorsTheme.white,
-        icon: Icon(Icons.messenger),
+        colorText: rRedColor,
+        icon: Icon(Icons.messenger,color: rRedColor,),
         snackPosition: SnackPosition.BOTTOM,
         backgroundGradient: ColorsTheme.gWelcomeGradient);
   }
 
   void createSuccess(){
     Get.snackbar("Good news", "Created successfully.",
-        colorText: ColorsTheme.white,
-        icon: Icon(Icons.messenger),
-        snackPosition: SnackPosition.BOTTOM,
+        colorText: rBlueColor,
+        icon: Icon(Icons.messenger,color: rBlueColor,),
+        snackPosition: SnackPosition.TOP,
         backgroundGradient: ColorsTheme.gWelcomeGradient);
   }
 

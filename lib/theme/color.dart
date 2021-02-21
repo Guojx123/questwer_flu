@@ -25,6 +25,8 @@ const rMiddlePurpleColorE6 = Color(0xE68B91E5);
 const rDeepPurpleColor = Color(0xFF525487);
 
 const rPinkColor = Color(0xFFE660A0);
+const rYellowColor = Color(0xFFffff00);
+const rRedColor = Color(0xFFb63130);
 
 class ColorsTheme {
   static Color get black => Color(0xFF000000);

@@ -106,7 +106,36 @@ class CreateController extends GetxController {
     _pageController = PageController();
   }
 
-  bool checkInputNull() {
+  bool checkQBInputNull() {
+    bool titleNoNull = (inputTitleController.text != null &&
+        inputTitleController.text.length > 0);
+    bool descNoNull = (inputDescController.text != null &&
+        inputDescController.text.length > 0);
+    print(inputTitleController.text);
+    print(inputDescController.text);
+    if (titleNoNull && descNoNull) {
+      print("All No Null");
+      return false;
+    }
+    return true;
+  }
+
+  bool checkNQInputNull() {
+    bool inputNQTitle = (inputNQTitleController.text != null && inputNQTitleController.text.length > 0);
+    bool inputNQDesc = (inputNQDescController.text != null && inputNQDescController.text.length > 0);
+    bool inputOtherFAnswer = (inputOtherFAnswerController.text != null && inputOtherFAnswerController.text.length > 0);
+    bool inputOtherSAnswer = (inputOtherSAnswerController.text != null && inputOtherSAnswerController.text.length > 0);
+    bool inputOtherTAnswer = (inputOtherTAnswerController.text != null && inputOtherTAnswerController.text.length > 0);
+    bool inputCorrectAnswer = (inputCorrectAnswerController.text != null && inputCorrectAnswerController.text.length > 0);
+
+    if (inputNQTitle && inputNQDesc && inputOtherFAnswer && inputOtherSAnswer && inputOtherTAnswer && inputCorrectAnswer) {
+      print("All No Null");
+      return false;
+    }
+    return true;
+  }
+
+  bool checkBQInputNull() {
     bool titleNoNull = (inputTitleController.text != null &&
         inputTitleController.text.length > 0);
     bool descNoNull = (inputDescController.text != null &&
