@@ -4,7 +4,9 @@ import 'package:questwer_flu/controller/create_controller.dart';
 import 'package:questwer_flu/page/add/my_slider.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
+import 'package:questwer_flu/widget/title_widget.dart';
 
+import 'add_question_page.dart';
 import 'question_bank_textfield.dart';
 import 'question_textfield.dart';
 
@@ -78,7 +80,7 @@ class AddPageView extends StatelessWidget {
             controller: _createController.pageController,
             children: [
               _buildCreateQB(),
-              _buildCreateQuestion(),
+              CreateQuestion(),
             ],
           ),
         ),
@@ -142,58 +144,8 @@ class AddPageView extends StatelessWidget {
     );
   }
 
-  Widget _buildCreateQuestion(){
-    return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: DefaultSize.defaultPadding * 2,
-          vertical: DefaultSize.defaultPadding),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildCreateNQTitle(),
-            NQuestionTextFieldWidget(),
-            _buildCreateNQOption(),
-            NQuestionOptionTextFieldWidget(),
-            _buildCreateNQCorrectAnswer(),
-            NQuestionCorrectAnswerTextFieldWidget(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCreateNQTitle(){
-    return _buildTitleWidget(
-      Text(
-        "Add a description to your new question.",
-        style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
-      ),
-      title: "Create Question Title",
-    );
-  }
-
-  Widget _buildCreateNQOption(){
-    return _buildTitleWidget(
-      Text(
-        "Add options to your new question.",
-        style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
-      ),
-      title: "Question Option (At least three)",
-    );
-  }
-
-  Widget _buildCreateNQCorrectAnswer(){
-    return _buildTitleWidget(
-      Text(
-        "Add the correct answer to your new question.",
-        style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
-      ),
-      title: "Question Correct Answer (Only one)",
-    );
-  }
-
   Widget _buildInstruction() {
-    return _buildTitleWidget(
+    return TitleWidget(
       Text(
         "Add a description to your new question bank.",
         style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
@@ -203,7 +155,7 @@ class AddPageView extends StatelessWidget {
   }
 
   Widget _buildDifficulty() {
-    return _buildTitleWidget(
+    return TitleWidget(
       Text(
         "Set overall difficulty for your question bank.",
         style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
@@ -212,31 +164,5 @@ class AddPageView extends StatelessWidget {
     );
   }
 
-  Widget _buildTitleWidget(Widget content, {String title}) {
-    return Container(
-      width: double.maxFinite,
-      margin: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding * 2),
-      padding: EdgeInsets.symmetric(
-          horizontal: DefaultSize.defaultPadding,
-          vertical: DefaultSize.defaultPadding),
-      decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.6),
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "$title",
-            style: TextStyle(
-                height: 1.6,
-                color: ColorsTheme.black,
-                fontSize: DefaultSize.middleFontSize,
-                fontWeight: FontWeight.w500),
-          ),
-          content
-        ],
-      ),
-    );
-  }
+
 }
