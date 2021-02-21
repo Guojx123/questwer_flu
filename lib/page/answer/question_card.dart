@@ -62,7 +62,9 @@ class _QuestionCardState extends State<QuestionCard> {
               creator: item["creator"],
             ))
         .toList();
+
     Question item = _question[index];
+    /// 解析字符串
     List answerDecode = json.decode(item.answer);
     answerDecode.add(item.correctAnswer);
     answerDecode.shuffle();

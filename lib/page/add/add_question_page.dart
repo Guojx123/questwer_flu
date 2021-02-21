@@ -60,8 +60,28 @@ class CreateQuestion extends StatelessWidget {
                     ),
                   ),
                 ),
-                MyBottom(
-                  text: "Create",
+                GestureDetector(
+                  onTap: (){
+                    String inputName = _createController.inputNQTitleController.text.trim();
+                    String inputDesc = _createController.inputNQDescController.text.trim();
+                    String inputCorrectAnswer = _createController.inputCorrectAnswerController.text.trim();
+
+                    String firstOption = _createController.inputOtherFAnswerController.text.trim();
+                    String secondOption = _createController.inputOtherSAnswerController.text.trim();
+                    String threeOption = _createController.inputOtherTAnswerController.text.trim();
+                    ///缺少效验
+                    _createController.createQuestion(
+                      inputName,
+                      inputDesc,
+                      inputCorrectAnswer,
+                      firstOption: firstOption,
+                      secondOption: secondOption,
+                      threeOption: threeOption,
+                    );
+                  },
+                  child: MyBottom(
+                    text: "Create",
+                  ),
                 ),
               ],
             )

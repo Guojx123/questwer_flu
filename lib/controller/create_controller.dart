@@ -30,13 +30,20 @@ class CreateController extends GetxController {
 
   PageController get pageController => this._pageController;
 
+  // 题库难度
   String _difficulty;
 
   String get difficulty => this._difficulty;
 
+  // 判断题的bool值
   String _selectValue;
 
   String get selectValue => this._selectValue;
+
+  // 题目所属题库
+  String _ownedQB;
+
+  String get ownedQB => this._ownedQB;
 
   @override
   void onInit() {
@@ -94,6 +101,7 @@ class CreateController extends GetxController {
     inputDescController.clear();
     _difficulty = "";
     _selectValue = "true";
+    _ownedQB = "";
     _pageController = PageController();
   }
 
@@ -128,19 +136,51 @@ class CreateController extends GetxController {
     });
   }
 
+  /// 创建题库
   Future<bool> createQuestionBank(String name ,String description) async {
     LCUser currentUser = await LCUser.getCurrent();
     // 构建对象
-    LCObject newQuestion = LCObject("question_bank");
+    LCObject newQB = LCObject("question_bank");
     // 为属性赋值
-    newQuestion['name'] = name;
-    newQuestion['description'] = description;
-    newQuestion['owner'] = currentUser.username;
-    newQuestion['share'] = "false";
-    newQuestion['shareId'] = "public";
+    _ownedQB = name;
+    newQB['name'] = name;
+    newQB['description'] = description;
+    newQB['owner'] = currentUser.username;
+    newQB['share'] = "false";
+    newQB['shareId'] = "public";
     // 将对象保存到云端
     try {
-      await newQuestion.save();
+      await newQB.save();
+      return true;
+    } catch (e) {
+      print(e);
+    }
+    return false;
+  }
+
+  /// 创建题目
+  Future<bool> createQuestion(String title ,String subTitle,String correctAnswer,{String firstOption,String secondOption,String threeOption}) async {
+
+    List answerList = List();
+    answerList.add(firstOption);
+    answerList.add(secondOption);
+    answerList.add(threeOption);
+    answerList.add(correctAnswer);
+
+    LCUser currentUser = await LCUser.getCurrent();
+    // 构建对象
+    LCObject newQ = LCObject("question");
+    // 为属性赋值
+    newQ['title'] = title;
+    newQ['sub_title'] = subTitle;
+    newQ['creator'] = currentUser.username;
+    newQ['ownedQB'] = _ownedQB;
+    newQ['difficulty'] = "1";
+    newQ['correct_answer'] = correctAnswer;
+    newQ['answer'] = answerList;
+    // 将对象保存到云端
+    try {
+      await newQ.save();
       return true;
     } catch (e) {
       print(e);
