@@ -133,6 +133,8 @@ class CreateQuestion extends StatelessWidget {
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   onTap: () {
+                    ///校验
+                    bool isTextNull = _createController.checkBQInputNull();
                     _createController.clearBQuestionInput();
                   },
                   child: Container(

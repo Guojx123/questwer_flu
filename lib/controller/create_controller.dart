@@ -136,13 +136,9 @@ class CreateController extends GetxController {
   }
 
   bool checkBQInputNull() {
-    bool titleNoNull = (inputTitleController.text != null &&
-        inputTitleController.text.length > 0);
-    bool descNoNull = (inputDescController.text != null &&
-        inputDescController.text.length > 0);
-    print(inputTitleController.text);
-    print(inputDescController.text);
-    if (titleNoNull && descNoNull) {
+    bool inputBQTitle = (inputBQTitleController.text != null && inputBQTitleController.text.length > 0);
+    bool inputBQDesc = (inputBQDescController.text != null && inputBQDescController.text.length > 0);
+    if (inputBQTitle && inputBQDesc) {
       print("All No Null");
       return false;
     }
