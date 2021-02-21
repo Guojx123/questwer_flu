@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:questwer_flu/controller/create_controller.dart';
 import 'package:questwer_flu/page/add/my_bottom.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
+import 'package:questwer_flu/widget/multi_selection_widget.dart';
 import 'package:questwer_flu/widget/title_widget.dart';
 import 'custom_tab.dart';
 import 'question_textfield.dart';
 
 class CreateQuestion extends StatelessWidget {
+
+  CreateController _createController = Get.put(CreateController());
+
   @override
   Widget build(BuildContext context) {
     return CustomTab(
@@ -25,12 +31,12 @@ class CreateQuestion extends StatelessWidget {
           children: [
             _buildCreateNQTitle(),
             NQuestionTextFieldWidget(),
-            _buildCreateNQOption(),
-            NQuestionOptionTextFieldWidget(),
             _buildCreateNQCorrectAnswer(),
             NQuestionCorrectAnswerTextFieldWidget(),
+            _buildCreateNQOption(),
+            NQuestionOptionTextFieldWidget(),
             SizedBox(
-              height: DefaultSize.defaultPadding * 2,
+              height: DefaultSize.defaultPadding * 4,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,12 +80,17 @@ class CreateQuestion extends StatelessWidget {
           children: [
             _buildCreateNQTitle(),
             NQuestionTextFieldWidget(),
-            _buildCreateNQOption(),
-            NQuestionOptionTextFieldWidget(),
             _buildCreateNQCorrectAnswer(),
-            NQuestionCorrectAnswerTextFieldWidget(),
+            MultiSelectionWidget(
+              'Bool',
+              ["true","false","unknow"],
+              ["true","false","unknow"],
+                  (value) {
+                 _createController.setSelectValue(value);
+              },
+            ),
             SizedBox(
-              height: DefaultSize.defaultPadding * 2,
+              height: DefaultSize.defaultPadding * 4,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

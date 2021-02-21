@@ -33,6 +33,10 @@ class CreateController extends GetxController {
 
   String get difficulty => this._difficulty;
 
+  String _selectValue;
+
+  String get selectValue => this._selectValue;
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -68,6 +72,7 @@ class CreateController extends GetxController {
     inputTitleController.clear();
     inputDescController.clear();
     _difficulty = "";
+    _selectValue = "true";
     _pageController = PageController();
   }
 
@@ -115,6 +120,11 @@ class CreateController extends GetxController {
 
   void setDifficulty(String string){
     _difficulty = string;
+    update();
+  }
+
+  void setSelectValue(String value){
+    _selectValue = value;
     update();
   }
 }
