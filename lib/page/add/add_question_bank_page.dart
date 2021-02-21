@@ -94,6 +94,7 @@ class CreateQuestionBank extends StatelessWidget {
         bool isCreateSuccess =
             await _createController.createQuestionBank(inputName, inputDesc);
         if (isCreateSuccess) {
+          _createController.clearQuestionBankInput();
           _createController.nextPage(!isTextNull);
         } else {
           GetXSnackBar().netError();

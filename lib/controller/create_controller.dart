@@ -77,6 +77,12 @@ class CreateController extends GetxController {
     super.onClose();
   }
 
+  clearQuestionBankInput(){
+    inputTitleController.clear();
+    inputDescController.clear();
+    update();
+  }
+
   clearNQuestionInput() {
     print("clearNQuestionInput");
     inputNQTitleController.clear();
@@ -98,8 +104,6 @@ class CreateController extends GetxController {
   }
 
   initAll() {
-    inputTitleController.clear();
-    inputDescController.clear();
     _difficulty = "";
     _selectValue = "true";
     _ownedQB = "";

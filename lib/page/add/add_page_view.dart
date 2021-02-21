@@ -38,10 +38,16 @@ class AddPageView extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(DefaultSize.middleSize),
                 ),
-                child: Icon(
-                  Icons.read_more,
-                  color: rDeepPurpleColor,
-                  size: DefaultSize.smallSize * 6,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: (){
+                    print("返回到上一页，修改题库");
+                  },
+                  child: Icon(
+                    Icons.read_more,
+                    color: rDeepPurpleColor,
+                    size: DefaultSize.smallSize * 6,
+                  ),
                 ),
               ),
               Text(

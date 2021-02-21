@@ -254,7 +254,6 @@ class HomePage extends StatelessWidget {
       shape: CustomRoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
             top: Radius.circular(DefaultSize.middleSize * 2)),
-//        borderRadius: BorderRadius.circular(25.0),
         borderWidth: 10.0,
         bgColor: rMiddlePurpleColor,
       ),
