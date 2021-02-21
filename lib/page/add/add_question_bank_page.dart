@@ -5,6 +5,7 @@ import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/widget/title_widget.dart';
 
+import 'my_bottom.dart';
 import 'my_slider.dart';
 import 'question_bank_textfield.dart';
 
@@ -45,31 +46,7 @@ class CreateQuestionBank extends StatelessWidget {
             ),
 
             /// btn
-            GestureDetector(
-              behavior: HitTestBehavior.translucent,
-              onTap: () {
-                bool isTextNull = _createController.checkInputNull();
-                print("$isTextNull sd");
-                _createController.nextPage(!isTextNull);
-              },
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                    horizontal: DefaultSize.defaultPadding * 8,
-                    vertical: DefaultSize.defaultPadding * 1.4),
-                decoration: BoxDecoration(
-                  borderRadius:
-                  BorderRadius.circular(DefaultSize.largeSize / 2),
-                  color: rLightPurpleColor.withOpacity(0.8),
-                ),
-                child: Text(
-                  "Continue",
-                  style: TextStyle(
-                    color: rDeepPurpleColor,
-                    fontSize: DefaultSize.smallFontSize,
-                  ),
-                ),
-              ),
-            ),
+            _buildBtn(),
           ],
         ),
       ),
@@ -93,6 +70,23 @@ class CreateQuestionBank extends StatelessWidget {
         style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
       ),
       title: "Set Difficulty",
+    );
+  }
+
+  Widget _buildBtn(){
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () {
+        if(_createController.difficulty == ""){
+          return;
+        }
+        bool isTextNull = _createController.checkInputNull();
+        print("isTextNull $isTextNull");
+        _createController.nextPage(!isTextNull);
+      },
+      child: MyBottom(
+        text: "Continue",
+      ),
     );
   }
 }

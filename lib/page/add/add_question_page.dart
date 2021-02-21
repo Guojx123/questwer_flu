@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:questwer_flu/page/add/my_bottom.dart';
+import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/widget/title_widget.dart';
 import 'custom_tab.dart';
@@ -8,12 +10,12 @@ class CreateQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomTab(
-      leftWidget: _buildCreateQuestion(),
-      rightWidget: _buildCreateQuestion(),
+      leftWidget: _buildCreateNQuestion(),
+      rightWidget: _buildCreateBQuestion(),
     );
   }
 
-  Widget _buildCreateQuestion() {
+  Widget _buildCreateNQuestion() {
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: DefaultSize.defaultPadding * 2,
@@ -27,6 +29,84 @@ class CreateQuestion extends StatelessWidget {
             NQuestionOptionTextFieldWidget(),
             _buildCreateNQCorrectAnswer(),
             NQuestionCorrectAnswerTextFieldWidget(),
+            SizedBox(
+              height: DefaultSize.defaultPadding * 2,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
+
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(DefaultSize.middleSize),
+                      color: rLightPurpleColor,
+                    ),
+                    child: Container(
+                      width: DefaultSize.middleSize * 3.2,
+                      height: DefaultSize.middleSize * 3.2,
+                      child: Image.asset("assets/icon_clear.png"),
+                    ),
+                  ),
+                ),
+                MyBottom(
+                  text: "Create",
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCreateBQuestion() {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          horizontal: DefaultSize.defaultPadding * 2,
+          vertical: DefaultSize.defaultPadding),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            _buildCreateNQTitle(),
+            NQuestionTextFieldWidget(),
+            _buildCreateNQOption(),
+            NQuestionOptionTextFieldWidget(),
+            _buildCreateNQCorrectAnswer(),
+            NQuestionCorrectAnswerTextFieldWidget(),
+            SizedBox(
+              height: DefaultSize.defaultPadding * 2,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
+
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(DefaultSize.middleSize),
+                      color: rLightPurpleColor,
+                    ),
+                    child: Container(
+                      width: DefaultSize.middleSize * 3.2,
+                      height: DefaultSize.middleSize * 3.2,
+                      child: Image.asset("assets/icon_clear.png"),
+                    ),
+                  ),
+                ),
+                MyBottom(
+                  text: "Create",
+                ),
+              ],
+            )
           ],
         ),
       ),

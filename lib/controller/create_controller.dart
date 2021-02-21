@@ -67,6 +67,7 @@ class CreateController extends GetxController {
   initAll() {
     inputTitleController.clear();
     inputDescController.clear();
+    _difficulty = "";
     _pageController = PageController();
   }
 
@@ -106,9 +107,10 @@ class CreateController extends GetxController {
     if (isNoNull && _pageController != null) {
       _pageController?.nextPage(
           duration: Duration(milliseconds: 250), curve: Curves.easeOut);
-    } else {
-      Get.to(HomePage());
     }
+//    else {
+//      Get.to(HomePage());
+//    }
   }
 
   void setDifficulty(String string){
