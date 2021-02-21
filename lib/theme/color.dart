@@ -93,4 +93,11 @@ class ColorsTheme {
     end: Alignment.centerRight,
   );
 
+  static Gradient get rBackgroundGradient => LinearGradient(
+    colors: const [Colors.blueAccent, Colors.deepOrangeAccent],
+    stops: const [0.0, 1.0],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
 }
