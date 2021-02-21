@@ -96,9 +96,8 @@ class CreateController extends GetxController{
   /// 跳转到下一页
   void nextPage(bool isNoNull) {
     if (isNoNull && _pageController != null) {
-      print("ahhhh");
         _pageController?.nextPage(
-            duration: Duration(milliseconds: 50), curve: Curves.ease);
+            duration: Duration(milliseconds: 250), curve: Curves.easeOut);
     } else {
       Get.to(HomePage());
     }

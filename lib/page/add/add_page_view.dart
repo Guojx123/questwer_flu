@@ -78,7 +78,7 @@ class AddPageView extends StatelessWidget {
             controller: _createController.pageController,
             children: [
               _buildCreateQB(),
-              _secondPage()
+              _buildCreateQuestion(),
             ],
           ),
         ),
@@ -142,7 +142,7 @@ class AddPageView extends StatelessWidget {
     );
   }
 
-  Widget _secondPage(){
+  Widget _buildCreateQuestion(){
     return Padding(
       padding: EdgeInsets.symmetric(
           horizontal: DefaultSize.defaultPadding * 2,
@@ -178,7 +178,7 @@ class AddPageView extends StatelessWidget {
         "Add options to your new question.",
         style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
       ),
-      title: "Create Question Option (At least three)",
+      title: "Question Option (At least three)",
     );
   }
 
@@ -188,7 +188,7 @@ class AddPageView extends StatelessWidget {
         "Add the correct answer to your new question.",
         style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
       ),
-      title: "Create Question Correct Answer (Only one)",
+      title: "Question Correct Answer (Only one)",
     );
   }
 
