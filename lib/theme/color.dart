@@ -33,6 +33,7 @@ class ColorsTheme {
   static Color get grey => Color(0xffb8b8b8);
   static Color get greyWhite => Color(0xFFf7f7f7);
   static Color get greyBlue => Color(0xFF3f4768);
+  static Color get lightBlue => Color(0xff52abbe);
   static Color get primaryColor => Color(0xFF56b0ba);
   static Color get teal => Color(0xFF22ddCB);
   static Color get pink => Color(0xDCFD23F3);

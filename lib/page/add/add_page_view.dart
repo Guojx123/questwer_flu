@@ -6,6 +6,7 @@ import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 
 import 'question_bank_textfield.dart';
+import 'question_textfield.dart';
 
 class AddPageView extends StatelessWidget {
 
@@ -142,8 +143,52 @@ class AddPageView extends StatelessWidget {
   }
 
   Widget _secondPage(){
-    return Center(
-      child: Text("Second Page"),
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          horizontal: DefaultSize.defaultPadding * 2,
+          vertical: DefaultSize.defaultPadding),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            _buildCreateNQTitle(),
+            NQuestionTextFieldWidget(),
+            _buildCreateNQOption(),
+            NQuestionOptionTextFieldWidget(),
+            _buildCreateNQCorrectAnswer(),
+            NQuestionCorrectAnswerTextFieldWidget(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCreateNQTitle(){
+    return _buildTitleWidget(
+      Text(
+        "Add a description to your new question.",
+        style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
+      ),
+      title: "Create Question Title",
+    );
+  }
+
+  Widget _buildCreateNQOption(){
+    return _buildTitleWidget(
+      Text(
+        "Add options to your new question.",
+        style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
+      ),
+      title: "Create Question Option (At least three)",
+    );
+  }
+
+  Widget _buildCreateNQCorrectAnswer(){
+    return _buildTitleWidget(
+      Text(
+        "Add the correct answer to your new question.",
+        style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
+      ),
+      title: "Create Question Correct Answer (Only one)",
     );
   }
 
