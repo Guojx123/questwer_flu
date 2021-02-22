@@ -87,6 +87,13 @@ class ColorsTheme {
         end: Alignment.centerRight,
       );
 
+  static Gradient get rWelcomeBtnGradient => LinearGradient(
+    colors: [rPurpleColor, rLightPurpleColor],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
+
+
   static Gradient get gCardGradient => LinearGradient(
         colors: [Color(0x50632587), Color(0x88872c25)],
         begin: Alignment.centerLeft,

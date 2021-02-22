@@ -8,8 +8,6 @@ import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/getx_snack_bar.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
-import 'package:simple_animations/simple_animations.dart';
-import '../home/home_page.dart';
 
 class Welcome extends StatelessWidget {
   TextEditingController textEditingController = TextEditingController();
@@ -20,14 +18,16 @@ class Welcome extends StatelessWidget {
       body: Stack(
         children: [
           BackGroundWidget(
-            blur: 0.2,
+            blur: 0.0,
             size: 0.35,
+            bgColor: rLightBlueColor,
+            circleColor: rCloseGreyColor,
           ),
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            color: Colors.blueGrey.withOpacity(0.5),
-          ),
+//          Container(
+//            width: double.infinity,
+//            height: double.infinity,
+//            color: Colors.blueGrey.withOpacity(0.5),
+//          ),
           SafeArea(
             child: Padding(
               padding:
@@ -44,11 +44,11 @@ class Welcome extends StatelessWidget {
                   //     color: Colors.white)),
                   Spacer(),
                   Theme(
-                    data: new ThemeData(primaryColor: Color(0xff52abbe)),
+                    data: new ThemeData(primaryColor: kMilkWhiteColor),
                     child: TextField(
                       controller: textEditingController,
                       // showCursor: false,
-                      cursorColor: ColorsTheme.primaryColor,
+                      cursorColor: rTextColor,
                       cursorWidth: 1,
                       keyboardType: TextInputType.text,
                       inputFormatters: [
@@ -65,7 +65,7 @@ class Welcome extends StatelessWidget {
                         labelText: "Nice to meet you.",
                         focusedBorder: OutlineInputBorder(
                           borderSide:
-                              BorderSide(color: ColorsTheme.primaryColor),
+                              BorderSide(color: rTextColor),
                         ),
                         focusColor: ColorsTheme.primaryColor,
                         border: OutlineInputBorder(
@@ -91,7 +91,7 @@ class Welcome extends StatelessWidget {
                           horizontal: DefaultSize.defaultPadding),
                       padding: EdgeInsets.all(DefaultSize.defaultPadding),
                       decoration: BoxDecoration(
-                        gradient: ColorsTheme.gWelcomeGradient,
+                        gradient: ColorsTheme.rWelcomeBtnGradient,
                         borderRadius: BorderRadius.all(Radius.circular(12)),
                       ),
                       child: Text(

@@ -5,26 +5,29 @@ import 'package:simple_animations/simple_animations.dart';
 class BackGroundWidget extends StatelessWidget {
   final double blur;
   final Color bgColor;
+  final Color circleColor;
   final double size;
 
   BackGroundWidget({
     Key key,
     this.blur = 0.0,
-    this.bgColor = Colors.blueGrey,
+    @required
+    this.bgColor,
     this.size = smallSize,
+    this.circleColor = Colors.blueGrey,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Color(0xff00123d),
+        color: bgColor,
         backgroundBlendMode: BlendMode.srcOver,
       ),
       child: PlasmaRenderer(
         type: PlasmaType.infinity,
         particles: 12,
-        color: bgColor,
+        color: circleColor,
         blur: blur,
         size: size,
         speed: 0.2,
