@@ -17,7 +17,6 @@ class LeadPage extends StatefulWidget {
 }
 
 class _LeadPageState extends State<LeadPage> {
-
   PageController pageController;
   ValueNotifier<double> notifier = ValueNotifier<double>(0);
 
@@ -92,21 +91,30 @@ class _LeadPageState extends State<LeadPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  _buildTitle(title: "Choose answer mode",imgUrl: "assets/icon_model.png"),
+                  // 官方活动
+                  _buildTitle(
+                      title: "Popular activities",
+                      imgUrl: "assets/icon_activity.png"),
+                  _buildActivity(),
+                  // 模式卡片
+                  _buildTitle(
+                      title: "Choose answer mode",
+                      imgUrl: "assets/icon_model.png"),
                   Expanded(
                     child: PageView(
                       pageSnapping: true,
                       physics: new BouncingScrollPhysics(),
                       controller: pageController
                         ..addListener(() {
-                          notifier.value = pageController.offset / pageController.position.maxScrollExtent;
+                          notifier.value = pageController.offset /
+                              pageController.position.maxScrollExtent;
                         }),
                       children: <Widget>[
                         PageWidget(
                           'Hall',
                           'To tell you, here you can view the question bank shared by all users.',
                           'assets/hall_bg.jpg',
-                              () {
+                          () {
                             Get.to(HomePage());
                           },
                         ),
@@ -114,7 +122,7 @@ class _LeadPageState extends State<LeadPage> {
                           'Challenge',
                           'Are you ready? Here are various topics collected on the Internet.',
                           'assets/challenge_bg.png',
-                              () {
+                          () {
                             // Navigator.push(context, MaterialPageRoute(builder: (context) => SkillMainPage()));
                           },
                         ),
@@ -122,15 +130,16 @@ class _LeadPageState extends State<LeadPage> {
                           'Mine',
                           'Congratulations, here is everything about you.',
                           'assets/mine_bg.jpg',
-                              () {
+                          () {
                             // Navigator.push(context, MaterialPageRoute(builder: (context) => UtilMainPage()));
                           },
                         ),
                       ],
                     ),
                   ),
-                  _buildTitle(title: "Popular activities",imgUrl: "assets/icon_activity.png"),
-                  _buildActivity(),
+                  SizedBox(
+                    height: DefaultSize.middleSize,
+                  ),
                   _buildLinearProgress(),
                 ],
               ),
@@ -141,22 +150,33 @@ class _LeadPageState extends State<LeadPage> {
     );
   }
 
-  Widget _buildTitle({String title = "Example Title",String imgUrl}){
+  Widget _buildTitle({String title = "Example Title", String imgUrl}) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding *2,vertical: DefaultSize.defaultPadding),
+        padding: EdgeInsets.symmetric(
+            horizontal: DefaultSize.defaultPadding * 2,
+            vertical: DefaultSize.defaultPadding),
         child: ValueListenableBuilder(
           valueListenable: notifier,
           builder: (context, value, widget) {
             return Row(
               children: [
-                Text(title,style: TextStyle(
-                  color: rBlueColor,
-                  fontSize: DefaultSize.middleFontSize *1.2,
-                  height: smallSize * 3,
-                ),),
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: rBlueColor,
+                    fontSize: DefaultSize.middleFontSize * 1.2,
+                    height: smallSize * 3,
+                  ),
+                ),
                 Padding(
-                    padding: EdgeInsets.symmetric(horizontal: DefaultSize.middleSize),
-                    child: Image.asset(imgUrl,height: DefaultSize.middleSize * 2.2,width: DefaultSize.middleSize *2.2,fit: BoxFit.cover,))
+                    padding: EdgeInsets.symmetric(
+                        horizontal: DefaultSize.middleSize),
+                    child: Image.asset(
+                      imgUrl,
+                      height: DefaultSize.middleSize * 2.2,
+                      width: DefaultSize.middleSize * 2.2,
+                      fit: BoxFit.cover,
+                    ))
               ],
             );
             // return LinearProgressIndicator(
@@ -174,23 +194,54 @@ class _LeadPageState extends State<LeadPage> {
         ));
   }
 
-  Widget _buildActivity(){
+  Widget _buildActivity() {
     return Card(
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       margin: EdgeInsets.symmetric(
         vertical: DefaultSize.defaultPadding,
-        horizontal: DefaultSize.defaultPadding,
+        horizontal: DefaultSize.defaultPadding * 3,
       ),
       child: Row(
         children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding *2,vertical: DefaultSize.defaultPadding*3),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+//                  padding: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding),
+                  child: Image.asset(
+                    "assets/icon_activity_balloon.png",
+                    width: DefaultSize.middleSize * 4,
+                    height: DefaultSize.middleSize * 4,
+                    color: rBlueColor,
+                  ),
+                ),
+                SizedBox(
+                  height: DefaultSize.middleSize,
+                ),
+                Text("Self-love",style: TextStyle(
+                  color: rBlueColor,
+                  fontSize: DefaultSize.middleFontSize,
+                  fontWeight: FontWeight.bold,
+                ),),
+                Text("Don't wait, join us!",style: TextStyle(
+                  color: rPurpleColor,
+                  fontSize: DefaultSize.smallFontSize,
+                  fontWeight: FontWeight.w400,
+                ),),
+              ],
+            ),
+          ),
+          // icon
 
         ],
       ),
     );
   }
 
-  Widget _buildLinearProgress(){
+  Widget _buildLinearProgress() {
     return Container(
       margin: EdgeInsets.only(bottom: 12, left: 48, right: 48),
       child: ValueListenableBuilder(
