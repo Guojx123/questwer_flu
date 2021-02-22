@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:questwer_flu/theme/size.dart';
 
 class PageWidget extends StatelessWidget {
   final String title;
@@ -15,8 +16,8 @@ class PageWidget extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         margin: EdgeInsets.symmetric(
-          vertical: 24,
-          horizontal: 10,
+          vertical: DefaultSize.defaultPadding,
+          horizontal: DefaultSize.defaultPadding,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

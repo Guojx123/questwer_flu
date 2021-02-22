@@ -47,8 +47,8 @@ class _LeadPageState extends State<LeadPage> {
               builder: (context, value, widget) {
                 return Container(
                   color: Color.lerp(
-                    Color(0xD040A5B9),
-                    Color(0xD0FFDE59),
+                    rLeadTealColor,
+                    rLeadSunColor,
                     notifier.value,
                   ),
                 );
@@ -92,9 +92,10 @@ class _LeadPageState extends State<LeadPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  _buildTitle(),
+                  _buildTitle(title: "Choose answer mode",imgUrl: "assets/icon_model.png"),
                   Expanded(
                     child: PageView(
+                      pageSnapping: true,
                       physics: new BouncingScrollPhysics(),
                       controller: pageController
                         ..addListener(() {
@@ -128,8 +129,8 @@ class _LeadPageState extends State<LeadPage> {
                       ],
                     ),
                   ),
+                  _buildTitle(title: "Popular activities",imgUrl: "assets/icon_activity.png"),
                   _buildLinearProgress(),
-
                 ],
               ),
             ),
@@ -139,8 +140,37 @@ class _LeadPageState extends State<LeadPage> {
     );
   }
 
-  Widget _buildTitle({String title = "Example Title"}){
-    return Text(title);
+  Widget _buildTitle({String title = "Example Title",String imgUrl}){
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding *2,vertical: DefaultSize.defaultPadding),
+        child: ValueListenableBuilder(
+          valueListenable: notifier,
+          builder: (context, value, widget) {
+            return Row(
+              children: [
+                Text(title,style: TextStyle(
+                  color: rBlueColor,
+                  fontSize: DefaultSize.middleFontSize *1.2,
+                  height: smallSize * 3,
+                ),),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: DefaultSize.middleSize),
+                    child: Image.asset(imgUrl,height: DefaultSize.middleSize * 2.2,width: DefaultSize.middleSize *2.2,fit: BoxFit.cover,))
+              ],
+            );
+            // return LinearProgressIndicator(
+            //   value: notifier.value,
+            //   valueColor: AlwaysStoppedAnimation(
+            //     Color.lerp(
+            //       rLeadTealColor,
+            //       rLeadSunColor,
+            //       notifier.value,
+            //     ),
+            //   ),
+            //   backgroundColor: rBlueColor2C,
+            // );
+          },
+        ));
   }
 
   Widget _buildLinearProgress(){
@@ -153,11 +183,12 @@ class _LeadPageState extends State<LeadPage> {
             value: notifier.value,
             valueColor: AlwaysStoppedAnimation(
               Color.lerp(
-                Color(0xD040A5B9),
-                Color(0xD0FFDE59),
+                rLeadTealColor,
+                rLeadSunColor,
                 notifier.value,
               ),
             ),
+            backgroundColor: rBlueColor2C,
           );
         },
       ),
