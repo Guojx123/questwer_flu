@@ -16,6 +16,7 @@ const rTextWhiteColor4B = Color(0x4bE2E1F3);
 const rTextWhiteColor20 = Color(0x20E2E1F3);
 
 const rBlueColor = Color(0xFF393A59);
+const rBlueColorEB = Color(0xEB393A59);
 const rBlueColor2C = Color(0x2C393A59);
 const rLightBlueColor = Color(0xFF6976B9);
 const rMiddleBlueColor = Color(0xFF6060A0);
@@ -36,7 +37,6 @@ const rDeepRedColor = Color(0xFFbf3130);
 const rLeadTealColor = Color(0xD040A5B9);
 const rLeadSunColor = Color(0xD0FFDD60);
 
-
 class ColorsTheme {
   static Color get black => Color(0xFF000000);
 
@@ -47,6 +47,8 @@ class ColorsTheme {
   static Color get greyWhite => Color(0xFFf7f7f7);
 
   static Color get greyBlue => Color(0xFF3f4768);
+
+  static Color get greyBlue60 => Color(0xCC3f4768);
 
   static Color get lightBlue => Color(0xff52abbe);
 
@@ -89,11 +91,16 @@ class ColorsTheme {
       );
 
   static Gradient get rWelcomeBtnGradient => LinearGradient(
-    colors: [rPurpleColor, rLightPurpleColor],
+        colors: [rLightPurpleColor, rPurpleColor],
+        begin: Alignment.centerLeft,
+        end: Alignment.centerRight,
+      );
+
+  static Gradient get rBackBtnGradient => LinearGradient(
+    colors: [Color(0xFF00123D), Colors.blueGrey],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
   );
-
 
   static Gradient get gCardGradient => LinearGradient(
         colors: [Color(0x50632587), Color(0x88872c25)],
@@ -102,13 +109,19 @@ class ColorsTheme {
       );
 
   static Gradient get rCardGradient => LinearGradient(
+    colors: [Color(0xff47e2c6), Color(0xff9193EF)],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
+
+  static Gradient get eCardGradient => LinearGradient(
         colors: [Color(0x4347e2c6), Color(0x979193EF)],
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
       );
 
   static Gradient get aCardGradient => LinearGradient(
-        colors: [Colors.blueGrey, Color(0x979193EF)],
+        colors: [greyBlue60, Color(0x609193EF)],
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
       );

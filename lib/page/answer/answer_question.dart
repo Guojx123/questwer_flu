@@ -32,6 +32,7 @@ class AnswerQuestion extends StatelessWidget {
           children: [
             BackGroundWidget(
               blur: 0.0,
+              bgColor: Color(0xFF00123D),
             ),
             SafeArea(
               child: Column(

@@ -104,7 +104,7 @@ class _LeadPageState extends State<LeadPage> {
                       children: <Widget>[
                         PageWidget(
                           'Hall',
-                          'Show Flutter Widgets in category',
+                          'To tell you, here you can view the question bank shared by all users.',
                           'assets/hall_bg.jpg',
                               () {
                             Get.to(HomePage());
@@ -112,7 +112,7 @@ class _LeadPageState extends State<LeadPage> {
                         ),
                         PageWidget(
                           'Challenge',
-                          'Show UI Pattern in most Apps',
+                          'Are you ready? Here are various topics collected on the Internet.',
                           'assets/challenge_bg.png',
                               () {
                             // Navigator.push(context, MaterialPageRoute(builder: (context) => SkillMainPage()));
@@ -120,7 +120,7 @@ class _LeadPageState extends State<LeadPage> {
                         ),
                         PageWidget(
                           'Mine',
-                          'Show Flutter Utils',
+                          'Congratulations, here is everything about you.',
                           'assets/mine_bg.jpg',
                               () {
                             // Navigator.push(context, MaterialPageRoute(builder: (context) => UtilMainPage()));
@@ -130,6 +130,7 @@ class _LeadPageState extends State<LeadPage> {
                     ),
                   ),
                   _buildTitle(title: "Popular activities",imgUrl: "assets/icon_activity.png"),
+                  _buildActivity(),
                   _buildLinearProgress(),
                 ],
               ),
@@ -171,6 +172,22 @@ class _LeadPageState extends State<LeadPage> {
             // );
           },
         ));
+  }
+
+  Widget _buildActivity(){
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      margin: EdgeInsets.symmetric(
+        vertical: DefaultSize.defaultPadding,
+        horizontal: DefaultSize.defaultPadding,
+      ),
+      child: Row(
+        children: [
+
+        ],
+      ),
+    );
   }
 
   Widget _buildLinearProgress(){

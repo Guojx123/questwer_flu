@@ -47,7 +47,7 @@ class _QuestionBankPageState extends State<QuestionBankPage> {
             vertical: DefaultSize.defaultPadding),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
-            gradient: ColorsTheme.rCardGradient,
+            gradient: ColorsTheme.aCardGradient,
             boxShadow: [
               BoxShadow(
                   color: Colors.black12,

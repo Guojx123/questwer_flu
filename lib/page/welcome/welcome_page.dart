@@ -90,7 +90,7 @@ class Welcome extends StatelessWidget {
                       alignment: Alignment.center,
                       margin: EdgeInsets.symmetric(
                           horizontal: DefaultSize.defaultPadding),
-                      padding: EdgeInsets.all(DefaultSize.defaultPadding),
+                      padding: EdgeInsets.all(DefaultSize.defaultPadding*1.4),
                       decoration: BoxDecoration(
                         gradient: ColorsTheme.rWelcomeBtnGradient,
                         borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -117,6 +117,6 @@ class Welcome extends StatelessWidget {
     await LCUser.loginAnonymously();
     await PersistentStorage()
         .setStorage("nickname", textEditingController.text.trim());
-    Get.to(LeadPage());
+    Get.offAll(LeadPage());
   }
 }

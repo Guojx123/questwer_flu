@@ -36,7 +36,8 @@ class HomePage extends StatelessWidget {
         children: [
           BackGroundWidget(
             blur: 0.0,
-            // bgColor: Color(0xac96d9ff),
+            bgColor: rMiddlePurpleColor,
+//            bgColor: Color(0xFF00123D),
           ),
           // _buildCustomScrollView(),
           Expanded(
@@ -47,38 +48,42 @@ class HomePage extends StatelessWidget {
               enablePullUp: false,
               onRefresh: () {
                 questionListController.refreshList();
-                questionListController.refreshController
-                    .refreshCompleted();
-                questionListController.refreshController
-                    .loadComplete();
+                questionListController.refreshController.refreshCompleted();
+                questionListController.refreshController.loadComplete();
               },
               onLoading: () {
-                questionListController.refreshController
-                    .loadComplete();
+                questionListController.refreshController.loadComplete();
               },
               // header: WaterDropMaterialHeader(
               //   backgroundColor: ColorsTheme.primaryColor,
               //   distance: 30,
               // ),
               footer: RefreshFooter(),
-              child: _buildList(
-                  questionListController.isLoading.value),
+              child: _buildList(questionListController.isLoading.value),
             ),
           ),
-          GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: () {
-              Get.offAll(LeadPage());
-            },
-            child: Container(
-              padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(DefaultSize.middleSize),
-                color: rMiddlePurpleColor90,
-              ),
-              child: Icon(
-                Icons.arrow_back_sharp,
-                color: kMilkWhiteColor,
+          /// 进入引导页
+          Positioned(
+            left: 0,
+            top: DefaultSize.defaultPadding * 6,
+            child: GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              onTap: () {
+                Get.offAll(LeadPage());
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal:DefaultSize.defaultPadding* 2,vertical:DefaultSize.smallSize * 1.4),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.horizontal(right: Radius.circular(DefaultSize.largeSize / 2)),
+                  color: rBlueColorEB,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(right: DefaultSize.defaultPadding),
+                  child: Icon(
+                    Icons.arrow_back_sharp,
+                    color: kMilkWhiteColor,
+                  ),
+                ),
               ),
             ),
           ),
@@ -259,11 +264,12 @@ class HomePage extends StatelessWidget {
       );
     else {
       return Padding(
-        ///后期获取屏幕高度
-        padding: EdgeInsets.only(top: DefaultSize.defaultPadding *2),
+        // 后期修改为获取屏幕高度
+        padding: EdgeInsets.only(top: DefaultSize.defaultPadding * 4),
         child: ListView.builder(
             controller: popMenuController.scrollController,
-            padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
+            padding:
+                EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
             // physics: NeverScrollableScrollPhysics(),
             itemCount: questionListController.questionBankList.length,
             itemBuilder: (context, index) {

@@ -17,6 +17,7 @@ class ScoreScreen extends StatelessWidget {
         children: [
           BackGroundWidget(
             blur: 0.6,
+            bgColor: Color(0xFF00123D),
           ),
           Column(
             children: [
@@ -45,10 +46,10 @@ class ScoreScreen extends StatelessWidget {
                   width: double.infinity,
                   alignment: Alignment.center,
                   margin: EdgeInsets.symmetric(
-                      horizontal: DefaultSize.defaultPadding * 2),
-                  padding: EdgeInsets.all(DefaultSize.defaultPadding),
+                      horizontal: DefaultSize.defaultPadding),
+                  padding: EdgeInsets.all(DefaultSize.defaultPadding*1.4),
                   decoration: BoxDecoration(
-                    gradient: ColorsTheme.gWelcomeGradient,
+                    gradient: ColorsTheme.rBackBtnGradient,
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
                   child: Text(
