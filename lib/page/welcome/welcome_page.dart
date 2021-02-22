@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
+import 'package:questwer_flu/page/lead_page.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/getx_snack_bar.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'home/home_page.dart';
+import '../home/home_page.dart';
 
 class Welcome extends StatelessWidget {
   TextEditingController textEditingController = TextEditingController();
@@ -115,6 +116,6 @@ class Welcome extends StatelessWidget {
     await LCUser.loginAnonymously();
     await PersistentStorage()
         .setStorage("nickname", textEditingController.text.trim());
-    Get.to(() => HomePage());
+    Get.to(LeadPage());
   }
 }

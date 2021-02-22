@@ -117,7 +117,7 @@ class AddPageView extends StatelessWidget {
                                   GestureDetector(
                                       behavior: HitTestBehavior.translucent,
                                       onTap: () {
-                                        Get.offAll(() => HomePage());
+                                        Get.offAll(HomePage());
                                       },
                                       child: Icon(
                                         Icons.outdoor_grill,

@@ -7,6 +7,7 @@ import 'package:questwer_flu/controller/pop_menu_controller.dart';
 import 'package:questwer_flu/controller/question_list_controller.dart';
 import 'package:questwer_flu/model/question_bank.dart';
 import 'package:questwer_flu/page/add/add_page_view.dart';
+import 'package:questwer_flu/page/lead_page.dart';
 import 'package:questwer_flu/service/scroll__behavior.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
@@ -37,7 +38,50 @@ class HomePage extends StatelessWidget {
             blur: 0.0,
             // bgColor: Color(0xac96d9ff),
           ),
-          _buildCustomScrollView(),
+          // _buildCustomScrollView(),
+          Expanded(
+            child: SmartRefresher(
+              physics: BouncingScrollPhysics(),
+              controller: questionListController.refreshController,
+              enablePullDown: true,
+              enablePullUp: false,
+              onRefresh: () {
+                questionListController.refreshList();
+                questionListController.refreshController
+                    .refreshCompleted();
+                questionListController.refreshController
+                    .loadComplete();
+              },
+              onLoading: () {
+                questionListController.refreshController
+                    .loadComplete();
+              },
+              // header: WaterDropMaterialHeader(
+              //   backgroundColor: ColorsTheme.primaryColor,
+              //   distance: 30,
+              // ),
+              footer: RefreshFooter(),
+              child: _buildList(
+                  questionListController.isLoading.value),
+            ),
+          ),
+          GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            onTap: () {
+              Get.offAll(LeadPage());
+            },
+            child: Container(
+              padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(DefaultSize.middleSize),
+                color: rMiddlePurpleColor90,
+              ),
+              child: Icon(
+                Icons.arrow_back_sharp,
+                color: kMilkWhiteColor,
+              ),
+            ),
+          ),
           GestureDetector(
             onTap: () {
               _createQB();
@@ -213,31 +257,36 @@ class HomePage extends StatelessWidget {
       return Center(
         child: CircularProgressIndicator(),
       );
-    else
-      return ListView.builder(
-          controller: popMenuController.scrollController,
-          padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
-          // physics: NeverScrollableScrollPhysics(),
-          itemCount: questionListController.questionBankList.length,
-          itemBuilder: (context, index) {
-            final GlobalKey btnKey = GlobalKey();
-            List<QuestionBank> questionBank =
-                questionListController.questionBankList
-                    .map((item) => QuestionBank(
-                          id: item["id"],
-                          name: item["name"],
-                          description: item["description"],
-                          share: item["share"],
-                          owner: item["owner"],
-                          shareId: item["shareId"],
-                        ))
-                    .toList();
-            var item = questionBank[index];
-            return QuestionBankPage(
-              btnKey: btnKey,
-              questionBank: item,
-            );
-          });
+    else {
+      return Padding(
+        ///后期获取屏幕高度
+        padding: EdgeInsets.only(top: DefaultSize.defaultPadding *2),
+        child: ListView.builder(
+            controller: popMenuController.scrollController,
+            padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
+            // physics: NeverScrollableScrollPhysics(),
+            itemCount: questionListController.questionBankList.length,
+            itemBuilder: (context, index) {
+              final GlobalKey btnKey = GlobalKey();
+              List<QuestionBank> questionBank =
+                  questionListController.questionBankList
+                      .map((item) => QuestionBank(
+                            id: item["id"],
+                            name: item["name"],
+                            description: item["description"],
+                            share: item["share"],
+                            owner: item["owner"],
+                            shareId: item["shareId"],
+                          ))
+                      .toList();
+              var item = questionBank[index];
+              return QuestionBankPage(
+                btnKey: btnKey,
+                questionBank: item,
+              );
+            }),
+      );
+    }
   }
 
   bool _addRefresh() {

@@ -24,6 +24,7 @@ const rPurpleColor = Color(0xFF8287E2);
 const rLightPurpleColor = Color(0xFFABADEF);
 const rMiddlePurpleColor = Color(0xFF8B91E5);
 const rMiddlePurpleColorE6 = Color(0xE68B91E5);
+const rMiddlePurpleColor90 = Color(0x908B91E5);
 const rMiddlePurpleColor2B = Color(0x2B8B91E5);
 const rDeepPurpleColor = Color(0xFF525487);
 
