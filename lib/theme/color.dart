@@ -32,8 +32,9 @@ const rPinkColor = Color(0xFFE660A0);
 const rYellowColor = Color(0xFFffff00);
 const rOrangeColor = Color(0xFFFF6730);
 const rDeepRedColor = Color(0xFFbf3130);
+
 const rLeadTealColor = Color(0xD040A5B9);
-const rLeadSunColor = Color(0xD0FFDE59);
+const rLeadSunColor = Color(0xD0FFDD60);
 
 
 class ColorsTheme {

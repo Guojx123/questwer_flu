@@ -52,6 +52,7 @@ class Welcome extends StatelessWidget {
                       cursorWidth: 1,
                       keyboardType: TextInputType.text,
                       inputFormatters: [
+                        // 限制用户输入
                         new FilteringTextInputFormatter(
                             new RegExp(
                               '[a-zA-Z]|[\u4e00-\u9fa5]|[0-9]|[`~!@#^&*()=|{}'
