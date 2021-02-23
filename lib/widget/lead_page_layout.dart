@@ -29,7 +29,7 @@ class PageWidget extends StatelessWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                  fontSize: 45,
+                  fontSize: DefaultSize.middleSize * 4,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -40,7 +40,7 @@ class PageWidget extends StatelessWidget {
               child: Text(
                 subtitle,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: DefaultSize.middleSize * 1.8,
                 ),
               ),
             ),

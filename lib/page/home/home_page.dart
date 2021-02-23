@@ -40,27 +40,30 @@ class HomePage extends StatelessWidget {
 //            bgColor: Color(0xFF00123D),
           ),
           // _buildCustomScrollView(),
-          Expanded(
-            child: SmartRefresher(
-              physics: BouncingScrollPhysics(),
-              controller: questionListController.refreshController,
-              enablePullDown: true,
-              enablePullUp: false,
-              onRefresh: () {
-                questionListController.refreshList();
-                questionListController.refreshController.refreshCompleted();
-                questionListController.refreshController.loadComplete();
-              },
-              onLoading: () {
-                questionListController.refreshController.loadComplete();
-              },
-              // header: WaterDropMaterialHeader(
-              //   backgroundColor: ColorsTheme.primaryColor,
-              //   distance: 30,
-              // ),
-              footer: RefreshFooter(),
-              child: _buildList(questionListController.isLoading.value),
-            ),
+          GetBuilder<QuestionListController>(
+            init: QuestionListController(),
+            builder: (controller) {
+              return SmartRefresher(
+                physics: BouncingScrollPhysics(),
+                controller: questionListController.refreshController,
+                enablePullDown: true,
+                enablePullUp: false,
+                onRefresh: () {
+                  questionListController.refreshList();
+                  questionListController.refreshController.refreshCompleted();
+                  questionListController.refreshController.loadComplete();
+                },
+                onLoading: () {
+                  questionListController.refreshController.loadComplete();
+                },
+                // header: WaterDropMaterialHeader(
+                //   backgroundColor: ColorsTheme.primaryColor,
+                //   distance: 30,
+                // ),
+                footer: RefreshFooter(),
+                child: _buildList(controller.isLoading.value),
+              );
+            }
           ),
           /// 进入引导页
           Positioned(
@@ -112,148 +115,6 @@ class HomePage extends StatelessWidget {
             height: MediaQuery.of(context).padding.bottom,
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildCustomScrollView() {
-    return Container(
-      key: UniqueKey(),
-      width: double.infinity,
-      child: ScrollConfiguration(
-        behavior: OverScrollBehavior(),
-        child: GetBuilder(
-          init: QuestionListController(),
-          builder: (context) {
-            return _addRefresh()
-                ? Column(
-                    children: [
-                      AppBar(
-                        backgroundColor: Colors.transparent,
-                        automaticallyImplyLeading: false,
-                        toolbarHeight: DefaultSize.defaultPadding * 4,
-                        brightness: Brightness.dark,
-                        elevation: 0,
-                        title: Text(
-                          "Hi !  ${PersistentStorage.get("nickname")}.",
-                          textAlign: TextAlign.start,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              color: ColorsTheme.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        actions: [
-                          Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: DefaultSize.defaultPadding),
-                              child: Icon(
-                                Icons.settings,
-                                color: ColorsTheme.white,
-                              ))
-                        ],
-                      ),
-                      Expanded(
-                        child: SmartRefresher(
-                          physics: BouncingScrollPhysics(),
-                          controller: questionListController.refreshController,
-                          enablePullDown: true,
-                          enablePullUp: false,
-                          onRefresh: () {
-                            questionListController.refreshList();
-                            questionListController.refreshController
-                                .refreshCompleted();
-                            questionListController.refreshController
-                                .loadComplete();
-                          },
-                          onLoading: () {
-                            questionListController.refreshController
-                                .loadComplete();
-                          },
-                          // header: WaterDropMaterialHeader(
-                          //   backgroundColor: ColorsTheme.primaryColor,
-                          //   distance: 30,
-                          // ),
-                          footer: RefreshFooter(),
-                          child: _buildList(
-                              questionListController.isLoading.value),
-                        ),
-                      )
-                    ],
-                  )
-                : _buildList(questionListController.isLoading.value);
-          },
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNestedScrollView() {
-    return NestedScrollView(
-      key: UniqueKey(),
-      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-        return <Widget>[
-          SliverAppBar(
-            backgroundColor: Colors.transparent,
-            automaticallyImplyLeading: false,
-            toolbarHeight: DefaultSize.defaultPadding * 4,
-            brightness: Brightness.dark,
-            elevation: 0,
-            floating: true,
-            title: Text(
-              "Hi !  ${PersistentStorage.get("nickname")}.",
-              textAlign: TextAlign.start,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                  color: ColorsTheme.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-            actions: [
-              Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: DefaultSize.defaultPadding),
-                  child: Icon(
-                    Icons.settings,
-                    color: ColorsTheme.white,
-                  ))
-            ],
-          ),
-        ];
-      },
-      body: Container(
-        width: double.infinity,
-        child: ScrollConfiguration(
-          behavior: OverScrollBehavior(),
-          child: GetBuilder(
-            init: QuestionListController(),
-            builder: (context) {
-              return _addRefresh()
-                  ? SmartRefresher(
-                      physics: BouncingScrollPhysics(),
-                      controller: questionListController.refreshController,
-                      enablePullDown: true,
-                      enablePullUp: false,
-                      onRefresh: () {
-                        questionListController.refreshList();
-                        questionListController.refreshController
-                            .refreshCompleted();
-                        questionListController.refreshController.loadComplete();
-                      },
-                      onLoading: () {
-                        questionListController.refreshController.loadComplete();
-                      },
-                      // header: WaterDropMaterialHeader(
-                      //   backgroundColor: ColorsTheme.primaryColor,
-                      //   distance: 30,
-                      // ),
-                      footer: RefreshFooter(),
-                      child: _buildList(questionListController.isLoading.value),
-                    )
-                  : _buildList(questionListController.isLoading.value);
-            },
-          ),
-        ),
       ),
     );
   }
