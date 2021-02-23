@@ -32,9 +32,9 @@ class PopMenuController extends GetxController {
             color: Colors.white,
           )),
       MenuItem(
-          title: 'Setting',
+          title: 'Partook',
           image: Icon(
-            Icons.settings,
+            Icons.wifi_tethering_sharp,
             color: Colors.white,
           )),
     ], onClickMenu: onClickMenu, onDismiss: onDismiss, maxColumn: 4);
