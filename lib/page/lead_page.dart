@@ -42,7 +42,7 @@ class _LeadPageState extends State<LeadPage> {
         body: Stack(
           alignment: Alignment.bottomCenter,
           children: <Widget>[
-            /// 底色
+            /// 页面底色
             ValueListenableBuilder(
               valueListenable: notifier,
               builder: (context, value, widget) {
@@ -81,6 +81,7 @@ class _LeadPageState extends State<LeadPage> {
                     )),
               ],
             ),
+            /// 页面主体
             Container(
               padding: EdgeInsets.symmetric(vertical: DefaultSize.smallSize),
               decoration: BoxDecoration(
