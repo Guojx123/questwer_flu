@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:questwer_flu/controller/question_list_controller.dart';
 import 'package:questwer_flu/page/home/question_bank_page.dart';
 import 'package:questwer_flu/service/scroll__behavior.dart';
 import 'package:questwer_flu/theme/color.dart';
@@ -20,6 +21,8 @@ class LeadPage extends StatefulWidget {
 class _LeadPageState extends State<LeadPage> {
   PageController pageController;
   ValueNotifier<double> notifier = ValueNotifier<double>(0);
+  QuestionListController _questionListController = Get.put(QuestionListController());
+
 
   @override
   void initState() {
@@ -273,8 +276,9 @@ class _LeadPageState extends State<LeadPage> {
             'Mine',
             'Congratulations, here is everything about you.',
             'assets/mine_bg.jpg',
-            () {
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => UtilMainPage()));
+            () async {
+              String owner= await _questionListController.getCloudOwner();
+              Get.to(QuestionBankListPage(owner: owner,));
             },
           ),
         ],

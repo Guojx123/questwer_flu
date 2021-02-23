@@ -5,9 +5,14 @@ import 'package:leancloud_storage/leancloud.dart';
 class ApiService {
   static var client = http.Client();
 
-  static fetchQuestionList() async {
+  static getQuestionListOwner() async {
+    LCUser currentUser = await LCUser.getCurrent();
+    return currentUser.username;
+  }
+
+  static fetchQuestionList(String owner) async {
     LCQuery<LCObject> query = LCQuery('question_bank');
-    query.whereEqualTo('owner', 'Q&A');
+    query.whereEqualTo('owner', owner ?? 'Q&A');
     List<LCObject> questionBankList = await query.find();
     return questionBankList;
   }

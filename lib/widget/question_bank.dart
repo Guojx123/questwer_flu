@@ -10,18 +10,19 @@ import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:get/get.dart';
 
-class QuestionBankPage extends StatefulWidget {
+
+class QuestionBankItem extends StatefulWidget {
   final GlobalKey btnKey;
   final QuestionBank questionBank;
 
-  const QuestionBankPage({Key key, this.btnKey, this.questionBank})
+  const QuestionBankItem({Key key, this.btnKey, this.questionBank})
       : super(key: key);
 
   @override
-  _QuestionBankPageState createState() => _QuestionBankPageState();
+  _QuestionBankItemState createState() => _QuestionBankItemState();
 }
 
-class _QuestionBankPageState extends State<QuestionBankPage> {
+class _QuestionBankItemState extends State<QuestionBankItem> {
   PopMenuController popMenuController = Get.put(PopMenuController());
   QuestionController questionController = Get.put(QuestionController());
 

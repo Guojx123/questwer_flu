@@ -1,19 +1,19 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:questwer_flu/http/ApiService.dart';
 
 class QuestionListController extends GetxController {
   var isLoading = true.obs;
+  var _owner = "Q&A";
   var questionBankList = List<LCObject>().obs;
 
   RefreshController refreshController;
 
   @override
   void onInit() {
-    fetchQuestionBank();
+    fetchQuestionBank(_owner);
     refreshController = new RefreshController();
     super.onInit();
   }
@@ -25,8 +25,22 @@ class QuestionListController extends GetxController {
     super.onClose();
   }
 
-  void refreshList() async {
-    List<LCObject> questionBank = await ApiService.fetchQuestionList();
+  String get owner => this._owner;
+
+  setOwner(String string){
+    _owner = string;
+    update();
+  }
+
+  getCloudOwner() async{
+    String owner = await ApiService.getQuestionListOwner();
+    _owner = owner;
+    update();
+    return _owner;
+  }
+
+  void refreshList(String owner) async {
+    List<LCObject> questionBank = await ApiService.fetchQuestionList(owner);
     questionBankList.clear();
     if (questionBank != null) {
       questionBankList.assignAll(questionBank);
@@ -36,10 +50,10 @@ class QuestionListController extends GetxController {
     update();
   }
 
-  void fetchQuestionBank() async {
+  void fetchQuestionBank(String owner) async {
     try {
       isLoading(true);
-      List<LCObject> questionBank = await ApiService.fetchQuestionList();
+      List<LCObject> questionBank = await ApiService.fetchQuestionList(owner);
       if (questionBank != null) {
         questionBankList.assignAll(questionBank);
         debugPrint("获取题库数据");
