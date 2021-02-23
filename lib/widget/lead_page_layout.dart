@@ -44,7 +44,9 @@ class PageWidget extends StatelessWidget {
                 ),
               ),
             ),
-            Spacer(),
+            Spacer(
+              flex: 2,
+            ),
           ],
         ),
       ),

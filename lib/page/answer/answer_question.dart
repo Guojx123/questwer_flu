@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:questwer_flu/controller/question_controller.dart';
+import 'package:questwer_flu/controller/question_list_controller.dart';
 import 'package:questwer_flu/page/score/score_screen.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
@@ -129,7 +130,12 @@ class AnswerQuestion extends StatelessWidget {
                   ),
                   Divider(thickness: 1.5),
                   Expanded(
-                    child: _buildList(_questionController.isLoading.value),
+                    child: GetBuilder<QuestionListController>(
+                      init: QuestionListController(),
+                      builder: (controller) {
+                        return _buildList(controller.isLoading.value);
+                      }
+                    ),
                   ),
                 ],
               ),
@@ -155,10 +161,10 @@ class AnswerQuestion extends StatelessWidget {
   }
 
   Widget _buildList(bool isLoading) {
-    return Obx(()=>QuestionCard(
+    return QuestionCard(
       name: name,
       isLoading: isLoading,
-    ));
+    );
   }
 
   Path _buildSpeechBubblePath() {
