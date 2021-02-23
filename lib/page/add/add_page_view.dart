@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/create_controller.dart';
-import 'package:questwer_flu/page/home/home_page.dart';
+import 'package:questwer_flu/page/home/question_bank_page.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'add_question_bank_page.dart';
@@ -117,7 +117,7 @@ class AddPageView extends StatelessWidget {
                                   GestureDetector(
                                       behavior: HitTestBehavior.translucent,
                                       onTap: () {
-                                        Get.offAll(HomePage());
+                                        Get.offAll(QuestionBankListPage());
                                       },
                                       child: Icon(
                                         Icons.outdoor_grill,

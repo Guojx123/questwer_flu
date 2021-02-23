@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
-import 'package:questwer_flu/page/home/home_page.dart';
+import 'package:questwer_flu/page/home/question_bank_page.dart';
 import 'dart:convert';
 import 'package:questwer_flu/service/my_text_editing_controller.dart';
 

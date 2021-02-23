@@ -7,7 +7,6 @@ import 'package:questwer_flu/controller/pop_menu_controller.dart';
 import 'package:questwer_flu/controller/question_list_controller.dart';
 import 'package:questwer_flu/model/question_bank.dart';
 import 'package:questwer_flu/page/add/add_page_view.dart';
-import 'package:questwer_flu/page/lead_page.dart';
 import 'package:questwer_flu/service/scroll__behavior.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
@@ -17,16 +16,12 @@ import 'package:questwer_flu/widget/custom_shape.dart';
 import 'package:questwer_flu/widget/question_bank.dart';
 import 'package:questwer_flu/widget/smart_refresh_footer.dart';
 
-class HomePage extends StatelessWidget {
-  PopMenuController popMenuController = Get.put(PopMenuController());
-  QuestionListController questionListController =
+class QuestionBankListPage extends StatelessWidget {
+  final PopMenuController popMenuController = Get.put(PopMenuController());
+  final QuestionListController questionListController =
       Get.put(QuestionListController());
 
-  CreateController createController = Get.put(CreateController());
-
-  bool _addRefreshValue = true;
-
-  ///是否添加刷新
+  final CreateController createController = Get.put(CreateController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +31,8 @@ class HomePage extends StatelessWidget {
         children: [
           BackGroundWidget(
             blur: 0.0,
-            bgColor: rMiddlePurpleColor,
+            bgColor: rLightBlueColor,
+            circleColor: rCloseGreyColor,
 //            bgColor: Color(0xFF00123D),
           ),
           // _buildCustomScrollView(),
@@ -131,7 +127,7 @@ class HomePage extends StatelessWidget {
             controller: popMenuController.scrollController,
             padding:
                 EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
-            // physics: NeverScrollableScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             itemCount: questionListController.questionBankList.length,
             itemBuilder: (context, index) {
               final GlobalKey btnKey = GlobalKey();
@@ -156,9 +152,6 @@ class HomePage extends StatelessWidget {
     }
   }
 
-  bool _addRefresh() {
-    return _addRefreshValue;
-  }
 
   void _createQB() {
     createController.initAll();

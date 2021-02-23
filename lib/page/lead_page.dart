@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:questwer_flu/page/home/home_page.dart';
+import 'package:questwer_flu/page/home/question_bank_page.dart';
 import 'package:questwer_flu/service/scroll__behavior.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
@@ -257,7 +257,7 @@ class _LeadPageState extends State<LeadPage> {
             'To tell you, here you can view the question bank shared by all users.',
             'assets/hall_bg.jpg',
             () {
-              Get.to(HomePage());
+              Get.to(QuestionBankListPage());
             },
           ),
           PageWidget(
