@@ -22,7 +22,7 @@ class PageWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Image.asset(imgUrl),
+            Image.asset(imgUrl,fit: BoxFit.contain),
             Spacer(),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 24),

@@ -64,7 +64,7 @@ class _LeadPageState extends State<LeadPage> {
                 textAlign: TextAlign.start,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                    color: ColorsTheme.white,
+                    color: kMilkWhiteColor,
                     fontSize: 20,
                     fontWeight: FontWeight.bold),
               ),
@@ -79,8 +79,9 @@ class _LeadPageState extends State<LeadPage> {
               ],
             ),
             Container(
+              padding: EdgeInsets.symmetric(vertical: DefaultSize.smallSize),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: kMilkWhiteColor,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
@@ -91,6 +92,9 @@ class _LeadPageState extends State<LeadPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  SizedBox(
+                    height: DefaultSize.smallSize,
+                  ),
                   // 官方活动
                   _buildTitle(
                       title: "Popular activities",
@@ -100,48 +104,9 @@ class _LeadPageState extends State<LeadPage> {
                   _buildTitle(
                       title: "Choose answer mode",
                       imgUrl: "assets/icon_model.png"),
-                  Expanded(
-                    child: PageView(
-                      // 是否捕捉页面悬停
-                      pageSnapping: true,
-                      physics: new BouncingScrollPhysics(),
-                      /// 解决：反向滑动抛出异常，页面丢失
-                      allowImplicitScrolling: true,
-                      controller: pageController
-                        ..addListener(() {
-                          notifier.value = pageController.offset /
-                              pageController.position.maxScrollExtent;
-                        }),
-                      children: <Widget>[
-                        PageWidget(
-                          'Hall',
-                          'To tell you, here you can view the question bank shared by all users.',
-                          'assets/hall_bg.jpg',
-                          () {
-                            Get.to(HomePage());
-                          },
-                        ),
-                        PageWidget(
-                          'Challenge',
-                          'Are you ready? Here are various topics collected on the Internet.',
-                          'assets/challenge_bg.png',
-                          () {
-                            // Navigator.push(context, MaterialPageRoute(builder: (context) => SkillMainPage()));
-                          },
-                        ),
-                        PageWidget(
-                          'Mine',
-                          'Congratulations, here is everything about you.',
-                          'assets/mine_bg.jpg',
-                          () {
-                            // Navigator.push(context, MaterialPageRoute(builder: (context) => UtilMainPage()));
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
+                  _buildModel(),
                   SizedBox(
-                    height: DefaultSize.middleSize,
+                    height: DefaultSize.smallSize,
                   ),
                   _buildLinearProgress(),
                 ],
@@ -157,7 +122,7 @@ class _LeadPageState extends State<LeadPage> {
     return Padding(
         padding: EdgeInsets.symmetric(
             horizontal: DefaultSize.defaultPadding * 2,
-            vertical: DefaultSize.defaultPadding),
+            vertical: DefaultSize.smallSize),
         child: ValueListenableBuilder(
           valueListenable: notifier,
           builder: (context, value, widget) {
@@ -204,7 +169,7 @@ class _LeadPageState extends State<LeadPage> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       margin: EdgeInsets.symmetric(
         vertical: DefaultSize.defaultPadding,
-        horizontal: DefaultSize.defaultPadding * 3,
+        horizontal: DefaultSize.defaultPadding * 2,
       ),
       child: Row(
         children: [
@@ -252,14 +217,62 @@ class _LeadPageState extends State<LeadPage> {
     );
   }
 
+  Widget _buildModel() {
+    return Expanded(
+      child: PageView(
+        // 是否捕捉页面悬停
+        pageSnapping: true,
+        physics: new BouncingScrollPhysics(),
+
+        /// 解决：反向滑动抛出异常，页面丢失
+        allowImplicitScrolling: true,
+        controller: pageController
+          ..addListener(() {
+            notifier.value =
+                pageController.offset / pageController.position.maxScrollExtent;
+          }),
+        children: <Widget>[
+          PageWidget(
+            'Hall',
+            'To tell you, here you can view the question bank shared by all users.',
+            'assets/hall_bg.jpg',
+            () {
+              Get.to(HomePage());
+            },
+          ),
+          PageWidget(
+            'Challenge',
+            'Are you ready? Here are various topics collected on the Internet.',
+            'assets/challenge_bg.png',
+            () {
+              // Navigator.push(context, MaterialPageRoute(builder: (context) => SkillMainPage()));
+            },
+          ),
+          PageWidget(
+            'Mine',
+            'Congratulations, here is everything about you.',
+            'assets/mine_bg.jpg',
+            () {
+              // Navigator.push(context, MaterialPageRoute(builder: (context) => UtilMainPage()));
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildLinearProgress() {
     return Container(
-      margin: EdgeInsets.only(bottom: 12, left: 48, right: 48),
+      margin: EdgeInsets.symmetric(
+        vertical: DefaultSize.smallSize,
+        horizontal: DefaultSize.middleSize ,
+      ),
       child: ValueListenableBuilder(
         valueListenable: notifier,
         builder: (context, value, widget) {
           return LinearProgressIndicator(
             value: notifier.value,
+            minHeight: DefaultSize.smallSize,
             valueColor: AlwaysStoppedAnimation(
               Color.lerp(
                 rLeadTealColor,
