@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
           /// 进入引导页
           Positioned(
             left: 0,
-            top: DefaultSize.defaultPadding * 6,
+            top: PersistentStorage.topHeight + DefaultSize.defaultPadding * 2,
             child: GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: () {
@@ -126,8 +126,7 @@ class HomePage extends StatelessWidget {
       );
     else {
       return Padding(
-        // 后期修改为获取屏幕高度
-        padding: EdgeInsets.only(top: DefaultSize.defaultPadding * 4),
+        padding: EdgeInsets.only(top: PersistentStorage.topHeight),
         child: ListView.builder(
             controller: popMenuController.scrollController,
             padding:

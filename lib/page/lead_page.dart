@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/page/home/home_page.dart';
+import 'package:questwer_flu/service/scroll__behavior.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
@@ -75,7 +76,7 @@ class _LeadPageState extends State<LeadPage> {
                     child: Icon(
                       Icons.settings,
                       color: ColorsTheme.white,
-                    ))
+                    )),
               ],
             ),
             Container(
@@ -166,62 +167,72 @@ class _LeadPageState extends State<LeadPage> {
   Widget _buildActivity() {
     return Expanded(
       flex: 1,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: 4,
-          itemBuilder: (context,index){
-            return Card(
-              clipBehavior: Clip.antiAlias,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-              margin: EdgeInsets.symmetric(
-                vertical: DefaultSize.defaultPadding,
-                horizontal: DefaultSize.defaultPadding * 2,
-              ),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: DefaultSize.defaultPadding * 2,
-                        vertical: DefaultSize.defaultPadding * 3),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-//                  padding: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding),
-                          child: Image.asset(
-                            "assets/icon_activity_balloon.png",
-                            width: DefaultSize.middleSize * 4,
-                            height: DefaultSize.middleSize * 4,
-                            color: rBlueColor,
-                          ),
+      child: ScrollConfiguration(
+        behavior: OverScrollBehavior(),
+        child: ListView.builder(
+          padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
+            scrollDirection: Axis.horizontal,
+            itemCount: 4,
+            itemBuilder: (context, index) {
+              return Card(
+                clipBehavior: Clip.antiAlias,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                margin: EdgeInsets.symmetric(
+                  vertical: DefaultSize.defaultPadding,
+                  horizontal: DefaultSize.defaultPadding,
+                ),
+                child: Container(
+                  width: PersistentStorage.screenWidth -
+                      (DefaultSize.middleSize * 4),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: DefaultSize.defaultPadding * 2,
+                          vertical: DefaultSize.defaultPadding,
                         ),
-                        SizedBox(
-                          height: DefaultSize.middleSize,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: DefaultSize.defaultPadding),
+                              child: Image.asset(
+                                "assets/icon_activity_balloon.png",
+                                width: DefaultSize.middleSize * 4,
+                                height: DefaultSize.middleSize * 4,
+                                color: rBlueColor,
+                              ),
+                            ),
+                            SizedBox(
+                              height: DefaultSize.middleSize,
+                            ),
+                            Text(
+                              "Self-love",
+                              style: TextStyle(
+                                color: rBlueColor,
+                                fontSize: DefaultSize.middleFontSize,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              "Don't wait, join us!",
+                              style: TextStyle(
+                                color: rPurpleColor,
+                                fontSize: DefaultSize.smallFontSize,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          "Self-love",
-                          style: TextStyle(
-                            color: rBlueColor,
-                            fontSize: DefaultSize.middleFontSize,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          "Don't wait, join us!",
-                          style: TextStyle(
-                            color: rPurpleColor,
-                            fontSize: DefaultSize.smallFontSize,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                      // icon
+                    ],
                   ),
-                  // icon
-                ],
-              ),
-            );
-          }
+                ),
+              );
+            }),
       ),
     );
   }
@@ -275,7 +286,7 @@ class _LeadPageState extends State<LeadPage> {
     return Container(
       margin: EdgeInsets.symmetric(
         vertical: DefaultSize.smallSize,
-        horizontal: DefaultSize.middleSize ,
+        horizontal: DefaultSize.middleSize,
       ),
       child: ValueListenableBuilder(
         valueListenable: notifier,

@@ -24,6 +24,9 @@ class PersistentStorage {
   /// 获取设备参数
   static double screenWidth = MediaQueryData.fromWindow(window).size.width;
   static double screenHeight = MediaQueryData.fromWindow(window).size.height;
+  static double topHeight = MediaQueryData.fromWindow(window).padding.top;
+  static double bottomHeight = MediaQueryData.fromWindow(window).padding.bottom;
+
   static int platform = Platform.isAndroid ? 1 : 2; // 1.安卓 2.苹果
 
   /// 静态方法
@@ -33,6 +36,8 @@ class PersistentStorage {
     /// 保存设备信息
     PersistentStorage.setStorage("screenWidth",screenWidth);
     PersistentStorage.setStorage("screenHeight",screenHeight);
+    PersistentStorage.setStorage("topHeight",topHeight);
+    PersistentStorage.setStorage("bottomHeight",bottomHeight);
   }
 
   // 之所以这个没有写在 _init中，是因为SharedPreferences.getInstance是一个异步的方法 需要用await接收它的值
