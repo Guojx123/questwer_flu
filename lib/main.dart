@@ -61,6 +61,9 @@ class MyApp extends StatelessWidget {
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
                 child: widget);
           },
+
+          ///去掉右上角DEBUG标签
+          debugShowCheckedModeBanner: false,
         ),
       ),
     );

@@ -42,6 +42,7 @@ class _LeadPageState extends State<LeadPage> {
         body: Stack(
           alignment: Alignment.bottomCenter,
           children: <Widget>[
+            /// 底色
             ValueListenableBuilder(
               valueListenable: notifier,
               builder: (context, value, widget) {
@@ -54,6 +55,7 @@ class _LeadPageState extends State<LeadPage> {
                 );
               },
             ),
+            /// 自定义AppBar
             AppBar(
               backgroundColor: Colors.transparent,
               automaticallyImplyLeading: false,
@@ -96,12 +98,12 @@ class _LeadPageState extends State<LeadPage> {
                   SizedBox(
                     height: DefaultSize.smallSize,
                   ),
-                  // 官方活动
+                  /// 官方活动
                   _buildTitle(
                       title: "Popular activities",
                       imgUrl: "assets/icon_activity.png"),
                   _buildActivity(),
-                  // 模式卡片
+                  /// 模式卡片
                   _buildTitle(
                       title: "Choose answer mode",
                       imgUrl: "assets/icon_model.png"),
@@ -149,24 +151,13 @@ class _LeadPageState extends State<LeadPage> {
                 ),
               ],
             );
-            // return LinearProgressIndicator(
-            //   value: notifier.value,
-            //   valueColor: AlwaysStoppedAnimation(
-            //     Color.lerp(
-            //       rLeadTealColor,
-            //       rLeadSunColor,
-            //       notifier.value,
-            //     ),
-            //   ),
-            //   backgroundColor: rBlueColor2C,
-            // );
           },
         ));
   }
 
   Widget _buildActivity() {
-    return Expanded(
-      flex: 1,
+    return SizedBox(
+      height: DefaultSize.largeSize * 3,
       child: ScrollConfiguration(
         behavior: OverScrollBehavior(),
         child: ListView.builder(
@@ -174,63 +165,73 @@ class _LeadPageState extends State<LeadPage> {
             scrollDirection: Axis.horizontal,
             itemCount: 4,
             itemBuilder: (context, index) {
-              return Card(
-                clipBehavior: Clip.antiAlias,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                margin: EdgeInsets.symmetric(
-                  vertical: DefaultSize.defaultPadding,
-                  horizontal: DefaultSize.defaultPadding,
-                ),
-                child: Container(
-                  width: PersistentStorage.screenWidth -
-                      (DefaultSize.middleSize * 4),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: DefaultSize.defaultPadding * 2,
-                          vertical: DefaultSize.defaultPadding,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: DefaultSize.defaultPadding),
-                              child: Image.asset(
-                                "assets/icon_activity_balloon.png",
-                                width: DefaultSize.middleSize * 4,
-                                height: DefaultSize.middleSize * 4,
-                                color: rBlueColor,
-                              ),
+              return ValueListenableBuilder(
+                valueListenable: notifier,
+                builder: (context, value, widget) {
+                  return Card(
+                    clipBehavior: Clip.antiAlias,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    margin: EdgeInsets.symmetric(
+                      vertical: DefaultSize.defaultPadding,
+                      horizontal: DefaultSize.defaultPadding,
+                    ),
+                    color: Color.lerp(
+                      rLeadTealColor,
+                      rLeadSunColor,
+                      notifier.value,
+                    ),
+                    child: Container(
+                      width: PersistentStorage.screenWidth -
+                          (DefaultSize.middleSize * 4),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: DefaultSize.defaultPadding * 2,
+                              vertical: DefaultSize.smallSize,
                             ),
-                            SizedBox(
-                              height: DefaultSize.middleSize,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: DefaultSize.defaultPadding),
+                                  child: Image.asset(
+                                    "assets/icon_activity_balloon.png",
+                                    width: DefaultSize.middleSize * 4,
+                                    height: DefaultSize.middleSize * 4,
+                                    color: rBlueColor,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: DefaultSize.middleSize,
+                                ),
+                                Text(
+                                  "Self-love",
+                                  style: TextStyle(
+                                    color: rBlueColor,
+                                    fontSize: DefaultSize.middleFontSize,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  "Don't wait, join us!  →",
+                                  style: TextStyle(
+                                    color: rPurpleColor,
+                                    fontSize: DefaultSize.smallFontSize,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
                             ),
-                            Text(
-                              "Self-love",
-                              style: TextStyle(
-                                color: rBlueColor,
-                                fontSize: DefaultSize.middleFontSize,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              "Don't wait, join us!",
-                              style: TextStyle(
-                                color: rPurpleColor,
-                                fontSize: DefaultSize.smallFontSize,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                          // icon
+                        ],
                       ),
-                      // icon
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                },
               );
             }),
       ),
@@ -239,12 +240,10 @@ class _LeadPageState extends State<LeadPage> {
 
   Widget _buildModel() {
     return Expanded(
-      flex: 2,
       child: PageView(
-        // 是否捕捉页面悬停
+        /// 是否捕捉页面悬停
         pageSnapping: true,
         physics: new BouncingScrollPhysics(),
-
         /// 解决：反向滑动抛出异常，页面丢失
         allowImplicitScrolling: true,
         controller: pageController
@@ -286,7 +285,7 @@ class _LeadPageState extends State<LeadPage> {
     return Container(
       margin: EdgeInsets.symmetric(
         vertical: DefaultSize.smallSize,
-        horizontal: DefaultSize.middleSize,
+        horizontal: DefaultSize.middleSize * 4,
       ),
       child: ValueListenableBuilder(
         valueListenable: notifier,
