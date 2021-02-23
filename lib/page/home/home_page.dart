@@ -69,7 +69,8 @@ class HomePage extends StatelessWidget {
             child: GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: () {
-                Get.offAll(LeadPage());
+                Get.back();
+                // Get.offAll(LeadPage());
               },
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal:DefaultSize.defaultPadding* 2,vertical:DefaultSize.smallSize * 1.4),

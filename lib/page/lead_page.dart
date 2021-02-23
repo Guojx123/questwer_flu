@@ -102,8 +102,11 @@ class _LeadPageState extends State<LeadPage> {
                       imgUrl: "assets/icon_model.png"),
                   Expanded(
                     child: PageView(
+                      // 是否捕捉页面悬停
                       pageSnapping: true,
                       physics: new BouncingScrollPhysics(),
+                      /// 解决：反向滑动抛出异常，页面丢失
+                      allowImplicitScrolling: true,
                       controller: pageController
                         ..addListener(() {
                           notifier.value = pageController.offset /
@@ -169,14 +172,15 @@ class _LeadPageState extends State<LeadPage> {
                   ),
                 ),
                 Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: DefaultSize.middleSize),
-                    child: Image.asset(
-                      imgUrl,
-                      height: DefaultSize.middleSize * 2.2,
-                      width: DefaultSize.middleSize * 2.2,
-                      fit: BoxFit.cover,
-                    ))
+                  padding:
+                      EdgeInsets.symmetric(horizontal: DefaultSize.middleSize),
+                  child: Image.asset(
+                    imgUrl,
+                    height: DefaultSize.middleSize * 2.2,
+                    width: DefaultSize.middleSize * 2.2,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ],
             );
             // return LinearProgressIndicator(
@@ -205,7 +209,9 @@ class _LeadPageState extends State<LeadPage> {
       child: Row(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding *2,vertical: DefaultSize.defaultPadding*3),
+            padding: EdgeInsets.symmetric(
+                horizontal: DefaultSize.defaultPadding * 2,
+                vertical: DefaultSize.defaultPadding * 3),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -221,21 +227,26 @@ class _LeadPageState extends State<LeadPage> {
                 SizedBox(
                   height: DefaultSize.middleSize,
                 ),
-                Text("Self-love",style: TextStyle(
-                  color: rBlueColor,
-                  fontSize: DefaultSize.middleFontSize,
-                  fontWeight: FontWeight.bold,
-                ),),
-                Text("Don't wait, join us!",style: TextStyle(
-                  color: rPurpleColor,
-                  fontSize: DefaultSize.smallFontSize,
-                  fontWeight: FontWeight.w400,
-                ),),
+                Text(
+                  "Self-love",
+                  style: TextStyle(
+                    color: rBlueColor,
+                    fontSize: DefaultSize.middleFontSize,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  "Don't wait, join us!",
+                  style: TextStyle(
+                    color: rPurpleColor,
+                    fontSize: DefaultSize.smallFontSize,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ],
             ),
           ),
           // icon
-
         ],
       ),
     );
