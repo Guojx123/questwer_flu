@@ -164,61 +164,71 @@ class _LeadPageState extends State<LeadPage> {
   }
 
   Widget _buildActivity() {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      margin: EdgeInsets.symmetric(
-        vertical: DefaultSize.defaultPadding,
-        horizontal: DefaultSize.defaultPadding * 2,
-      ),
-      child: Row(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(
+    return Expanded(
+      flex: 1,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 4,
+          itemBuilder: (context,index){
+            return Card(
+              clipBehavior: Clip.antiAlias,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              margin: EdgeInsets.symmetric(
+                vertical: DefaultSize.defaultPadding,
                 horizontal: DefaultSize.defaultPadding * 2,
-                vertical: DefaultSize.defaultPadding * 3),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
+              ),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: DefaultSize.defaultPadding * 2,
+                        vertical: DefaultSize.defaultPadding * 3),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
 //                  padding: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding),
-                  child: Image.asset(
-                    "assets/icon_activity_balloon.png",
-                    width: DefaultSize.middleSize * 4,
-                    height: DefaultSize.middleSize * 4,
-                    color: rBlueColor,
+                          child: Image.asset(
+                            "assets/icon_activity_balloon.png",
+                            width: DefaultSize.middleSize * 4,
+                            height: DefaultSize.middleSize * 4,
+                            color: rBlueColor,
+                          ),
+                        ),
+                        SizedBox(
+                          height: DefaultSize.middleSize,
+                        ),
+                        Text(
+                          "Self-love",
+                          style: TextStyle(
+                            color: rBlueColor,
+                            fontSize: DefaultSize.middleFontSize,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          "Don't wait, join us!",
+                          style: TextStyle(
+                            color: rPurpleColor,
+                            fontSize: DefaultSize.smallFontSize,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: DefaultSize.middleSize,
-                ),
-                Text(
-                  "Self-love",
-                  style: TextStyle(
-                    color: rBlueColor,
-                    fontSize: DefaultSize.middleFontSize,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  "Don't wait, join us!",
-                  style: TextStyle(
-                    color: rPurpleColor,
-                    fontSize: DefaultSize.smallFontSize,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          // icon
-        ],
+                  // icon
+                ],
+              ),
+            );
+          }
       ),
     );
   }
 
   Widget _buildModel() {
     return Expanded(
+      flex: 2,
       child: PageView(
         // 是否捕捉页面悬停
         pageSnapping: true,

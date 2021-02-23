@@ -1,3 +1,7 @@
+import 'dart:io';
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
@@ -17,9 +21,18 @@ class PersistentStorage {
     _initStorage();
   }
 
+  /// 获取设备参数
+  static double screenWidth = MediaQueryData.fromWindow(window).size.width;
+  static double screenHeight = MediaQueryData.fromWindow(window).size.height;
+  static int platform = Platform.isAndroid ? 1 : 2; // 1.安卓 2.苹果
+
   /// 静态方法
   static init() async {
     _storage = await SharedPreferences.getInstance();
+
+    /// 保存设备信息
+    PersistentStorage.setStorage("screenWidth",screenWidth);
+    PersistentStorage.setStorage("screenHeight",screenHeight);
   }
 
   // 之所以这个没有写在 _init中，是因为SharedPreferences.getInstance是一个异步的方法 需要用await接收它的值
@@ -29,7 +42,7 @@ class PersistentStorage {
   }
 
   /// 设置存储
-  setStorage(String key, dynamic value) {
+  static setStorage(String key, dynamic value) {
     String type;
     // 监测value的类型 如果是Map和List,则转换成JSON，以字符串进行存储
     if (value is Map || value is List) {
