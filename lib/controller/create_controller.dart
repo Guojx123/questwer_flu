@@ -226,14 +226,11 @@ class CreateController extends GetxController {
   }
 
   /// 跳转到下一页
-  void nextPage(bool isNoNull) {
-    if (isNoNull && _pageController != null) {
+  void nextPage() {
+    if (_pageController != null) {
       _pageController?.nextPage(
           duration: Duration(milliseconds: 250), curve: Curves.easeOut);
     }
-//    else {
-//      Get.to(HomePage());
-//    }
   }
 
   void setDifficulty(String string) {

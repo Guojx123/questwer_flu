@@ -76,6 +76,7 @@ class CreateQuestionBank extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () async {
+
         ///效验
         bool isTextNull = _createController.checkQBInputNull();
         print("isTextNull $isTextNull");
@@ -89,16 +90,8 @@ class CreateQuestionBank extends StatelessWidget {
           return;
         }
 
-        String inputName = _createController.inputTitleController.text.trim();
-        String inputDesc = _createController.inputDescController.text.trim();
-        bool isCreateSuccess =
-            await _createController.createQuestionBank(inputName, inputDesc);
-        if (isCreateSuccess) {
-          _createController.clearQuestionBankInput();
-          _createController.nextPage(!isTextNull);
-        } else {
-          GetXSnackBar().netError();
-        }
+        intervalClick(2);
+
       },
       child: MyBottom(
         text: "Continue",
@@ -106,4 +99,29 @@ class CreateQuestionBank extends StatelessWidget {
     );
   }
 
+  var lastPopTime = DateTime.now();
+
+  void intervalClick(int needTime) async {
+    // 重复提交
+    if(lastPopTime == null || DateTime.now().difference(lastPopTime) > Duration(seconds: needTime)){
+      print(lastPopTime);
+      lastPopTime = DateTime.now();
+      print("允许点击");
+      // 开始提交数据
+      String inputName = _createController.inputTitleController.text.trim();
+      String inputDesc = _createController.inputDescController.text.trim();
+      bool isCreateSuccess =
+          await _createController.createQuestionBank(inputName, inputDesc);
+      if (isCreateSuccess) {
+        _createController.clearQuestionBankInput();
+        _createController.nextPage();
+      } else {
+        GetXSnackBar().netError();
+      }
+      // 提交完
+    }else{
+      // lastPopTime = DateTime.now(); //如果不注释这行,则强制用户一定要间隔2s后才能成功点击. 而不是以上一次点击成功的时间开始计算.
+      print("请勿重复点击！");
+    }
+  }
 }

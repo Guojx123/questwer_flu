@@ -155,10 +155,10 @@ class AnswerQuestion extends StatelessWidget {
   }
 
   Widget _buildList(bool isLoading) {
-    return QuestionCard(
+    return Obx(()=>QuestionCard(
       name: name,
       isLoading: isLoading,
-    );
+    ));
   }
 
   Path _buildSpeechBubblePath() {

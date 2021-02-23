@@ -69,29 +69,8 @@ class CreateQuestion extends StatelessWidget {
                       GetXSnackBar().noFillForm();
                       return;
                     }
-                    String inputName = _createController.inputNQTitleController.text.trim();
-                    String inputDesc = _createController.inputNQDescController.text.trim();
-                    String inputCorrectAnswer = _createController.inputCorrectAnswerController.text.trim();
+                    intervalClick(2,false);
 
-                    String firstOption = _createController.inputOtherFAnswerController.text.trim();
-                    String secondOption = _createController.inputOtherSAnswerController.text.trim();
-                    String threeOption = _createController.inputOtherTAnswerController.text.trim();
-
-                    bool isCreateSuccess = await _createController.createQuestion(
-                      inputName,
-                      inputDesc,
-                      inputCorrectAnswer,
-                      false,
-                      firstOption: firstOption,
-                      secondOption: secondOption,
-                      threeOption: threeOption,
-                    );
-                    if (isCreateSuccess) {
-                      GetXSnackBar().createSuccess();
-                      _createController.clearNQuestionInput();
-                    } else {
-                      GetXSnackBar().netError();
-                    }
                   },
                   child: MyBottom(
                     text: "Create",
@@ -158,21 +137,7 @@ class CreateQuestion extends StatelessWidget {
                       GetXSnackBar().noFillForm();
                       return;
                     }
-                    String inputBQTitle = _createController.inputBQTitleController.text.trim();
-                    String inputBQDesc = _createController.inputBQDescController.text.trim();
-
-                    bool isCreateSuccess = await _createController.createQuestion(
-                      inputBQTitle,
-                      inputBQDesc,
-                      _createController.selectValue,
-                      true,
-                    );
-                    if (isCreateSuccess) {
-                      GetXSnackBar().createSuccess();
-                      _createController.clearBQuestionInput();
-                    } else {
-                      GetXSnackBar().netError();
-                    }
+                    intervalClick(2,true);
                   },
                   child: MyBottom(
                     text: "Create",
@@ -184,6 +149,63 @@ class CreateQuestion extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  var lastPopTime = DateTime.now();
+
+  void intervalClick(int needTime,isBool) async {
+    // 重复提交
+    if(lastPopTime == null || DateTime.now().difference(lastPopTime) > Duration(seconds: needTime)){
+      print(lastPopTime);
+      lastPopTime = DateTime.now();
+      print("允许点击");
+      // 开始提交数据
+      if(isBool){
+        String inputBQTitle = _createController.inputBQTitleController.text.trim();
+        String inputBQDesc = _createController.inputBQDescController.text.trim();
+
+        bool isCreateSuccess = await _createController.createQuestion(
+          inputBQTitle,
+          inputBQDesc,
+          _createController.selectValue,
+          true,
+        );
+        if (isCreateSuccess) {
+          GetXSnackBar().createSuccess();
+          _createController.clearBQuestionInput();
+        } else {
+          GetXSnackBar().netError();
+        }
+      }else{
+        String inputName = _createController.inputNQTitleController.text.trim();
+        String inputDesc = _createController.inputNQDescController.text.trim();
+        String inputCorrectAnswer = _createController.inputCorrectAnswerController.text.trim();
+
+        String firstOption = _createController.inputOtherFAnswerController.text.trim();
+        String secondOption = _createController.inputOtherSAnswerController.text.trim();
+        String threeOption = _createController.inputOtherTAnswerController.text.trim();
+
+        bool isCreateSuccess = await _createController.createQuestion(
+          inputName,
+          inputDesc,
+          inputCorrectAnswer,
+          false,
+          firstOption: firstOption,
+          secondOption: secondOption,
+          threeOption: threeOption,
+        );
+        if (isCreateSuccess) {
+          GetXSnackBar().createSuccess();
+          _createController.clearNQuestionInput();
+        } else {
+          GetXSnackBar().netError();
+        }
+      }
+      // 提交完
+    }else{
+      // lastPopTime = DateTime.now(); //如果不注释这行,则强制用户一定要间隔2s后才能成功点击. 而不是以上一次点击成功的时间开始计算.
+      print("请勿重复点击！");
+    }
   }
 
   Widget _buildCreateNQTitle() {
