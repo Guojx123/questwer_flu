@@ -177,8 +177,8 @@ class _LeadPageState extends State<LeadPage> {
                       horizontal: DefaultSize.defaultPadding,
                     ),
                     color: Color.lerp(
-                      rLeadTealColor,
-                      rLeadSunColor,
+                      Color(0xFFC8F0F0),
+                      Color(0xFFFDE89D),
                       notifier.value,
                     ),
                     child: Container(
