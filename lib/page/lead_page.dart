@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/create_controller.dart';
@@ -278,6 +279,7 @@ class _LeadPageState extends State<LeadPage> {
         physics: new BouncingScrollPhysics(),
         /// 解决：反向滑动抛出异常，页面丢失
         allowImplicitScrolling: true,
+        reverse: false,
         controller: pageController
           ..addListener(() {
             notifier.value =
@@ -293,20 +295,20 @@ class _LeadPageState extends State<LeadPage> {
             },
           ),
           PageWidget(
-            'Challenge',
-            'Are you ready? Here are various topics collected on the Internet.',
+            'Mine',
+            'Congratulations, here is everything about you.',
             'assets/challenge_bg.png',
-            () {
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => SkillMainPage()));
+                () async {
+              String owner= await _questionListController.getCloudOwner();
+              Get.to(QuestionBankListPage(owner: owner,));
             },
           ),
           PageWidget(
-            'Mine',
-            'Congratulations, here is everything about you.',
+            'Challenge',
+            'Are you ready? Here are various topics collected on the Internet.',
             'assets/mine_bg.jpg',
-            () async {
-              String owner= await _questionListController.getCloudOwner();
-              Get.to(QuestionBankListPage(owner: owner,));
+            () {
+              // Navigator.push(context, MaterialPageRoute(builder: (context) => SkillMainPage()));
             },
           ),
         ],
