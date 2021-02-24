@@ -63,52 +63,9 @@ class QuestionBankListPage extends StatelessWidget {
               ),
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              _createQB();
-            },
-            child: Container(
-              margin: EdgeInsets.symmetric(
-                  vertical: DefaultSize.defaultPadding * 1),
-              padding: EdgeInsets.symmetric(
-                  horizontal: DefaultSize.defaultPadding * 2.2,
-                  vertical: DefaultSize.basePadding * 6),
-              decoration: BoxDecoration(
-                  color: ColorsTheme.white.withOpacity(0.7),
-                  borderRadius: BorderRadius.circular(25)),
-              child: Icon(
-                Icons.add,
-                color: ColorsTheme.black.withOpacity(0.7),
-                size: DefaultSize.defaultPadding * 3,
-              ),
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).padding.bottom,
-          ),
         ],
       ),
     );
   }
 
-  void _createQB() {
-    _createController.initAll();
-    Get.bottomSheet(
-      ScrollConfiguration(
-        behavior: OverScrollBehavior(),
-        child: AddPageView(),
-      ),
-      shape: CustomRoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-            top: Radius.circular(DefaultSize.middleSize * 2)),
-        borderWidth: 10.0,
-        bgColor: rMiddlePurpleColor,
-      ),
-      elevation: 0,
-      backgroundColor: rMiddlePurpleColor,
-      ignoreSafeArea: false,
-      enableDrag: true,
-      isScrollControlled: true,
-    );
-  }
 }

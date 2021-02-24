@@ -1,13 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:questwer_flu/controller/create_controller.dart';
 import 'package:questwer_flu/controller/question_list_controller.dart';
 import 'package:questwer_flu/page/home/question_bank_page.dart';
 import 'package:questwer_flu/service/scroll__behavior.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
+import 'package:questwer_flu/widget/custom_shape.dart';
 import 'package:questwer_flu/widget/lead_page_layout.dart';
+
+import 'add/add_page_view.dart';
 
 class LeadPage extends StatefulWidget {
   final String title;
@@ -22,7 +26,7 @@ class _LeadPageState extends State<LeadPage> {
   PageController pageController;
   ValueNotifier<double> notifier = ValueNotifier<double>(0);
   QuestionListController _questionListController = Get.put(QuestionListController());
-
+  CreateController _createController = Get.put(CreateController());
 
   @override
   void initState() {
@@ -119,6 +123,30 @@ class _LeadPageState extends State<LeadPage> {
                 ],
               ),
             ),
+            /// 新建题目
+            GestureDetector(
+              onTap: () {
+                _createQB();
+              },
+              child: Container(
+                margin: EdgeInsets.symmetric(
+                    vertical: DefaultSize.defaultPadding * 2),
+                padding: EdgeInsets.symmetric(
+                    horizontal: DefaultSize.defaultPadding * 2.2,
+                    vertical: DefaultSize.basePadding * 6),
+                decoration: BoxDecoration(
+                    color: ColorsTheme.greyBlue,
+                    borderRadius: BorderRadius.circular(25)),
+                child: Icon(
+                  Icons.add,
+                  color: kMilkWhiteColor,
+                  size: DefaultSize.defaultPadding * 3,
+                ),
+              ),
+            ),
+//            SizedBox(
+//              height: MediaQuery.of(context).padding.bottom + DefaultSize.basePadding,
+//            ),
           ],
         ),
       ),
@@ -309,6 +337,27 @@ class _LeadPageState extends State<LeadPage> {
           );
         },
       ),
+    );
+  }
+
+  void _createQB() {
+    _createController.initAll();
+    Get.bottomSheet(
+      ScrollConfiguration(
+        behavior: OverScrollBehavior(),
+        child: AddPageView(),
+      ),
+      shape: CustomRoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+            top: Radius.circular(DefaultSize.middleSize * 2)),
+        borderWidth: 10.0,
+        bgColor: rMiddlePurpleColor,
+      ),
+      elevation: 0,
+      backgroundColor: rMiddlePurpleColor,
+      ignoreSafeArea: false,
+      enableDrag: true,
+      isScrollControlled: true,
     );
   }
 }
