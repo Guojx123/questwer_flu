@@ -82,6 +82,9 @@ class _QuestionCardState extends State<QuestionCard> {
       ),
       child: Column(
         children: [
+          SizedBox(
+            height: DefaultSize.middleSize,
+          ),
           ListTile(
             title: Text(
               item.title,

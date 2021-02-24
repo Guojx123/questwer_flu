@@ -128,10 +128,59 @@ class AnswerQuestion extends StatelessWidget {
                   Divider(thickness: 1.5),
                   Expanded(
                     child: GetBuilder<QuestionListController>(
-                      init: QuestionListController(),
-                      builder: (controller) {
-                        return _buildList(controller.isLoading.value);
-                      }
+                        init: QuestionListController(),
+                        builder: (controller) {
+                          return _buildList(controller.isLoading.value);
+                        }),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: DefaultSize.defaultPadding * 2,
+                        vertical: DefaultSize.defaultPadding),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: DefaultSize.defaultPadding * 2),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: DefaultSize.defaultPadding * 2.8,
+                                vertical: DefaultSize.basePadding * 6),
+                            decoration: BoxDecoration(
+                                color: ColorsTheme.greyBlue,
+                                borderRadius: BorderRadius.circular(25)),
+                            child: Icon(
+                              Icons.hot_tub_sharp,
+                              color: kMilkWhiteColor,
+                              size: DefaultSize.defaultPadding * 3,
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            _questionController.nextQuestion();
+                          },
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: DefaultSize.defaultPadding * 2),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: DefaultSize.defaultPadding * 2.8,
+                                vertical: DefaultSize.basePadding * 6),
+                            decoration: BoxDecoration(
+                                color: ColorsTheme.greyBlue,
+                                borderRadius: BorderRadius.circular(25)),
+                            child: Icon(
+                              Icons.navigate_next,
+                              color: kMilkWhiteColor,
+                              size: DefaultSize.defaultPadding * 3,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
