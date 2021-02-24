@@ -54,7 +54,7 @@ class _QuestionCardState extends State<QuestionCard> {
         .map((item) => Question(
               id: item["id"],
               title: item["title"],
-              subTitle: item["sub_title"],
+              subTitle: item["sub_title"] ?? '',
               difficulty: item["difficulty"],
               answer: item["answer"],
               correctAnswer: item["correct_answer"],

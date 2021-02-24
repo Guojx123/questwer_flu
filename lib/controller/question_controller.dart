@@ -108,7 +108,7 @@ class QuestionController extends GetxController
     update();
 
     // 时间倒数结束，跳转到下一题
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(milliseconds: 800), () {
       if (_pageController != null) nextQuestion();
     });
   }
