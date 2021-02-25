@@ -21,7 +21,7 @@ class SettingPage extends StatelessWidget {
             SelectLanguageWidget(
               'Language',
               ["English", "中文", "跟随系统"],
-              ["English", "中文", "跟随系统".tr],
+              ["English", "中文", "setting.follow_system".tr],
               (value) {
                 _languageController.setSelectValue(value);
                 switch (value) {
@@ -49,10 +49,10 @@ class SettingPage extends StatelessWidget {
   Widget _buildSelectOption() {
     return TitleWidget(
       Text(
-        "Set the current locale, effective immediately".tr,
+        "setting.choose_language_desc".tr,
         style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
       ),
-      title: "Choose App language".tr,
+      title: "setting.choose_language".tr,
     );
   }
 }
