@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/create_controller.dart';
 import 'package:questwer_flu/theme/color.dart';
-
 import 'my_text_field.dart';
 
 class AddTextFieldWidget extends StatelessWidget {

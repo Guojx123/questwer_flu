@@ -4,7 +4,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'controller/user_controller.dart';
-import 'page/home/question_bank_page.dart';
 import 'page/lead_page.dart';
 import 'page/welcome/welcome_page.dart';
 import 'package:get/get.dart';

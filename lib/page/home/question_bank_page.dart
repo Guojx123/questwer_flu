@@ -2,15 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/create_controller.dart';
-import 'package:questwer_flu/controller/question_list_controller.dart';
-import 'package:questwer_flu/page/add/add_page_view.dart';
 import 'package:questwer_flu/page/home/question_bank_list.dart';
-import 'package:questwer_flu/service/scroll__behavior.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
-import 'package:questwer_flu/widget/custom_shape.dart';
 
 class QuestionBankListPage extends StatelessWidget {
 
@@ -56,7 +52,7 @@ class QuestionBankListPage extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(right: DefaultSize.defaultPadding),
                   child: Icon(
-                    Icons.arrow_back_sharp,
+                    Icons.logout,
                     color: kMilkWhiteColor,
                   ),
                 ),

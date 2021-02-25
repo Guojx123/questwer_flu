@@ -1,12 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/question_controller.dart';
 import 'package:questwer_flu/model/question.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
-
 import 'option.dart';
 
 class QuestionCard extends StatefulWidget {
