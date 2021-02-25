@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/create_controller.dart';
@@ -13,6 +12,7 @@ import 'package:questwer_flu/widget/custom_shape.dart';
 import 'package:questwer_flu/widget/lead_page_layout.dart';
 
 import 'add/add_page_view.dart';
+import 'setting/setting_page.dart';
 
 class LeadPage extends StatefulWidget {
   final String title;
@@ -80,13 +80,19 @@ class _LeadPageState extends State<LeadPage> {
                     fontWeight: FontWeight.bold),
               ),
               actions: [
-                Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: DefaultSize.defaultPadding),
-                    child: Icon(
-                      Icons.settings,
-                      color: ColorsTheme.white,
-                    )),
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: (){
+                    Get.to(SettingPage());
+                  },
+                  child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: DefaultSize.defaultPadding),
+                      child: Icon(
+                        Icons.settings,
+                        color: ColorsTheme.white,
+                      )),
+                ),
               ],
             ),
             /// 页面主体
@@ -126,9 +132,7 @@ class _LeadPageState extends State<LeadPage> {
             ),
             /// 新建题目
             GestureDetector(
-              onTap: () {
-                _createQB();
-              },
+              onTap: _createQB,
               child: Container(
                 margin: EdgeInsets.symmetric(
                     vertical: DefaultSize.defaultPadding * 2),
@@ -145,9 +149,6 @@ class _LeadPageState extends State<LeadPage> {
                 ),
               ),
             ),
-//            SizedBox(
-//              height: MediaQuery.of(context).padding.bottom + DefaultSize.basePadding,
-//            ),
           ],
         ),
       ),
@@ -357,9 +358,11 @@ class _LeadPageState extends State<LeadPage> {
       ),
       elevation: 0,
       backgroundColor: rMiddlePurpleColor,
-      ignoreSafeArea: false,
+      ignoreSafeArea: true,
       enableDrag: true,
       isScrollControlled: true,
+      enterBottomSheetDuration: Duration(microseconds: 200),
+      exitBottomSheetDuration: Duration(microseconds: 200)
     );
   }
 }
