@@ -23,7 +23,7 @@ class ScoreScreen extends StatelessWidget {
             children: [
               Spacer(flex: 3),
               Text(
-                "Your Score",
+                "score.title".tr,
                 style: Theme.of(context)
                     .textTheme
                     .headline3
@@ -53,7 +53,7 @@ class ScoreScreen extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
                   child: Text(
-                    "Back",
+                    "score.btn".tr,
                     style: Theme.of(context).textTheme.button.copyWith(
                         color: Colors.white, fontWeight: FontWeight.w400),
                   ),

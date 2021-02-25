@@ -52,7 +52,7 @@ class QuestionBankListPage extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(right: DefaultSize.defaultPadding),
                   child: Icon(
-                    Icons.logout,
+                    Icons.store_rounded,
                     color: kMilkWhiteColor,
                   ),
                 ),

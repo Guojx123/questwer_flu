@@ -44,7 +44,7 @@ class AnswerQuestion extends StatelessWidget {
                           horizontal: DefaultSize.defaultPadding * 2,
                           vertical: DefaultSize.basePadding),
                       child: Text(
-                        "Finish Stage",
+                        "answerQ.btn".tr,
                         style: TextStyle(
                             color: ColorsTheme.white,
                             fontSize: DefaultSize.fontSize),
@@ -69,7 +69,7 @@ class AnswerQuestion extends StatelessWidget {
                         Obx(
                           () => Text.rich(
                             TextSpan(
-                              text: "Question ",
+                              text: "answerQ.title".tr,
                               style: Theme.of(context)
                                   .textTheme
                                   .headline4

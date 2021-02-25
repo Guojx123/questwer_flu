@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:questwer_flu/theme/color.dart';
 
 class CustomTab extends StatefulWidget {
@@ -78,7 +79,7 @@ class _CustomTabState extends State<CustomTab> with TickerProviderStateMixin {
                           highlightColor: Colors.transparent,
                           onPressed: null,
                           child: Text(
-                            'Multiple-Choice',
+                            'createNQ.tab_multiple_choice'.tr,
                             style: TextStyle(color: left, fontSize: 16.0),
                           ),
                         ),
@@ -89,7 +90,7 @@ class _CustomTabState extends State<CustomTab> with TickerProviderStateMixin {
                           highlightColor: Colors.transparent,
                           onPressed: null,
                           child: Text(
-                            'True-False',
+                            'createNQ.tab_true_false'.tr,
                             style: TextStyle(color: right, fontSize: 16.0),
                           ),
                         ),

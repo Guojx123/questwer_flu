@@ -54,20 +54,20 @@ class CreateQuestionBank extends StatelessWidget {
   Widget _buildInstruction() {
     return TitleWidget(
       Text(
-        "Add a description to your new question bank.",
+        "createQB.title_desc".tr,
         style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
       ),
-      title: "Create Question Bank",
+      title: "createQB.title".tr,
     );
   }
 
   Widget _buildDifficulty() {
     return TitleWidget(
       Text(
-        "Set overall difficulty for your question bank.",
+        "createQB.set_difficulty_title_desc".tr,
         style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
       ),
-      title: "Set Difficulty",
+      title: "createQB.set_difficulty_title".tr,
     );
   }
 
@@ -93,7 +93,7 @@ class CreateQuestionBank extends StatelessWidget {
 
       },
       child: MyBottom(
-        text: "Continue",
+        text: "createQB.continue".tr,
       ),
     );
   }

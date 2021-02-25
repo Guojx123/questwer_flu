@@ -49,22 +49,22 @@ class _MySliderState extends State<MySlider> {
   String _getDifficulty(String num) {
     switch (num) {
       case "0.0":
-        return "easy";
+        return "createQB.slider_easy".tr;
         break;
       case "25.0":
-        return "average";
+        return "createQB.slider_average".tr;
         break;
       case "50.0":
-        return "medium";
+        return "createQB.slider_medium".tr;
         break;
       case "75.0":
-        return "difficult";
+        return "createQB.slider_difficult".tr;
         break;
       case "100.0":
-        return "hell";
+        return "createQB.slider_hell".tr;
         break;
       default:
-        return "unknown";
+        return "createQB.slider_unknown".tr;
         break;
     }
   }

@@ -23,14 +23,14 @@ class NQuestionTextFieldWidget extends StatelessWidget {
                   maxLines: 2,
                   minLines: 1,
                   inputController: controller.inputNQTitleController,
-                  hintText: "Title...",
+                  hintText: "createQ.textfield_title".tr,
                   hintTextSize: 18.0,
                 ),
                 MyTextField(
                   maxLines: 6,
                   minLines: 3,
                   inputController: controller.inputNQDescController,
-                  hintText: "Add some prompt...",
+                  hintText: "createQ.textfield_prompt".tr,
                   hintTextSize: 16.0,
                 ),
               ],
@@ -55,7 +55,7 @@ class NQuestionOptionTextFieldWidget extends StatelessWidget {
                 Expanded(
                   child: AmountTextField(
                     controller: controller.inputOtherFAnswerController,
-                    labelText: "Option 1",
+                    labelText: "createNQ.textfield_option_1".tr,
                   ),
                 ),
                 SizedBox(
@@ -64,7 +64,7 @@ class NQuestionOptionTextFieldWidget extends StatelessWidget {
                 Expanded(
                   child: AmountTextField(
                     controller: controller.inputOtherSAnswerController,
-                    labelText: "Option 2",
+                    labelText: "createNQ.textfield_option_2".tr,
                   ),
                 ),
                 SizedBox(
@@ -73,7 +73,7 @@ class NQuestionOptionTextFieldWidget extends StatelessWidget {
                 Expanded(
                   child: AmountTextField(
                     controller: controller.inputOtherTAnswerController,
-                    labelText: "Option 3",
+                    labelText: "createNQ.textfield_option_3".tr,
                   ),
                 ),
               ],
@@ -94,7 +94,7 @@ class NQuestionCorrectAnswerTextFieldWidget extends StatelessWidget {
             data: ThemeData(primaryColor: rLightBlueColor),
             child: AmountTextField(
               controller: controller.inputCorrectAnswerController,
-              labelText: "Correct Answer",
+              labelText: "createNQ.textfield_correct_answer".tr,
             ),
           );
         });
@@ -117,14 +117,14 @@ class BQuestionTextFieldWidget extends StatelessWidget {
                   maxLines: 2,
                   minLines: 1,
                   inputController: controller.inputBQTitleController,
-                  hintText: "Title...",
+                  hintText: "createQ.textfield_title".tr,
                   hintTextSize: 18.0,
                 ),
                 MyTextField(
                   maxLines: 6,
                   minLines: 3,
                   inputController: controller.inputBQDescController,
-                  hintText: "Add some prompt...",
+                  hintText: "createQ.textfield_prompt".tr,
                   hintTextSize: 16.0,
                 ),
               ],

@@ -6,7 +6,7 @@ import 'package:questwer_flu/theme/color.dart';
 class GetXSnackBar{
 
   void netError(){
-    Get.snackbar("Creation failed", "We encountered an unknown error.",
+    Get.snackbar("netError.creation_failed".tr, "netError.creation_failed_context".tr,
         colorText: rBlueColor,
         icon: Icon(Icons.messenger,color: rBlueColor,),
         snackPosition: SnackPosition.BOTTOM,
@@ -14,7 +14,7 @@ class GetXSnackBar{
   }
 
   void noFillForm(){
-    Get.snackbar("Yep！", "I found that you haven't filled out the form.",
+    Get.snackbar("netError.no_fill_form".tr, "netError.no_fill_form_context".tr,
         colorText: rBlueColor,
         icon: Icon(Icons.messenger,color: rBlueColor,),
         snackPosition: SnackPosition.BOTTOM,
@@ -22,7 +22,7 @@ class GetXSnackBar{
   }
 
   void noTellMeDifficulty(){
-    Get.snackbar("Yep！", "Tell me how difficult the question is.",
+    Get.snackbar("netError.no_tell_me_difficulty".tr, "netError.no_tell_me_difficulty_context".tr,
         colorText: rBlueColor,
         icon: Icon(Icons.messenger,color: rBlueColor,),
         snackPosition: SnackPosition.BOTTOM,
@@ -30,7 +30,7 @@ class GetXSnackBar{
   }
 
   void noEnterNickname(){
-    Get.snackbar("Tips:", "Please enter a nickname.",
+    Get.snackbar("netError.no_enter_nickname".tr, "netError.no_enter_nickname_context".tr,
         colorText: rOrangeColor,
         icon: Icon(Icons.messenger,color: rOrangeColor,),
         snackPosition: SnackPosition.BOTTOM,
@@ -38,7 +38,7 @@ class GetXSnackBar{
   }
 
   void createSuccess(){
-    Get.snackbar("Good news", "Created successfully.",
+    Get.snackbar("netError.create_success".tr, "netError.create_success_context".tr,
         colorText: rBlueColor,
         icon: Icon(Icons.messenger,color: rBlueColor,),
         snackPosition: SnackPosition.TOP,

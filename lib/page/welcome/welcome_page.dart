@@ -23,11 +23,6 @@ class Welcome extends StatelessWidget {
             bgColor: rLightBlueColor,
             circleColor: rCloseGreyColor,
           ),
-//          Container(
-//            width: double.infinity,
-//            height: double.infinity,
-//            color: Colors.blueGrey.withOpacity(0.5),
-//          ),
           SafeArea(
             child: Padding(
               padding:
@@ -36,7 +31,7 @@ class Welcome extends StatelessWidget {
                 children: [
                   Spacer(),
                   Text(
-                    "Let's Play a Q&A.",
+                    "welcome.title".tr,
                     style: Theme.of(context).textTheme.headline4.copyWith(
                         color: Colors.white, fontWeight: FontWeight.bold),
                   ),
@@ -63,7 +58,7 @@ class Welcome extends StatelessWidget {
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.transparent,
-                        labelText: "Nice to meet you.",
+                        labelText: "welcome.nice_to_meet_you".tr,
                         focusedBorder: OutlineInputBorder(
                           borderSide:
                               BorderSide(color: rTextColor),
@@ -96,7 +91,7 @@ class Welcome extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(12)),
                       ),
                       child: Text(
-                        "Go",
+                        "welcome.go".tr,
                         style: Theme.of(context).textTheme.button.copyWith(
                             color: Colors.white, fontWeight: FontWeight.w400),
                       ),

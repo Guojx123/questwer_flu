@@ -71,7 +71,7 @@ class _LeadPageState extends State<LeadPage> {
               brightness: Brightness.dark,
               elevation: 0,
               title: Text(
-                "Hi !  ${PersistentStorage.get("nickname")}.",
+                "${"lead.hi".tr}  ${PersistentStorage.get("nickname")}.",
                 textAlign: TextAlign.start,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
@@ -115,12 +115,12 @@ class _LeadPageState extends State<LeadPage> {
                   ),
                   /// 官方活动
                   _buildTitle(
-                      title: "Popular activities",
+                      title: "lead.activity".tr,
                       imgUrl: "assets/icon_activity.png"),
                   _buildActivity(),
                   /// 模式卡片
                   _buildTitle(
-                      title: "Choose answer mode",
+                      title: "lead.mode".tr,
                       imgUrl: "assets/icon_model.png"),
                   _buildModel(),
                   SizedBox(
@@ -288,16 +288,16 @@ class _LeadPageState extends State<LeadPage> {
           }),
         children: <Widget>[
           PageWidget(
-            'Hall',
-            'To tell you, here you can view the question bank shared by all users.',
+            'lead.hall'.tr,
+            'lead.hall_desc'.tr,
             'assets/hall_bg.jpg',
             () {
               Get.to(QuestionBankListPage());
             },
           ),
           PageWidget(
-            'Mine',
-            'Congratulations, here is everything about you.',
+            'lead.mine'.tr,
+            'lead.mine_desc'.tr,
             'assets/challenge_bg.png',
                 () async {
               String owner= await _questionListController.getCloudOwner();
@@ -305,8 +305,8 @@ class _LeadPageState extends State<LeadPage> {
             },
           ),
           PageWidget(
-            'Challenge',
-            'Are you ready? Here are various topics collected on the Internet.',
+            'lead.challenge'.tr,
+            'lead.challenge_desc'.tr,
             'assets/mine_bg.jpg',
             () {
               // Navigator.push(context, MaterialPageRoute(builder: (context) => SkillMainPage()));
@@ -359,7 +359,7 @@ class _LeadPageState extends State<LeadPage> {
       elevation: 0,
       backgroundColor: rMiddlePurpleColor,
       ignoreSafeArea: true,
-      enableDrag: true,
+      enableDrag: false,
       isScrollControlled: true,
       enterBottomSheetDuration: Duration(microseconds: 200),
       exitBottomSheetDuration: Duration(microseconds: 200)

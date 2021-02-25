@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/language_controller.dart';
+import 'package:questwer_flu/service/scroll__behavior.dart';
 import 'package:questwer_flu/widget/title_widget.dart';
 
 import 'select_language_widget.dart';
@@ -18,27 +19,30 @@ class SettingPage extends StatelessWidget {
               height: 120,
             ),
             _buildSelectOption(),
-            SelectLanguageWidget(
-              'Language',
-              ["English", "中文", "跟随系统"],
-              ["English", "中文", "setting.follow_system".tr],
-              (value) {
-                _languageController.setSelectValue(value);
-                switch (value) {
-                  case "English":
-                    LanguageController().changeLanguage("en", "US");
-                    break;
-                  case "中文":
-                    LanguageController().changeLanguage("zh", "CN");
-                    break;
-                  case "跟随系统":
-                    LanguageController().followSystemLanguage();
-                    break;
-                  default:
-                    LanguageController().followSystemLanguage();
-                    break;
-                }
-              },
+            ScrollConfiguration(
+              behavior: OverScrollBehavior(),
+              child: SelectLanguageWidget(
+                'Language',
+                ["English", "中文", "setting.follow_system".tr],
+                ["English", "中文", "跟随系统"],
+                (value) {
+                  _languageController.setSelectValue(value);
+                  switch (value) {
+                    case "English":
+                      LanguageController().changeLanguage("en", "US");
+                      break;
+                    case "中文":
+                      LanguageController().changeLanguage("zh", "CN");
+                      break;
+                    case "跟随系统":
+                      LanguageController().followSystemLanguage();
+                      break;
+                    default:
+                      LanguageController().followSystemLanguage();
+                      break;
+                  }
+                },
+              ),
             ),
           ],
         ),

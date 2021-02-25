@@ -11,7 +11,6 @@ import 'custom_tab.dart';
 import 'question_textfield.dart';
 
 class CreateQuestion extends StatelessWidget {
-
   CreateController _createController = Get.put(CreateController());
 
   @override
@@ -31,9 +30,9 @@ class CreateQuestion extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            _buildCreateNQTitle(),
+            _buildCreateQTitle(),
             NQuestionTextFieldWidget(),
-            _buildCreateNQCorrectAnswer(),
+            _buildCreateQCorrectAnswer(),
             NQuestionCorrectAnswerTextFieldWidget(),
             _buildCreateNQOption(),
             NQuestionOptionTextFieldWidget(),
@@ -51,7 +50,8 @@ class CreateQuestion extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(DefaultSize.middleSize),
+                      borderRadius:
+                          BorderRadius.circular(DefaultSize.middleSize),
                       color: rLightPurpleColor,
                     ),
                     child: Container(
@@ -69,11 +69,10 @@ class CreateQuestion extends StatelessWidget {
                       GetXSnackBar().noFillForm();
                       return;
                     }
-                    intervalClick(2,false);
-
+                    intervalClick(2, false);
                   },
                   child: MyBottom(
-                    text: "Create",
+                    text: "createQ.textfield_create".tr,
                   ),
                 ),
               ],
@@ -93,15 +92,23 @@ class CreateQuestion extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            _buildCreateNQTitle(),
+            _buildCreateQTitle(),
             BQuestionTextFieldWidget(),
-            _buildCreateNQCorrectAnswer(),
+            _buildCreateQCorrectAnswer(),
             MultiSelectionWidget(
               'Bool',
-              ["true","false","unknow"],
-              ["true","false","unknow"],
-                  (value) {
-                 _createController.setSelectValue(value);
+              [
+                "createBQ.button_true".tr,
+                "createBQ.button_false".tr,
+                "createBQ.button_unknow".tr
+              ],
+              [
+                "createBQ.button_true".tr,
+                "createBQ.button_false".tr,
+                "createBQ.button_unknow".tr
+              ],
+              (value) {
+                _createController.setSelectValue(value);
               },
             ),
             SizedBox(
@@ -118,7 +125,8 @@ class CreateQuestion extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.all(DefaultSize.smallSize * 1.2),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(DefaultSize.middleSize),
+                      borderRadius:
+                          BorderRadius.circular(DefaultSize.middleSize),
                       color: rLightPurpleColor,
                     ),
                     child: Container(
@@ -137,10 +145,10 @@ class CreateQuestion extends StatelessWidget {
                       GetXSnackBar().noFillForm();
                       return;
                     }
-                    intervalClick(2,true);
+                    intervalClick(2, true);
                   },
                   child: MyBottom(
-                    text: "Create",
+                    text: "createQ.textfield_create".tr,
                   ),
                 ),
               ],
@@ -153,16 +161,19 @@ class CreateQuestion extends StatelessWidget {
 
   var lastPopTime = DateTime.now();
 
-  void intervalClick(int needTime,isBool) async {
+  void intervalClick(int needTime, isBool) async {
     // 重复提交
-    if(lastPopTime == null || DateTime.now().difference(lastPopTime) > Duration(seconds: needTime)){
+    if (lastPopTime == null ||
+        DateTime.now().difference(lastPopTime) > Duration(seconds: needTime)) {
       print(lastPopTime);
       lastPopTime = DateTime.now();
       print("允许点击");
       // 开始提交数据
-      if(isBool){
-        String inputBQTitle = _createController.inputBQTitleController.text.trim();
-        String inputBQDesc = _createController.inputBQDescController.text.trim();
+      if (isBool) {
+        String inputBQTitle =
+            _createController.inputBQTitleController.text.trim();
+        String inputBQDesc =
+            _createController.inputBQDescController.text.trim();
 
         bool isCreateSuccess = await _createController.createQuestion(
           inputBQTitle,
@@ -176,14 +187,18 @@ class CreateQuestion extends StatelessWidget {
         } else {
           GetXSnackBar().netError();
         }
-      }else{
+      } else {
         String inputName = _createController.inputNQTitleController.text.trim();
         String inputDesc = _createController.inputNQDescController.text.trim();
-        String inputCorrectAnswer = _createController.inputCorrectAnswerController.text.trim();
+        String inputCorrectAnswer =
+            _createController.inputCorrectAnswerController.text.trim();
 
-        String firstOption = _createController.inputOtherFAnswerController.text.trim();
-        String secondOption = _createController.inputOtherSAnswerController.text.trim();
-        String threeOption = _createController.inputOtherTAnswerController.text.trim();
+        String firstOption =
+            _createController.inputOtherFAnswerController.text.trim();
+        String secondOption =
+            _createController.inputOtherSAnswerController.text.trim();
+        String threeOption =
+            _createController.inputOtherTAnswerController.text.trim();
 
         bool isCreateSuccess = await _createController.createQuestion(
           inputName,
@@ -202,39 +217,39 @@ class CreateQuestion extends StatelessWidget {
         }
       }
       // 提交完
-    }else{
+    } else {
       // lastPopTime = DateTime.now(); //如果不注释这行,则强制用户一定要间隔2s后才能成功点击. 而不是以上一次点击成功的时间开始计算.
       print("请勿重复点击！");
     }
   }
 
-  Widget _buildCreateNQTitle() {
+  Widget _buildCreateQTitle() {
     return TitleWidget(
       Text(
-        "Add a description to your new question.",
+        "createNQ.title_desc".tr,
         style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
       ),
-      title: "Create Question Title",
+      title: "createNQ.title".tr,
     );
   }
 
   Widget _buildCreateNQOption() {
     return TitleWidget(
       Text(
-        "Add options to your new question.",
+        "createNQ.option_desc".tr,
         style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
       ),
-      title: "Question Option (At least three)",
+      title: "createNQ.option".tr,
     );
   }
 
-  Widget _buildCreateNQCorrectAnswer() {
+  Widget _buildCreateQCorrectAnswer() {
     return TitleWidget(
       Text(
-        "Add the correct answer to your new question.",
+        "createQ.correct_answer_desc".tr,
         style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
       ),
-      title: "Question Correct Answer (Only one)",
+      title: "createQ.correct_answer".tr,
     );
   }
 }

@@ -44,7 +44,7 @@ class AddPageView extends StatelessWidget {
                     print("返回到上一页，修改题库");
                   },
                   child: Icon(
-                    Icons.store_rounded,
+                    Icons.logout,
                     color: rDeepPurpleColor,
                     size: DefaultSize.smallSize * 6,
                   ),
@@ -80,7 +80,7 @@ class AddPageView extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                "ARE YOU SURE?",
+                                "createQ.dialog_title".tr,
                                 style: TextStyle(
                                   fontSize: DefaultSize.middleFontSize * 1.2,
                                   color: rDeepRedColor,
@@ -90,7 +90,7 @@ class AddPageView extends StatelessWidget {
                                 height: DefaultSize.defaultPadding * 2,
                               ),
                               Text(
-                                "A total of {1} question has been created. Are you sure to exit the editing?",
+                                "createQ.dialog_context".tr,
                                 maxLines: 2,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
