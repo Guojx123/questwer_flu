@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
@@ -5,8 +6,12 @@ import 'package:questwer_flu/theme/size.dart';
 class TitleWidget extends StatelessWidget {
   final Widget content;
   final String title;
+  final double horizontalMargin;
+  final bool isCircle;
 
-  const TitleWidget(this.content, {Key key, this.title}) : super(key: key);
+  const TitleWidget(this.content,
+      {Key key, this.title, this.isCircle = true, this.horizontalMargin = 0.0})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +21,16 @@ class TitleWidget extends StatelessWidget {
   Widget _buildTitleWidget(Widget content, {String title}) {
     return Container(
       width: double.maxFinite,
-      margin: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding * 2),
+      margin: EdgeInsets.symmetric(
+          horizontal: horizontalMargin,
+          vertical: DefaultSize.defaultPadding * 2),
       padding: EdgeInsets.symmetric(
           horizontal: DefaultSize.defaultPadding,
           vertical: DefaultSize.defaultPadding),
       decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.6),
-          borderRadius: BorderRadius.all(Radius.circular(10))),
+          borderRadius:
+              BorderRadius.all(isCircle ? Radius.circular(10) : Radius.zero)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,

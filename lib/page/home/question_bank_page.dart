@@ -30,7 +30,7 @@ class QuestionBankListPage extends StatelessWidget {
           ),
           // _buildCustomScrollView(),
           QuestionBankList(owner),
-          /// 进入引导页
+          /// 返回引导页
           Positioned(
             left: 0,
             top: PersistentStorage.topHeight + DefaultSize.defaultPadding * 2,
