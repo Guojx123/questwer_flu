@@ -9,6 +9,7 @@ import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'package:questwer_flu/widget/custom_shape.dart';
+import 'package:questwer_flu/widget/gradient_image.dart';
 import 'package:questwer_flu/widget/lead_page_layout.dart';
 
 import 'add/add_page_view.dart';
@@ -43,6 +44,10 @@ class _LeadPageState extends State<LeadPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    int _gradientLength = 10;
+
+
     return SafeArea(
       top: false,
       bottom: true,
@@ -260,7 +265,13 @@ class _LeadPageState extends State<LeadPage> {
                               ],
                             ),
                           ),
-                          // icon
+                          // img
+                          Expanded(
+                            child: GradientImageWidget(
+                              gradientLength: 99,
+                              imageUrl: "https://cdnimg.doutian.me/20210217/62591613532145671?imageMogr2/auto-orient",),
+                              // imageUrl: "https://cdnimg.doutian.me/20210219/45931613743264021?imageMogr2/auto-orient",),
+                          ),
                         ],
                       ),
                     ),
