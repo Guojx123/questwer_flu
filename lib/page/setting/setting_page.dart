@@ -23,10 +23,9 @@ class SettingPage extends StatelessWidget {
               behavior: OverScrollBehavior(),
               child: SelectLanguageWidget(
                 'Language',
-                ["English", "中文", "setting.follow_system".tr],
                 ["English", "中文", "跟随系统"],
+                ["English", "中文", "setting.follow_system".tr],
                 (value) {
-                  _languageController.setSelectValue(value);
                   switch (value) {
                     case "English":
                       LanguageController().changeLanguage("en", "US");
@@ -37,10 +36,14 @@ class SettingPage extends StatelessWidget {
                     case "跟随系统":
                       LanguageController().followSystemLanguage();
                       break;
+                    case "Follow system":
+                      LanguageController().followSystemLanguage();
+                      break;
                     default:
                       LanguageController().followSystemLanguage();
                       break;
                   }
+                  _languageController.setSelectValue(value);
                 },
               ),
             ),
