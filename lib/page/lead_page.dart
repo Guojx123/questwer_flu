@@ -268,7 +268,7 @@ class _LeadPageState extends State<LeadPage> {
                           // img
                           Expanded(
                             child: GradientImageWidget(
-                              gradientLength: 99,
+                              gradientLength: 999,
                               imageUrl: "https://cdnimg.doutian.me/20210217/62591613532145671?imageMogr2/auto-orient",),
                               // imageUrl: "https://cdnimg.doutian.me/20210219/45931613743264021?imageMogr2/auto-orient",),
                           ),
