@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/create_controller.dart';
+import 'package:questwer_flu/controller/lead_controller.dart';
 import 'package:questwer_flu/controller/question_list_controller.dart';
+import 'package:questwer_flu/model/activity.dart';
 import 'package:questwer_flu/page/home/question_bank_page.dart';
 import 'package:questwer_flu/service/scroll__behavior.dart';
 import 'package:questwer_flu/theme/color.dart';
@@ -13,6 +15,7 @@ import 'package:questwer_flu/widget/gradient_image.dart';
 import 'package:questwer_flu/widget/lead_page_layout.dart';
 
 import 'add/add_page_view.dart';
+import 'home/activity_card.dart';
 import 'setting/setting_page.dart';
 
 class LeadPage extends StatefulWidget {
@@ -29,11 +32,13 @@ class _LeadPageState extends State<LeadPage> {
   ValueNotifier<double> notifier = ValueNotifier<double>(0);
   QuestionListController _questionListController = Get.put(QuestionListController());
   CreateController _createController = Get.put(CreateController());
+  LeadController _leadController = Get.put(LeadController());
 
   @override
   void initState() {
     super.initState();
     pageController = PageController(viewportFraction: 0.9);
+    _leadController.getActivity();
   }
 
   @override
@@ -44,9 +49,6 @@ class _LeadPageState extends State<LeadPage> {
 
   @override
   Widget build(BuildContext context) {
-
-    int _gradientLength = 10;
-
 
     return SafeArea(
       top: false,
@@ -195,91 +197,48 @@ class _LeadPageState extends State<LeadPage> {
   }
 
   Widget _buildActivity() {
-    return SizedBox(
-      height: DefaultSize.largeSize * 3,
-      child: ScrollConfiguration(
-        behavior: OverScrollBehavior(),
-        child: ListView.builder(
-          padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
-            scrollDirection: Axis.horizontal,
-            itemCount: 4,
-            itemBuilder: (context, index) {
-              return ValueListenableBuilder(
-                valueListenable: notifier,
-                builder: (context, value, widget) {
-                  return Card(
-                    clipBehavior: Clip.antiAlias,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    margin: EdgeInsets.symmetric(
-                      vertical: DefaultSize.defaultPadding,
-                      horizontal: DefaultSize.defaultPadding,
-                    ),
-                    color: Color.lerp(
-                      Color(0xFFC8F0F0),
-                      Color(0xFFFDE89D),
-                      notifier.value,
-                    ),
-                    child: Container(
-                      width: PersistentStorage.screenWidth -
-                          (DefaultSize.middleSize * 4),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: DefaultSize.defaultPadding * 2,
-                              vertical: DefaultSize.smallSize,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: DefaultSize.defaultPadding),
-                                  child: Image.asset(
-                                    "assets/icon_activity_balloon.png",
-                                    width: DefaultSize.middleSize * 4,
-                                    height: DefaultSize.middleSize * 4,
-                                    color: rBlueColor,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: DefaultSize.middleSize,
-                                ),
-                                Text(
-                                  "Self-love",
-                                  style: TextStyle(
-                                    color: rBlueColor,
-                                    fontSize: DefaultSize.middleFontSize,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  "Don't wait, join us!  →",
-                                  style: TextStyle(
-                                    color: rPurpleColor,
-                                    fontSize: DefaultSize.smallFontSize,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          // img
-                          Expanded(
-                            child: GradientImageWidget(
-                              gradientLength: 720,
-                              imageUrl: "https://cdnimg.doutian.me/20210217/62591613532145671?imageMogr2/auto-orient",),
-                              // imageUrl: "https://cdnimg.doutian.me/20210219/45931613743264021?imageMogr2/auto-orient",),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              );
-            }),
-      ),
+
+    int _gradientLength = 720;
+
+    return GetBuilder<LeadController>(
+      init: LeadController(),
+      builder: (controller) {
+        if (controller.isLoading.value)
+          return SizedBox(
+            height: DefaultSize.largeSize * 3,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        else {
+          return SizedBox(
+            height: DefaultSize.largeSize * 3,
+            child: ScrollConfiguration(
+              behavior: OverScrollBehavior(),
+              child: ListView.builder(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: DefaultSize.defaultPadding),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: controller.activityList.length,
+                  itemBuilder: (context, index) {
+                    List<Activity> activityList = controller.activityList.map((item) => Activity(
+                      id: item["id"],
+                      type: item["type"],
+                      title: item["title"],
+                      subTitle: item["subTitle"],
+                      imgUrl: item["imgUrl"],
+                    )).toList();
+                    var item = activityList[index];
+                    return ActivityCard(
+                      valueNotifier: notifier,
+                      activity: item,
+                      gradientLength: 720,
+                    );
+                  }),
+            ),
+          );
+        }
+      }
     );
   }
 
