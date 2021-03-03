@@ -70,7 +70,7 @@ class ChallengePage extends StatelessWidget {
             "https://cdnimg.doutian.me/20210227/34961614400994808?imageMogr2/auto-orient",
             PersistentStorage.screenWidth / 2 - DefaultSize.middleSize * 2,
             flag: true,
-            icon: IconData(0xe560, fontFamily: 'MaterialIcons'),
+            icon: Icons.print,
             title: "Animation",
           );
         });
