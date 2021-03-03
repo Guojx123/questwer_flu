@@ -5,6 +5,12 @@ import 'package:leancloud_storage/leancloud.dart';
 class ApiService {
   static var client = http.Client();
 
+  static fetchActivityList() async {
+    LCQuery<LCObject> query = LCQuery('activity');
+    List<LCObject> activityList = await query.find();
+    return activityList;
+  }
+
   static getQuestionListOwner() async {
     LCUser currentUser = await LCUser.getCurrent();
     return currentUser.username;
