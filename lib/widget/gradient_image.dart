@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/theme/size.dart';
 
+import 'cached_image.dart';
+
 class GradientImageWidget extends StatelessWidget {
   final num gradientLength;
   final String imageUrl;
@@ -32,7 +34,11 @@ class GradientImageWidget extends StatelessWidget {
       },
       blendMode: BlendMode.dstIn,
       child: GetUtils.isURL(imageUrl)
-          ? Image.network("${imageUrl ?? ''}",fit: BoxFit.cover,)
+          ? CachedImage(
+              url: imageUrl,
+              fit: BoxFit.cover,
+              placeHolderHeight: DefaultSize.largeSize * 3,
+            )
           : FlutterLogo(
               size: DefaultSize.middleSize * 8,
             ),
