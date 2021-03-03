@@ -15,6 +15,7 @@ import 'package:questwer_flu/widget/gradient_image.dart';
 import 'package:questwer_flu/widget/lead_page_layout.dart';
 
 import 'add/add_page_view.dart';
+import 'challenge/challenge_main.dart';
 import 'home/activity_card.dart';
 import 'setting/setting_page.dart';
 
@@ -279,7 +280,7 @@ class _LeadPageState extends State<LeadPage> {
             'lead.challenge_desc'.tr,
             'assets/mine_bg.jpg',
             () {
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => SkillMainPage()));
+              Get.to(ChallengePage());
             },
           ),
         ],

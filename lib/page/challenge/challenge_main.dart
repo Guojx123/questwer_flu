@@ -1,21 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:questwer_flu/controller/create_controller.dart';
-import 'package:questwer_flu/page/home/question_bank_list.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
 
-class QuestionBankListPage extends StatelessWidget {
+import 'item_card.dart';
 
-  final String owner;
-
-  final CreateController _createController = Get.put(CreateController());
-
-  QuestionBankListPage({Key key, this.owner}) : super(key: key);
-
+class ChallengePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -27,9 +19,9 @@ class QuestionBankListPage extends StatelessWidget {
             bgColor: rLightBlueColor,
             circleColor: rCloseGreyColor,
           ),
-          // _buildCustomScrollView(),
-          QuestionBankList(owner),
-          /// 返回引导页
+          challengeList(),
+
+          /// 进入引导页
           Positioned(
             left: 0,
             top: PersistentStorage.topHeight + DefaultSize.defaultPadding * 2,
@@ -37,7 +29,6 @@ class QuestionBankListPage extends StatelessWidget {
               behavior: HitTestBehavior.translucent,
               onTap: () {
                 Get.back();
-                // Get.offAll(LeadPage());
               },
               child: Container(
                 padding: EdgeInsets.symmetric(
@@ -63,4 +54,25 @@ class QuestionBankListPage extends StatelessWidget {
     );
   }
 
+  Widget challengeList() {
+    return GridView.builder(
+        padding: EdgeInsets.only(top: PersistentStorage.topHeight * 2.8),
+        physics: BouncingScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          mainAxisSpacing: 0,
+          crossAxisSpacing: 0,
+          childAspectRatio: 1.1,
+          crossAxisCount: 2,
+        ),
+        itemCount: 5,
+        itemBuilder: (BuildContext context, int index) {
+          return ItemCard(
+            "https://cdnimg.doutian.me/20210227/34961614400994808?imageMogr2/auto-orient",
+            PersistentStorage.screenWidth / 2 - DefaultSize.middleSize * 2,
+            flag: true,
+            icon: IconData(0xe560, fontFamily: 'MaterialIcons'),
+            title: "Animation",
+          );
+        });
+  }
 }

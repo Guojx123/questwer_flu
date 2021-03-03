@@ -37,7 +37,7 @@ class CachedImage extends StatelessWidget {
               padding: EdgeInsets.all(DefaultSize.largeSize),
               child: Center(
                   child: Image.asset(
-                'assets/uikit_bg.png',
+                'assets/uikit_bg.jpg',
                 width: placeHolderWidth,
                 height: placeHolderHeight,
                 fit: BoxFit.fitWidth,
