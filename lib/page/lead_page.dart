@@ -124,12 +124,16 @@ class _LeadPageState extends State<LeadPage> {
                   /// 官方活动
                   _buildTitle(
                       title: "lead.activity".tr,
-                      imgUrl: "assets/icon_activity.png"),
+                      imgUrl: "assets/icon_activity.png",
+                    color: rDeepRedColor,
+                  ),
                   _buildActivity(),
                   /// 模式卡片
                   _buildTitle(
                       title: "lead.mode".tr,
-                      imgUrl: "assets/icon_model.png"),
+                      imgUrl: "assets/icon_model.png",
+                    color: rBlueColor,
+                  ),
                   _buildModel(),
                   SizedBox(
                     height: DefaultSize.smallSize,
@@ -163,7 +167,7 @@ class _LeadPageState extends State<LeadPage> {
     );
   }
 
-  Widget _buildTitle({String title = "Example Title", String imgUrl}) {
+  Widget _buildTitle({String title = "Example Title", String imgUrl,Color color = Colors.black}) {
     return Padding(
         padding: EdgeInsets.symmetric(
             horizontal: DefaultSize.defaultPadding * 2,
@@ -189,6 +193,7 @@ class _LeadPageState extends State<LeadPage> {
                     height: DefaultSize.middleSize * 2.2,
                     width: DefaultSize.middleSize * 2.2,
                     fit: BoxFit.cover,
+                    color: color,
                   ),
                 ),
               ],

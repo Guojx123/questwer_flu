@@ -17,7 +17,7 @@ class CachedImage extends StatelessWidget {
   CachedImage(
       {this.width,
       this.height,
-      this.placeHolderWidth = 200,
+      this.placeHolderWidth,
       this.placeHolderHeight,
       this.padding = 10,
       @required this.url,
@@ -34,13 +34,12 @@ class CachedImage extends StatelessWidget {
         imageUrl: url,
         placeholder: (context, url) => Container(
               color: color,
-              padding: EdgeInsets.all(DefaultSize.largeSize),
               child: Center(
                   child: Image.asset(
                 'assets/uikit_bg.jpg',
-                width: placeHolderWidth,
-                height: placeHolderHeight,
-                fit: BoxFit.fitWidth,
+                width: placeHolderWidth ?? double.infinity,
+                height: placeHolderHeight ?? double.infinity,
+                fit: BoxFit.cover,
               )),
             ),
         errorWidget: (context, url, error) => Icon(Icons.error),

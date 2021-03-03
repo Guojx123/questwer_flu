@@ -64,7 +64,7 @@ class _QuestionBankListState extends State<QuestionBankList> {
       );
     else {
       return Padding(
-        padding: EdgeInsets.only(top: PersistentStorage.topHeight),
+        padding: EdgeInsets.only(top: PersistentStorage.topHeight * 2.8),
         child: ListView.builder(
             controller: _popMenuController.scrollController,
             padding:

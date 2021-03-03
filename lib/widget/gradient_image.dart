@@ -36,8 +36,7 @@ class GradientImageWidget extends StatelessWidget {
       child: GetUtils.isURL(imageUrl)
           ? CachedImage(
               url: imageUrl,
-              fit: BoxFit.cover,
-              placeHolderHeight: DefaultSize.largeSize * 3,
+              fit: BoxFit.fill,
             )
           : FlutterLogo(
               size: DefaultSize.middleSize * 8,
