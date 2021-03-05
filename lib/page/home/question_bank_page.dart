@@ -12,8 +12,6 @@ class QuestionBankListPage extends StatelessWidget {
 
   final String owner;
 
-  final CreateController _createController = Get.put(CreateController());
-
   QuestionBankListPage({Key key, this.owner}) : super(key: key);
 
   @override

@@ -29,4 +29,11 @@ class ApiService {
     List<LCObject> questionList = await query.find();
     return questionList;
   }
+
+  static fetchCategoryList() async {
+    LCQuery<LCObject> query = LCQuery('category');
+//    query.whereEqualTo('isEnable', true);
+    List<LCObject> categoryList = await query.find();
+    return categoryList;
+  }
 }

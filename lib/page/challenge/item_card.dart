@@ -16,7 +16,9 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding,vertical: DefaultSize.defaultPadding),
+      padding: EdgeInsets.symmetric(
+          horizontal: DefaultSize.defaultPadding,
+          vertical: DefaultSize.defaultPadding),
       child: Stack(
         children: <Widget>[
           ClipRRect(
@@ -25,35 +27,40 @@ class ItemCard extends StatelessWidget {
                 children: <Widget>[
                   CachedImage(
 //                    url: "https://cdnimg.doutian.me/20210227/34961614400994808?imageMogr2/auto-orient",
-                    url: "https://cdnimg.doutian.me/20210227/66341614400745168?imageMogr2/auto-orient",
+                    url: this.img ??
+                        "https://cdnimg.doutian.me/20210227/66341614400745168?imageMogr2/auto-orient",
                     fit: BoxFit.cover,
                     height: double.infinity,
                     width: double.infinity,
                   ),
-                  flag ?
-                  BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 0.1, sigmaY: 0.1),
-                    child: Container(
-                      color: Colors.black.withOpacity(0.3),
-                    ),
-                  ) : Container()
+                  this.flag
+                      ? BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 0.1, sigmaY: 0.1),
+                          child: Container(
+                            color: Colors.black.withOpacity(0.3),
+                          ),
+                        )
+                      : Container()
                 ],
-              )
-          ),
+              )),
           Positioned(
             left: 20,
             top: 20,
-            child: Icon(this.icon, color: Colors.white, size: 32,),
+            child: Icon(
+              this.icon,
+              color: Colors.white,
+              size: 32,
+            ),
           ),
           Positioned(
               left: 20,
               top: 52,
-              child: Text(this.title, style: TextStyle(
-                  color: Colors.white,
-                  fontSize: DefaultSize.smallFontSize,
-                  fontWeight: FontWeight.w500
-              ))
-          )
+              child: Text(this.title,
+                  maxLines: 2,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: DefaultSize.middleFontSize - 4,
+                      fontWeight: FontWeight.w500)))
         ],
       ),
     );

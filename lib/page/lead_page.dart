@@ -238,7 +238,7 @@ class _LeadPageState extends State<LeadPage> {
                     return ActivityCard(
                       valueNotifier: notifier,
                       activity: item,
-                      gradientLength: 720,
+                      gradientLength: _gradientLength,
                     );
                   }),
             ),
@@ -334,11 +334,11 @@ class _LeadPageState extends State<LeadPage> {
       ),
       elevation: 0,
       backgroundColor: rMiddlePurpleColor,
-      ignoreSafeArea: true,
-      enableDrag: false,
+      ignoreSafeArea: false,
+      enableDrag: true,
       isScrollControlled: true,
-      enterBottomSheetDuration: Duration(microseconds: 200),
-      exitBottomSheetDuration: Duration(microseconds: 200)
+      enterBottomSheetDuration: Duration(microseconds: 350),
+      exitBottomSheetDuration: Duration(microseconds: 350)
     );
   }
 }

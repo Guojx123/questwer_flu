@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:leancloud_storage/leancloud.dart';
+import 'package:questwer_flu/controller/category_controller.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
@@ -55,24 +57,37 @@ class ChallengePage extends StatelessWidget {
   }
 
   Widget challengeList() {
-    return GridView.builder(
-        padding: EdgeInsets.only(top: PersistentStorage.topHeight * 2.8),
-        physics: BouncingScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          mainAxisSpacing: 0,
-          crossAxisSpacing: 0,
-          childAspectRatio: 1.1,
-          crossAxisCount: 2,
-        ),
-        itemCount: 5,
-        itemBuilder: (BuildContext context, int index) {
-          return ItemCard(
-            "https://cdnimg.doutian.me/20210227/34961614400994808?imageMogr2/auto-orient",
-            PersistentStorage.screenWidth / 2 - DefaultSize.middleSize * 2,
-            flag: true,
-            icon: Icons.print,
-            title: "Animation",
-          );
+    return GetBuilder<CategoryController>(
+        init: CategoryController(),
+        builder: (controller) {
+          if (controller.isLoading.value)
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          else {
+            return GridView.builder(
+                padding:
+                    EdgeInsets.only(top: PersistentStorage.topHeight * 2.8),
+                physics: BouncingScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisSpacing: 0,
+                  crossAxisSpacing: 0,
+                  childAspectRatio: 1.1,
+                  crossAxisCount: 2,
+                ),
+                itemCount: controller.categoryList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  LCObject lcObject = controller.categoryList[index];
+                  return ItemCard(
+                    lcObject["imgUrl"],
+                    PersistentStorage.screenWidth / 2 -
+                        DefaultSize.middleSize * 2,
+                    flag: true,
+                    icon: Icons.print,
+                    title: lcObject["name"] ?? "",
+                  );
+                });
+          }
         });
   }
 }
