@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:questwer_flu/controller/category_controller.dart';
+import 'package:questwer_flu/controller/question_controller.dart';
+import 'package:questwer_flu/page/answer/answer_question.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
+import 'package:questwer_flu/widget/smart_refresh_footer.dart';
 
 import 'item_card.dart';
 
 class ChallengePage extends StatelessWidget {
+
+  final QuestionController questionController = Get.put(QuestionController());
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -65,28 +72,53 @@ class ChallengePage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           else {
-            return GridView.builder(
-                padding:
-                    EdgeInsets.only(top: PersistentStorage.topHeight * 2.8),
-                physics: BouncingScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisSpacing: 0,
-                  crossAxisSpacing: 0,
-                  childAspectRatio: 1.1,
-                  crossAxisCount: 2,
-                ),
-                itemCount: controller.categoryList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  LCObject lcObject = controller.categoryList[index];
-                  return ItemCard(
-                    lcObject["imgUrl"],
-                    PersistentStorage.screenWidth / 2 -
-                        DefaultSize.middleSize * 2,
-                    flag: true,
-                    icon: Icons.print,
-                    title: lcObject["name"] ?? "",
-                  );
-                });
+            return SmartRefresher(
+              physics: BouncingScrollPhysics(),
+              controller: controller.refreshController,
+              enablePullDown: true,
+              enablePullUp: false,
+              onRefresh: () {
+                controller.fetchCategoryList();
+                controller.refreshController.refreshCompleted();
+                controller.refreshController.loadComplete();
+              },
+              onLoading: () {
+                controller.refreshController.loadComplete();
+              },
+              footer: RefreshFooter(),
+              child: GridView.builder(
+                  padding:
+                  EdgeInsets.only(top: PersistentStorage.topHeight * 2.8),
+                  physics: BouncingScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisSpacing: 0,
+                    crossAxisSpacing: 0,
+                    childAspectRatio: 1.1,
+                    crossAxisCount: 2,
+                  ),
+                  itemCount: controller.categoryList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    LCObject lcObject = controller.categoryList[index];
+                    return GestureDetector(
+                      onTap: (){
+                        Get.to(AnswerQuestion(
+                          categoryId: lcObject["id"],
+                          isCategory: true,
+                        ));
+                        questionController.onStart();
+                        questionController.initValue();
+                      },
+                      child: ItemCard(
+                        lcObject["imgUrl"],
+                        PersistentStorage.screenWidth / 2 -
+                            DefaultSize.middleSize * 2,
+                        flag: true,
+                        icon: Icons.print,
+                        title: lcObject["name"] ?? "",
+                      ),
+                    );
+                  }),
+            );
           }
         });
   }

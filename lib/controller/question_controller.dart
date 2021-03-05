@@ -3,13 +3,14 @@ import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/http/ApiService.dart';
 import 'package:questwer_flu/model/question.dart';
+import 'package:questwer_flu/model/question_by_category.dart';
 import 'package:questwer_flu/page/score/score_screen.dart';
 
 class QuestionController extends GetxController
     with SingleGetTickerProviderMixin {
   /// 获取题目数据
   var isLoading = true.obs;
-  RxList<LCObject> questionList = List<LCObject>().obs;
+  RxList questionList = List().obs;
 
   /// 页面控制
   PageController _pageController;
@@ -83,6 +84,22 @@ class QuestionController extends GetxController
       if (question != null) {
         questionList.assignAll(question);
         debugPrint("获取题目数据");
+        isLoading(false);
+      }
+    } finally {
+      isLoading(false);
+    }
+    update();
+  }
+
+  /// 从分类获取题目
+  fetchQuestionByCategory(int categoryId) async {
+    try {
+      isLoading(true);
+      QuestionByCategory questions = await ApiService.fetchQuestionByCategory(categoryId);
+      if (questions != null) {
+        questionList.assignAll(questions.results);
+        debugPrint("获取分类题目数据");
         isLoading(false);
       }
     } finally {

@@ -1,6 +1,8 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:leancloud_storage/leancloud.dart';
+import 'package:questwer_flu/model/question.dart';
+import 'package:questwer_flu/model/question_by_category.dart';
 
 class ApiService {
   static var client = http.Client();
@@ -32,8 +34,15 @@ class ApiService {
 
   static fetchCategoryList() async {
     LCQuery<LCObject> query = LCQuery('category');
-//    query.whereEqualTo('isEnable', true);
     List<LCObject> categoryList = await query.find();
     return categoryList;
+  }
+
+  static fetchQuestionByCategory(int categoryId) async {
+    var response = await client.get("https://opentdb.com/api.php?amount=10&category=$categoryId");
+    if(response.statusCode == 200){
+      var jsonString = response.body;
+      return QuestionByCategory.fromJson(convert.jsonDecode(jsonString));
+    }
   }
 }

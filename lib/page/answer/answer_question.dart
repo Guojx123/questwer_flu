@@ -12,10 +12,13 @@ import 'question_card.dart';
 
 class AnswerQuestion extends StatelessWidget {
   final String name;
+  final int categoryId;
+  final bool isCategory;
 
   AnswerQuestion({
     Key key,
     this.name,
+    this.categoryId, this.isCategory
   }) : super(key: key);
 
   QuestionController _questionController = Get.put(QuestionController());
@@ -210,6 +213,8 @@ class AnswerQuestion extends StatelessWidget {
     return QuestionCard(
       name: name,
       isLoading: isLoading,
+      isCategory: isCategory,
+      categoryId: categoryId,
     );
   }
 

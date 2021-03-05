@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/question_controller.dart';
 import 'package:questwer_flu/model/question.dart';
+import 'package:questwer_flu/model/question_by_category.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'option.dart';
@@ -10,8 +11,11 @@ import 'option.dart';
 class QuestionCard extends StatefulWidget {
   final String name;
   final bool isLoading;
+  final int categoryId;
+  final bool isCategory;
 
-  const QuestionCard({Key key, this.name, this.isLoading}) : super(key: key);
+  const QuestionCard({Key key, this.name, this.isLoading, this.isCategory, this.categoryId})
+      : super(key: key);
 
   @override
   _QuestionCardState createState() => _QuestionCardState();
@@ -19,14 +23,19 @@ class QuestionCard extends StatefulWidget {
 
 class _QuestionCardState extends State<QuestionCard> {
   QuestionController _questionController = Get.put(QuestionController());
-  List<Question> _question;
+  List _question;
+
+  bool get _isCategory => widget.isCategory ?? false;
+  int get _categoryId => widget.categoryId;
+  String get _name => widget.name;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _question = List();
-    _questionController.fetchQuestion(widget.name);
+    _isCategory ? _questionController.fetchQuestionByCategory(_categoryId) :
+    _questionController.fetchQuestion(_name);
   }
 
   @override
@@ -48,25 +57,52 @@ class _QuestionCardState extends State<QuestionCard> {
   }
 
   Widget _questionItem(int index) {
-    _question = _questionController.questionList
-        .map((item) => Question(
-              id: item["id"],
-              title: item["title"],
-              subTitle: item["sub_title"] ?? '',
-              difficulty: item["difficulty"],
-              answer: item["answer"],
-              correctAnswer: item["correct_answer"],
-              ownedQb: item["ownedQB"],
-              creator: item["creator"],
-            ))
-        .toList();
+    List answerList;
+    if(_isCategory){
+      Result result = _questionController.questionList[index];
+      print(result.question);
+      for(int i = 0 ; i < _questionController.questionList.length ; i++){
+        _question.add(Question(
+          id: 1,
+          title: result.question ?? '',
+          subTitle: '',
+          difficulty: '',
+          incorrect_answers: json.encode(result.incorrectAnswers),
+          correctAnswer: result.correctAnswer,
+          ownedQb: '',
+          creator: '',
+        ));
+      }
+    }else{
+      _question = _questionController.questionList
+          .map((item) => Question(
+        id: item["id"] ?? 1,
+        title: item["title"] ?? '',
+        subTitle: item["sub_title"] ?? '',
+        difficulty: item["difficulty"] ?? '',
+        incorrect_answers: item["incorrect_answers"],
+        correctAnswer: item["correct_answer"],
+        ownedQb: item["ownedQB"] ?? '',
+        creator: item["creator"] ?? '',
+      ))
+          .toList();
+    }
 
     Question item = _question[index];
+
     /// 解析json字符串
-    List answerList = json.decode(item.answer);
-//    answerList.add(item.correctAnswer);
+    if(_isCategory){
+      print("oobs");
+      print(item.incorrect_answers);
+      answerList = json.decode(item.incorrect_answers);
+      answerList.add(item.correctAnswer);
+    }else{
+      answerList = json.decode(item.incorrect_answers);
+    }
+
     /// 打乱顺序
     answerList.shuffle();
+
     /// 直接使用数组，不需要解析
 //    List answerList = item.answer;
     return Container(

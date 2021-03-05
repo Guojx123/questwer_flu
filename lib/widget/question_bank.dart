@@ -37,6 +37,7 @@ class _QuestionBankItemState extends State<QuestionBankItem> {
       onTap: () {
         Get.to(AnswerQuestion(
           name: _questionBank.name,
+          isCategory: false,
         ));
         questionController.onStart();
         questionController.initValue();
