@@ -106,6 +106,10 @@ class AddPageView extends StatelessWidget {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   GestureDetector(
+                                      onPanDown: (_) {
+                                        // 用于取消 note 输入框的焦点
+                                        FocusScope.of(context).unfocus();
+                                      },
                                       behavior: HitTestBehavior.translucent,
                                       onTap: () {
                                         Get.back();
@@ -115,6 +119,10 @@ class AddPageView extends StatelessWidget {
                                         size: DefaultSize.middleSize * 3,
                                       )),
                                   GestureDetector(
+                                      onPanDown: (_) {
+                                        // 用于取消 note 输入框的焦点
+                                        FocusScope.of(context).unfocus();
+                                      },
                                       behavior: HitTestBehavior.translucent,
                                       onTap: () {
                                         Get.back();
