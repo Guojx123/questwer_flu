@@ -29,7 +29,6 @@ class ChallengePage extends StatelessWidget {
             circleColor: rCloseGreyColor,
           ),
           challengeList(),
-
           /// 进入引导页
           Positioned(
             left: 0,

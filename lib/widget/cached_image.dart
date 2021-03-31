@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
+import 'package:questwer_flu/util/transparent_image.dart';
 
 class CachedImage extends StatelessWidget {
   final double width;
@@ -30,19 +31,10 @@ class CachedImage extends StatelessWidget {
         height: height,
         width: width,
         // color: color,
-        fadeOutDuration: Duration(microseconds: 100),
+        fadeOutDuration: Duration(microseconds: 300),
         imageUrl: url,
-        placeholder: (context, url) => Container(
-              color: color,
-              child: Center(
-                  child: Image.asset(
-                'assets/uikit_bg.jpg',
-                width: placeHolderWidth ?? double.infinity,
-                height: placeHolderHeight ?? double.infinity,
-                fit: BoxFit.cover,
-              )),
-            ),
-        errorWidget: (context, url, error) => Icon(Icons.error),
+        placeholder: (context, url) => Image.memory(kTransparentImage),
+        errorWidget: (context, url, error) => Center(child: Icon(Icons.error)),
         fit: fit);
   }
 }

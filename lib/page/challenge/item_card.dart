@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:questwer_flu/theme/size.dart';
+import 'package:questwer_flu/util/fade_in_image.dart';
 import 'package:questwer_flu/widget/cached_image.dart';
 
 class ItemCard extends StatelessWidget {
@@ -25,8 +26,11 @@ class ItemCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               child: Stack(
                 children: <Widget>[
+                  // DeckFadeInImage(this.img,
+                  //   imgHeight: double.infinity,
+                  //   imgWidth: double.infinity,
+                  // ),
                   CachedImage(
-//                    url: "https://cdnimg.doutian.me/20210227/34961614400994808?imageMogr2/auto-orient",
                     url: this.img ??
                         "https://cdnimg.doutian.me/20210227/66341614400745168?imageMogr2/auto-orient",
                     fit: BoxFit.cover,
