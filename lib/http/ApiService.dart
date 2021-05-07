@@ -1,7 +1,6 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:leancloud_storage/leancloud.dart';
-import 'package:questwer_flu/model/question.dart';
 import 'package:questwer_flu/model/question_by_category.dart';
 
 class ApiService {

@@ -40,7 +40,7 @@ class ScoreScreen extends StatelessWidget {
               Spacer(flex: 2),
               GestureDetector(
                 onTap: () {
-                  Get.offAll(LeadPage());
+                  Get.offAll(()=>LeadPage());
                 },
                 child: Container(
                   width: double.infinity,

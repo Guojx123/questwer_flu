@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
-import 'package:questwer_flu/page/home/question_bank_page.dart';
 import 'dart:convert';
 import 'package:questwer_flu/service/my_text_editing_controller.dart';
 
@@ -155,6 +154,7 @@ class CreateController extends GetxController {
   }
 
   iniStateTextController(TextEditingController textEditingController) {
+    // 文本选择
     textEditingController.addListener(() {
       final text = textEditingController.text.toLowerCase();
       textEditingController.value = textEditingController.value.copyWith(
@@ -194,9 +194,9 @@ class CreateController extends GetxController {
 
     // 判断是否bool选择
     if(isBoolQuestion){
-      answerList.add("true");
-      answerList.add("false");
-      answerList.add("nuknow");
+      answerList.add("createBQ.button_true".tr);
+      answerList.add("createBQ.button_false".tr);
+      answerList.add("createBQ.button_unknow".tr);
     }else{
       answerList.add(firstOption);
       answerList.add(secondOption);
@@ -214,7 +214,7 @@ class CreateController extends GetxController {
     newQ['ownedQB'] = _ownedQB;
     newQ['difficulty'] = "1";
     newQ['correct_answer'] = correctAnswer;
-    newQ['answer'] = json.encode(answerList);
+    newQ['incorrect_answers'] = json.encode(answerList);
     // 将对象保存到云端
     try {
       await newQ.save();

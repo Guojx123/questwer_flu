@@ -71,11 +71,12 @@ class QuestionController extends GetxController
   initValue() {
     _isAnswered = false;
     _questionNumber = 1.obs;
-    questionList.clear();
+//    questionList.clear();
     _numOfCorrectAns = 0;
     _animationController?.reset();
     _animationController.forward().whenComplete(nextQuestion);
   }
+
 
   /// 获取某一题库的题目数据
   void fetchQuestion(String name) async {
@@ -88,13 +89,13 @@ class QuestionController extends GetxController
         isLoading(false);
       }
     } finally {
-      isLoading(false);
+      isLoading(true);
     }
     update();
   }
 
   /// 从分类获取题目
-  fetchQuestionByCategory(int categoryId) async {
+  void fetchQuestionByCategory(int categoryId) async {
     try {
       isLoading(true);
       QuestionByCategory questions = await ApiService.fetchQuestionByCategory(categoryId);

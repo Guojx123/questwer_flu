@@ -184,7 +184,7 @@ class _QuestionCardState extends State<QuestionCard> {
           ),
           SizedBox(height: DefaultSize.defaultPadding / 2),
           ...List.generate(
-            answerList.length,
+            answerList?.length ?? 0,
             (index) => Option(
               index: index,
               text: answerList[index],
