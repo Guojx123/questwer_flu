@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:questwer_flu/theme/size.dart';
-import 'package:questwer_flu/util/fade_in_image.dart';
 import 'package:questwer_flu/widget/cached_image.dart';
 
 class ItemCard extends StatelessWidget {

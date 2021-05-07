@@ -71,6 +71,7 @@ class QuestionController extends GetxController
   initValue() {
     _isAnswered = false;
     _questionNumber = 1.obs;
+    questionList.clear();
     _numOfCorrectAns = 0;
     _animationController?.reset();
     _animationController.forward().whenComplete(nextQuestion);

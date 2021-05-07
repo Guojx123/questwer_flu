@@ -146,7 +146,8 @@ class AnswerQuestion extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Get.offAll(LeadPage());
+                            Get.back();
+//                            Get.offAll(LeadPage());
                           },
                           child: Container(
                             margin: EdgeInsets.symmetric(
