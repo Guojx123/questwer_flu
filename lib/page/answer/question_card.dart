@@ -132,8 +132,7 @@ class _QuestionCardState extends State<QuestionCard> {
         correctAnswer: item["correct_answer"],
         ownedQb: item["ownedQB"] ?? '',
         creator: item["creator"] ?? '',
-      ))
-          .toList();
+      )).toList();
     }
 
     Question item = _question[index];

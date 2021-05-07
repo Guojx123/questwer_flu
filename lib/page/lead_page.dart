@@ -91,7 +91,7 @@ class _LeadPageState extends State<LeadPage> {
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   onTap: (){
-                    Get.to(SettingPage());
+                    Get.to(() =>SettingPage());
                   },
                   child: Padding(
                       padding: EdgeInsets.symmetric(
@@ -268,7 +268,7 @@ class _LeadPageState extends State<LeadPage> {
             'lead.hall_desc'.tr,
             'assets/hall_bg.jpg',
             () {
-              Get.to(QuestionBankListPage());
+              Get.to(() =>QuestionBankListPage());
             },
           ),
           PageWidget(
@@ -277,7 +277,7 @@ class _LeadPageState extends State<LeadPage> {
             'assets/challenge_bg.png',
                 () async {
               String owner= await _questionListController.getCloudOwner();
-              Get.to(QuestionBankListPage(owner: owner,));
+              Get.to(() =>QuestionBankListPage(owner: owner,));
             },
           ),
           PageWidget(
@@ -285,7 +285,7 @@ class _LeadPageState extends State<LeadPage> {
             'lead.challenge_desc'.tr,
             'assets/mine_bg.jpg',
             () {
-              Get.to(ChallengePage());
+              Get.to(() =>ChallengePage());
             },
           ),
         ],

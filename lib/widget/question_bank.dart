@@ -35,7 +35,7 @@ class _QuestionBankItemState extends State<QuestionBankItem> {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
-        Get.to(AnswerQuestion(
+        Get.to(() =>AnswerQuestion(
           name: _questionBank.name,
           isCategory: false,
         ));

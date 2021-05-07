@@ -100,7 +100,7 @@ class ChallengePage extends StatelessWidget {
                     LCObject lcObject = controller.categoryList[index];
                     return GestureDetector(
                       onTap: (){
-                        Get.to(AnswerQuestion(
+                        Get.to(() =>AnswerQuestion(
                           categoryId: lcObject["id"],
                           isCategory: true,
                         ));

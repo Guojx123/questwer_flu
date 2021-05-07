@@ -62,7 +62,7 @@ class QuestionController extends GetxController
   @override
   void onClose() {
     super.onClose();
-    _isAnswered = true;
+    _isAnswered = false;
     _pageController?.dispose();
     _numOfCorrectAns = 0;
     _animationController?.dispose();
@@ -146,7 +146,7 @@ class QuestionController extends GetxController
       // 计时器结束后，转到下一个问题
       _animationController.forward().whenComplete(nextQuestion);
     } else {
-      Get.to(ScoreScreen());
+      Get.to(() =>ScoreScreen());
     }
   }
 }
