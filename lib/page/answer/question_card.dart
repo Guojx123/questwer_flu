@@ -23,7 +23,7 @@ class QuestionCard extends StatefulWidget {
 
 class _QuestionCardState extends State<QuestionCard> {
   QuestionController _questionController = Get.put(QuestionController());
-  List _question;
+  List<Question> _question;
 
   bool get _isCategory => widget.isCategory ?? false;
   int get _categoryId => widget.categoryId;
@@ -60,9 +60,56 @@ class _QuestionCardState extends State<QuestionCard> {
     List answerList;
     if(_isCategory){
       Result result = _questionController.questionList[index];
+      /// 处理二维数组
+      // var menuIconMap = [
+      //   [
+      //     {
+      //       'title': '标题111',
+      //       // 标题
+      //       'desc': '副标题',
+      //       // 副标题
+      //       'url':
+      //       'https://cdnimg.doutian.me/20210412/89951618234773858?imageMogr2/auto-orient',
+      //       // 图片url
+      //       'eventType': 'url',
+      //       // 操作类型: 'url', 'product', 'empty'
+      //       'eventConf': 'http://www.baidu.com',
+      //       // 对应eventType的操作: 链接,商品id,'',
+      //       'evttckTag': 'lgs_123',
+      //       //打点数据标识(v2属性)
+      //     },
+      //   ],
+      //   [
+      //     {
+      //       'title': '标题111',
+      //       // 标题
+      //       'desc': '副标题',
+      //       // 副标题
+      //       'url':
+      //       'https://cdnimg.doutian.me/20210412/89951618234773858?imageMogr2/auto-orient',
+      //       // 图片url
+      //       'eventType': 'url',
+      //       // 操作类型: 'url', 'product', 'empty'
+      //       'eventConf': 'http://www.baidu.com',
+      //       // 对应eventType的操作: 链接,商品id,'',
+      //       'evttckTag': 'lgs_123',
+      //       //打点数据标识(v2属性)
+      //     },
+      //   ]
+      // ];
+      // var list = <List<MenuIconModel>>[];
+      // menuIconMap.map((e) {
+      //   var iconList = <MenuIconModel>[];
+      //   e.map((e) {
+      //     iconList.add(MenuIconModel.fromString(e['title'], e['desc'], e['url'],
+      //         e['eventType'], e['eventConf'], e['evttckTag']));
+      //   }).toList();
+      //   list.add(iconList);
+      // }).toList();
       print(result.question);
+      List<Question> questionList = [];
       for(int i = 0 ; i < _questionController.questionList.length ; i++){
-        _question.add(Question(
+        questionList.add(Question(
           id: 1,
           title: result.question ?? '',
           subTitle: '',
@@ -73,6 +120,7 @@ class _QuestionCardState extends State<QuestionCard> {
           creator: '',
         ));
       }
+      _question = questionList;
     }else{
       _question = _questionController.questionList
           .map((item) => Question(

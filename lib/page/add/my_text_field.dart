@@ -48,8 +48,6 @@ class MyTextField extends StatelessWidget {
             color: rTagGreyColor,
             fontSize: hintTextSize,
           ),
-          filled: true,
-          fillColor: rTextWhiteColor20,
           contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           isDense: true,
           border: OutlineInputBorder(

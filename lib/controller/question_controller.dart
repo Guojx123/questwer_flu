@@ -100,6 +100,7 @@ class QuestionController extends GetxController
       if (questions != null) {
         questionList.assignAll(questions.results);
         debugPrint("获取分类题目数据");
+        debugPrint(questionList.toString());
         isLoading(false);
       }
     } finally {
