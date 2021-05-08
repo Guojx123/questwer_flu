@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:questwer_flu/controller/question_controller.dart';
 import 'package:questwer_flu/controller/question_list_controller.dart';
+import 'package:questwer_flu/controller/setting_controller.dart';
 import 'package:questwer_flu/page/score/score_screen.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
@@ -22,6 +23,7 @@ class AnswerQuestion extends StatelessWidget {
   }) : super(key: key);
 
   QuestionController _questionController = Get.put(QuestionController());
+  SettingController _settingController = Get.put(SettingController());
   DateTime _lastPressedAt; //上次点击时间
 
   @override
@@ -113,7 +115,7 @@ class AnswerQuestion extends StatelessWidget {
                                         ColorsTheme.purple),
                                     shapePath: _buildSpeechBubblePath(),
                                     center: Text(
-                                      "${60 - (timestamp * 60).round()} s",
+                                      "${_settingController.getAnswerTime - (timestamp * _settingController.getAnswerTime).round()} s",
                                       style: TextStyle(
                                         color: rBlueColor,
                                         height: 0.8,

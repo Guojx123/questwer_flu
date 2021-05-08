@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/language_controller.dart';
+import 'package:questwer_flu/controller/setting_controller.dart';
 import 'package:questwer_flu/service/scroll__behavior.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
@@ -9,9 +10,12 @@ import 'package:questwer_flu/widget/background_widget.dart';
 import 'package:questwer_flu/widget/title_widget.dart';
 
 import 'select_language_widget.dart';
+import 'set_answer_time_widget.dart';
 
 class SettingPage extends StatelessWidget {
-  LanguageController _languageController = Get.put(LanguageController());
+
+  final LanguageController _languageController = Get.put(LanguageController());
+  final SettingController _settingController = Get.put(SettingController());
 
   @override
   Widget build(BuildContext context) {
@@ -28,52 +32,13 @@ class SettingPage extends StatelessWidget {
                 SizedBox(
                   height: PersistentStorage.topHeight + DefaultSize.defaultPadding * 8,
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
-                  padding: EdgeInsets.only(
-                      top: DefaultSize.defaultPadding,
-                      bottom: DefaultSize.defaultPadding * 2,
-                      // left: DefaultSize.defaultPadding,
-                      // right: DefaultSize.defaultPadding,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    color: rBlueColor,
-                  ),
-                  child: Column(
-                    children: [
-                      _buildSelectOption(),
-                      ScrollConfiguration(
-                        behavior: OverScrollBehavior(),
-                        child: SelectLanguageWidget(
-                          'Language',
-                          ["English", "中文", "跟随系统"],
-                          ["English", "中文", "setting.follow_system".tr],
-                              (value) {
-                            switch (value) {
-                              case "English":
-                                LanguageController().changeLanguage("en", "US");
-                                break;
-                              case "中文":
-                                LanguageController().changeLanguage("zh", "CN");
-                                break;
-                              case "跟随系统":
-                                LanguageController().followSystemLanguage();
-                                break;
-                              case "Follow system":
-                                LanguageController().followSystemLanguage();
-                                break;
-                              default:
-                                LanguageController().followSystemLanguage();
-                                break;
-                            }
-                            _languageController.setSelectValue(value);
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                /// 修改语言Widget
+                _modifyLanguage(),
+                SizedBox(
+                  height: DefaultSize.defaultPadding,
                 ),
+                /// 设置答题时间间隔
+                _answerTime(),
               ],
             ),
           ),
@@ -109,13 +74,119 @@ class SettingPage extends StatelessWidget {
     );
   }
 
-  Widget _buildSelectOption() {
+  Widget _modifyLanguage(){
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding /2),
+      padding: EdgeInsets.only(
+        top: DefaultSize.defaultPadding /2,
+        bottom: DefaultSize.defaultPadding * 2,
+         left: DefaultSize.defaultPadding,
+         right: DefaultSize.defaultPadding,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+        color: rBlueColor,
+      ),
+      child: Column(
+        children: [
+          _buildSelectLanguageOption(),
+          ScrollConfiguration(
+            behavior: OverScrollBehavior(),
+            child: SelectLanguageWidget(
+              'Language',
+              ["English", "中文", "setting.follow_system".tr],
+              ["English", "中文", "setting.follow_system".tr],
+                  (value) {
+                switch (value) {
+                  case "English":
+                    LanguageController().changeLanguage("en", "US");
+                    break;
+                  case "中文":
+                    LanguageController().changeLanguage("zh", "CN");
+                    break;
+                  case "跟随系统":
+                    LanguageController().followSystemLanguage();
+                    break;
+                  case "Follow system":
+                    LanguageController().followSystemLanguage();
+                    break;
+                  default:
+                    LanguageController().followSystemLanguage();
+                    break;
+                }
+                _languageController.setSelectValue(value);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _answerTime(){
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding /2),
+      padding: EdgeInsets.only(
+        top: DefaultSize.defaultPadding /2,
+        bottom: DefaultSize.defaultPadding * 2,
+        left: DefaultSize.defaultPadding,
+        right: DefaultSize.defaultPadding,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+        color: rBlueColor,
+      ),
+      child: Column(
+        children: [
+          _buildSetAnswerTimeOption(),
+          ScrollConfiguration(
+            behavior: OverScrollBehavior(),
+            child: SetAnswerTimeWidget(
+              'AnswerTime',
+              ["30s", "45s", "60s"],
+              ["30s", "45s", "60s"],
+                  (value) {
+                switch (value) {
+                  case "30s":
+                    _settingController.setAnswerTime(30);
+                    break;
+                  case "45s":
+                    _settingController.setAnswerTime(45);
+                    break;
+                  case "60s":
+                    _settingController.setAnswerTime(60);
+                    break;
+                  default:
+                    _settingController.setAnswerTime(60);
+                    break;
+                }
+                _settingController.setSelectValue(value);
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSelectLanguageOption() {
     return TitleWidget(
       Text(
         "setting.choose_language_desc".tr,
         style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
       ),
       title: "setting.choose_language".tr,
+      horizontalMargin: DefaultSize.defaultPadding,
+    );
+  }
+
+  Widget _buildSetAnswerTimeOption() {
+    return TitleWidget(
+      Text(
+        "setting.answer_time_desc".tr,
+        style: TextStyle(color: Color(0xFF979796), fontSize: 13, height: 1.5),
+      ),
+      title: "setting.answer_time".tr,
       horizontalMargin: DefaultSize.defaultPadding,
     );
   }

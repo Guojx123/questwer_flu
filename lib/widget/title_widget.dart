@@ -22,7 +22,7 @@ class TitleWidget extends StatelessWidget {
     return Container(
       width: double.maxFinite,
       margin: EdgeInsets.symmetric(
-          horizontal: horizontalMargin,
+          horizontal: horizontalMargin /2,
           vertical: DefaultSize.defaultPadding * 2),
       padding: EdgeInsets.symmetric(
           horizontal: DefaultSize.defaultPadding,

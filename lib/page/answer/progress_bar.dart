@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/question_controller.dart';
+import 'package:questwer_flu/controller/setting_controller.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 
 class ProgressBar extends StatelessWidget {
+
+  final SettingController _settingController = Get.put(SettingController());
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,7 +44,7 @@ class ProgressBar extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "${(timestamp * 60).round()} sec",
+                              "${(timestamp * _settingController.getAnswerTime).round()} sec",
                               style: TextStyle(color: ColorsTheme.greyWhite),
                             ),
                             Icon(

@@ -6,8 +6,14 @@ import 'package:questwer_flu/model/question.dart';
 import 'package:questwer_flu/model/question_by_category.dart';
 import 'package:questwer_flu/page/score/score_screen.dart';
 
+import 'setting_controller.dart';
+
 class QuestionController extends GetxController
     with SingleGetTickerProviderMixin {
+
+  /// 加载设置
+  SettingController _settingController;
+
   /// 获取题目数据
   var isLoading = true.obs;
   RxList questionList = List().obs;
@@ -48,13 +54,14 @@ class QuestionController extends GetxController
   void onInit() {
     // TODO: implement onInit
     _pageController = PageController();
+    _settingController = Get.put(SettingController());
     _animationController =
-        AnimationController(duration: Duration(seconds: 60), vsync: this);
+        AnimationController(duration: Duration(seconds: _settingController.getAnswerTime), vsync: this);
     _animation = Tween(begin: 0.0, end: 1.0).animate(_animationController)
       ..addListener(() {
         update();
       });
-    // 60秒计时完成后，跳转下一题
+    // 计时完成后，跳转下一题
     _animationController.forward().whenComplete(nextQuestion);
     super.onInit();
   }

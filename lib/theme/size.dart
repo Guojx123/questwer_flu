@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 const smallSize = 0.4;
 const defaultPadding = 10;

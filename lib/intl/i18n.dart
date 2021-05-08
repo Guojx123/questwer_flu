@@ -75,6 +75,8 @@ class Messages extends Translations{
       'setting.follow_system':'Follow system',
       'setting.choose_language':'Choose App language',
       'setting.choose_language_desc':'Set the current locale, effective immediately',
+      'setting.answer_time':'Set AnswerTime',
+      'setting.answer_time_desc':'Set the countdown for each question',
       //通用
 
     },
@@ -150,6 +152,8 @@ class Messages extends Translations{
       'setting.follow_system':'跟随系统',
       'setting.choose_language':'选择语言环境',
       'setting.choose_language_desc':'设置当前语言环境，即刻生效',
+      'setting.answer_time':'答题间隔',
+      'setting.answer_time_desc':'设置每道题目的答题倒计时',
     },
   };
 
