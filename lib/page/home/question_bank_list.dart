@@ -24,7 +24,7 @@ class _QuestionBankListState extends State<QuestionBankList> {
   final PopMenuController _popMenuController = Get.put(PopMenuController());
   final QuestionListController _questionListController =
   Get.put(QuestionListController());
-  String get _owner => widget.questionBankOwner;
+  String get _owner => widget.questionBankOwner; // Admin: Q&A
 
   @override
   void initState() {

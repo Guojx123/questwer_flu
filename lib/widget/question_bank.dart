@@ -101,17 +101,21 @@ class _QuestionBankItemState extends State<QuestionBankItem> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: GestureDetector(
-                    key: widget.btnKey,
-                    onTap: () {
-                      popMenuController.menu.show(widgetKey: widget.btnKey);
-                    },
-                    child: Icon(
-                      Icons.more_horiz,
-                      size: DefaultSize.defaultPadding * 2,
-                      color: ColorsTheme.white,
+                Offstage(
+                  offstage: _questionBank.owner == 'Q&A' ? true : false,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: GestureDetector(
+                      key: widget.btnKey,
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        popMenuController.menu.show(widgetKey: widget.btnKey);
+                      },
+                      child: Icon(
+                        Icons.more_horiz,
+                        size: DefaultSize.defaultPadding * 2,
+                        color: ColorsTheme.white,
+                      ),
                     ),
                   ),
                 ),
