@@ -18,6 +18,7 @@ class Activity {
     this.updatedAt,
     this.objectId,
     this.createdAt,
+    this.context,
     this.type,
     this.id,
   });
@@ -30,6 +31,7 @@ class Activity {
   DateTime updatedAt;
   String objectId;
   DateTime createdAt;
+  String context;
   String type;
   int id;
 
@@ -42,6 +44,7 @@ class Activity {
     updatedAt: DateTime.parse(json["updatedAt"]),
     objectId: json["objectId"],
     createdAt: DateTime.parse(json["createdAt"]),
+    context: json["context"],
     type: json["type"],
     id: json["id"],
   );
@@ -55,6 +58,7 @@ class Activity {
     "updatedAt": updatedAt.toIso8601String(),
     "objectId": objectId,
     "createdAt": createdAt.toIso8601String(),
+    "context": context,
     "type": type,
     "id": id,
   };

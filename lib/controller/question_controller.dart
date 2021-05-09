@@ -10,7 +10,6 @@ import 'setting_controller.dart';
 
 class QuestionController extends GetxController
     with SingleGetTickerProviderMixin {
-
   /// 加载设置
   SettingController _settingController;
 
@@ -53,17 +52,18 @@ class QuestionController extends GetxController
   @override
   void onInit() {
     // TODO: implement onInit
+    super.onInit();
     _pageController = PageController();
     _settingController = Get.put(SettingController());
-    _animationController =
-        AnimationController(duration: Duration(seconds: _settingController.getAnswerTime), vsync: this);
+    _animationController = AnimationController(
+        duration: Duration(seconds: _settingController.getAnswerTime),
+        vsync: this);
     _animation = Tween(begin: 0.0, end: 1.0).animate(_animationController)
       ..addListener(() {
         update();
       });
     // 计时完成后，跳转下一题
     _animationController.forward().whenComplete(nextQuestion);
-    super.onInit();
   }
 
   @override
@@ -78,12 +78,10 @@ class QuestionController extends GetxController
   initValue() {
     _isAnswered = false;
     _questionNumber = 1.obs;
-//    questionList.clear();
     _numOfCorrectAns = 0;
     _animationController?.reset();
     _animationController.forward().whenComplete(nextQuestion);
   }
-
 
   /// 获取某一题库的题目数据
   void fetchQuestion(String name) async {
@@ -105,7 +103,8 @@ class QuestionController extends GetxController
   void fetchQuestionByCategory(int categoryId) async {
     try {
       isLoading(true);
-      QuestionByCategory questions = await ApiService.fetchQuestionByCategory(categoryId);
+      QuestionByCategory questions =
+          await ApiService.fetchQuestionByCategory(categoryId);
       if (questions != null) {
         questionList.assignAll(questions.results);
         debugPrint("获取分类题目数据");
@@ -155,7 +154,7 @@ class QuestionController extends GetxController
       // 计时器结束后，转到下一个问题
       _animationController.forward().whenComplete(nextQuestion);
     } else {
-      Get.to(() =>ScoreScreen());
+      Get.to(() => ScoreScreen());
     }
   }
 }

@@ -11,7 +11,6 @@ import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'package:questwer_flu/widget/custom_shape.dart';
-import 'package:questwer_flu/widget/gradient_image.dart';
 import 'package:questwer_flu/widget/lead_page_layout.dart';
 
 import 'add/add_page_view.dart';
@@ -232,6 +231,7 @@ class _LeadPageState extends State<LeadPage> {
                       type: item["type"],
                       title: item["title"],
                       subTitle: item["subTitle"],
+                      context: item["context"],
                       imgUrl: item["imgUrl"],
                     )).toList();
                     var item = activityList[index];
