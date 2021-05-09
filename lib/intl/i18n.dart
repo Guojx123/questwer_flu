@@ -5,6 +5,8 @@ class Messages extends Translations{
   Map<String, Map<String, String>> get keys => {
     "en_US":{
       'hi':'Hi',
+      //应用
+      'application.name': 'Q&A',
       //欢迎页
       'welcome.title':'Let\'s Play a Q&A.',
       'welcome.go':'Go',
@@ -26,7 +28,7 @@ class Messages extends Translations{
       'lead.hall_desc':'To tell you, here you can view the question bank shared by all users.',
       'lead.mine':'Mine',
       'lead.mine_desc':'Congratulations, here is everything about you.',
-      'lead.challenge':'Hall',
+      'lead.challenge':'Challenge',
       'lead.challenge_desc':'Are you ready? Here are various topics collected on the Internet.',
       'lead.activity':'Popular activities',
       'lead.mode':'Choose answer mode',
@@ -64,7 +66,7 @@ class Messages extends Translations{
       'createBQ.button_unknow':'unknow',
       'createQ.textfield_create':'Create',
       'createQ.dialog_title':'ARE YOU SURE?',
-      'createQ.dialog_context':'A total of {1} question has been created. Are you sure to exit the editing?',
+      'createQ.dialog_context':'You will not be able to edit after exiting. Are you sure to quit?',
       //答题页
       'answerQ.title':'Question ',
       'answerQ.btn':'Finish Stage',
@@ -79,9 +81,14 @@ class Messages extends Translations{
       'setting.answer_time_desc':'Set the countdown for each question',
       //通用
       'common.no_found_question': 'Did not find any of your question bank~',
+      'common.cancel': 'Cancel',
+      'common.exit': 'Exit',
+      'common.confirm': 'Confirm',
     },
     "zh_CN":{
       'hi':'你好',
+      //应用
+      'application.name': '问答君',
       //欢迎页
       'welcome.title':'开始问答吧',
       'welcome.go':'开始',
@@ -141,7 +148,7 @@ class Messages extends Translations{
       'createBQ.button_unknow':'不知道',
       'createQ.textfield_create':'创建',
       'createQ.dialog_title':'确定退出?',
-      'createQ.dialog_context':'共创建了{1}个问题。 您确定要退出编辑吗？',
+      'createQ.dialog_context':'退出后将不能编辑，您确定要退出吗？',
       //答题页
       'answerQ.title':'问题 ',
       'answerQ.btn':'结算',
@@ -156,6 +163,9 @@ class Messages extends Translations{
       'setting.answer_time_desc':'设置每道题目的答题倒计时',
       //通用
       'common.no_found_question': '没有发现你的任何题库～',
+      'common.cancel': '取消',
+      'common.exit': '退出',
+      'common.confirm': '确认',
     },
   };
 

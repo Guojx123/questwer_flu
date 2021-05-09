@@ -92,6 +92,7 @@ class AddPageView extends StatelessWidget {
                               Text(
                                 "createQ.dialog_context".tr,
                                 maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: DefaultSize.smallFontSize * 1.2,
@@ -114,9 +115,14 @@ class AddPageView extends StatelessWidget {
                                       onTap: () {
                                         Get.back();
                                       },
-                                      child: Icon(
-                                        Icons.close_rounded,
-                                        size: DefaultSize.middleSize * 3,
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.close_rounded,
+                                            size: DefaultSize.middleSize * 3,
+                                          ),
+                                          Text('common.cancel'.tr)
+                                        ],
                                       )),
                                   GestureDetector(
                                       onPanDown: (_) {
@@ -128,9 +134,14 @@ class AddPageView extends StatelessWidget {
                                         Get.back();
                                         Get.back();
                                       },
-                                      child: Icon(
-                                        Icons.outdoor_grill,
-                                        size: DefaultSize.middleSize * 3,
+                                      child: Row(
+                                        children: [
+                                          Icon(
+                                            Icons.outdoor_grill,
+                                            size: DefaultSize.middleSize * 3,
+                                          ),
+                                          Text('common.confirm'.tr)
+                                        ],
                                       )),
                                 ],
                               ),

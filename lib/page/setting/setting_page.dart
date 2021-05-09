@@ -69,8 +69,46 @@ class SettingPage extends StatelessWidget {
               ),
             ),
           ),
+          Positioned(
+            right: DefaultSize.defaultPadding,
+            top: PersistentStorage.topHeight + DefaultSize.defaultPadding * 2,
+            child: GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              onTap: () {
+                showAboutDialog(
+                  context: context,
+                  applicationIcon: Icon(Icons.verified_user),
+                  applicationVersion: '1.0.0',
+                  applicationName: 'application.name'.tr,
+                  applicationLegalese: 'Gino',
+                  children: [
+
+                  ],
+                );
+              },
+              child: Container(
+                child: Image.asset(
+                  "assets/icon_about.png",
+                  width: DefaultSize.smallSize * 6,
+                  height: DefaultSize.smallSize * 6,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
+    );
+  }
+
+  Widget _buildListTile(String title ,IconData iconData,Function function){
+    return ListTile(
+      onTap: (){
+        _service.sendSms(number);
+      },
+      leading: Icon(Icons.message),
+      title: Text('${Translations.of(context).text('callme')}',style: TextStyle(
+        fontWeight: FontWeight.w300,
+      ),),
     );
   }
 

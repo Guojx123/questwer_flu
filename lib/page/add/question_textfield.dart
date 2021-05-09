@@ -4,7 +4,7 @@ import 'package:questwer_flu/controller/create_controller.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/widget/amount_textfield.dart';
-import 'my_text_field.dart';
+import '../../widget/my_text_field.dart';
 
 /// a 选择题
 /// 1.题目标题、描述

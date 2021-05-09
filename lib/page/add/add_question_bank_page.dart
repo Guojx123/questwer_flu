@@ -4,8 +4,8 @@ import 'package:questwer_flu/controller/create_controller.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/getx_snack_bar.dart';
 import 'package:questwer_flu/widget/title_widget.dart';
-import 'my_bottom.dart';
-import 'my_slider.dart';
+import '../../widget/my_bottom.dart';
+import '../../widget/my_slider.dart';
 import 'question_bank_textfield.dart';
 
 class CreateQuestionBank extends StatelessWidget {

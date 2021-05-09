@@ -212,6 +212,7 @@ class CreateController extends GetxController {
     newQ['sub_title'] = subTitle;
     newQ['creator'] = currentUser.username;
     newQ['ownedQB'] = _ownedQB;
+    newQ['type'] = 'user';
     newQ['difficulty'] = "1";
     newQ['correct_answer'] = correctAnswer;
     newQ['incorrect_answers'] = json.encode(answerList);
