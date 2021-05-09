@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
+import 'controller/language_controller.dart';
 import 'controller/user_controller.dart';
 import 'intl/i18n.dart';
 import 'page/lead_page.dart';
@@ -37,11 +38,12 @@ void realRunApp() async {
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       translations: Messages(),
-      locale: Locale("zh", "CN"),
+      locale: getLocale(GetStorage().read("deviceLocale")) ?? Locale("zh", "CN"),
       fallbackLocale: Locale("zh", "CN"),
       home: OKToast(
         position: ToastPosition.bottom,
@@ -70,6 +72,26 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Locale getLocale(String locale){
+    switch (locale) {
+      case "English":
+        return Locale("en", "US");
+        break;
+      case "中文":
+        return Locale("zh", "CN");
+        break;
+      case "跟随系统":
+        return Get.deviceLocale;
+        break;
+      case "Follow system":
+        return Get.deviceLocale;
+        break;
+      default:
+        return Get.deviceLocale;
+        break;
+    }
   }
 
   ThemeData _buildThemeStyle() {
