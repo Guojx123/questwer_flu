@@ -79,6 +79,11 @@ class Messages extends Translations{
       'setting.choose_language_desc':'Set the current locale, effective immediately',
       'setting.answer_time':'Set AnswerTime',
       'setting.answer_time_desc':'Set the countdown for each question',
+      //关于
+      'about.github': 'View the code on Github.',
+      'about.visit_me': 'Visit my github website.',
+      'about.share_the_app': 'Share this application.',
+      'about.call_me': 'contact me. hdb41348@163.com',
       //通用
       'common.no_found_question': 'Did not find any of your question bank~',
       'common.cancel': 'Cancel',
@@ -161,6 +166,11 @@ class Messages extends Translations{
       'setting.choose_language_desc':'设置当前语言环境，即刻生效',
       'setting.answer_time':'答题间隔',
       'setting.answer_time_desc':'设置每道题目的答题倒计时',
+      //关于
+      'about.github': '在Github上查看代码',
+      'about.visit_me': '浏览我的个人主页',
+      'about.share_the_app': '分享这个应用',
+      'about.call_me': '请联系我 hdb41348@163.com',
       //通用
       'common.no_found_question': '没有发现你的任何题库～',
       'common.cancel': '取消',

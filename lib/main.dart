@@ -12,6 +12,8 @@ import 'package:get/get.dart';
 import 'service/restart_service.dart';
 import 'package:oktoast/oktoast.dart';
 
+import 'service/service_locator.dart';
+
 void main() => realRunApp();
 
 void realRunApp() async {
@@ -22,6 +24,9 @@ void realRunApp() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+  // 注册系统服务
+  setupLocator();
 
   //初始化LeanCloud服务
   LeanCloud.initialize(

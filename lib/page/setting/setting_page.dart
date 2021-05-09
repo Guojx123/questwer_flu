@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/language_controller.dart';
 import 'package:questwer_flu/controller/setting_controller.dart';
 import 'package:questwer_flu/service/scroll__behavior.dart';
+import 'package:questwer_flu/service/service_locator.dart';
+import 'package:questwer_flu/service/service_tel_and_sms.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
 import 'package:questwer_flu/widget/title_widget.dart';
-
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
 import 'select_language_widget.dart';
 import 'set_answer_time_widget.dart';
 
 class SettingPage extends StatelessWidget {
-
   final LanguageController _languageController = Get.put(LanguageController());
   final SettingController _settingController = Get.put(SettingController());
+  final TelAndSmsService _service = locator<TelAndSmsService>();
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +33,16 @@ class SettingPage extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: PersistentStorage.topHeight + DefaultSize.defaultPadding * 8,
+                  height: PersistentStorage.topHeight +
+                      DefaultSize.defaultPadding * 8,
                 ),
+
                 /// 修改语言Widget
                 _modifyLanguage(),
                 SizedBox(
                   height: DefaultSize.defaultPadding,
                 ),
+
                 /// 设置答题时间间隔
                 _answerTime(),
               ],
@@ -80,10 +86,11 @@ class SettingPage extends StatelessWidget {
                   applicationIcon: Icon(Icons.verified_user),
                   applicationVersion: '1.0.0',
                   applicationName: 'application.name'.tr,
-                  applicationLegalese: 'Gino',
-                  children: [
-
-                  ],
+                  applicationLegalese: 'By Gino',
+                  children: tileList
+                      .map((e) => _buildListTile(
+                          e['title'], e['iconData'], e['activity']))
+                      .toList(),
                 );
               },
               child: Container(
@@ -100,26 +107,91 @@ class SettingPage extends StatelessWidget {
     );
   }
 
-  Widget _buildListTile(String title ,IconData iconData,Function function){
+  var tileList = [
+    {
+      'title': 'about.github',
+      'iconData': Icons.code,
+      'activity': 'Github',
+    },
+    {
+      'title': 'about.visit_me',
+      'iconData': Icons.web,
+      'activity': 'Mine',
+    },
+    {
+      'title': 'about.share_the_app',
+      'iconData': Icons.share,
+      'activity': 'Share',
+    },
+    {
+      'title': 'about.call_me',
+      'iconData': Icons.email,
+      'activity': 'Email',
+    },
+  ];
+
+  Future<Null> openInWebView(String url) async {
+    if (await url_launcher.canLaunch(url)) {
+      Navigator.of(Get.context).push(
+        MaterialPageRoute(
+          builder: (ctx) => WebviewScaffold(
+            initialChild: Center(child: CircularProgressIndicator()),
+            url: url,
+            appBar: AppBar(title: Text(url),backgroundColor: rPurpleColor,),
+          ),
+        ),
+      );
+    } else {
+      Scaffold.of(Get.context).showSnackBar(
+        SnackBar(
+          content: Text('URL $url can not be launched.'),
+        ),
+      );
+    }
+  }
+
+  Widget _buildListTile(String title, IconData iconData, String function) {
+
+    activity(String function){
+      switch (function) {
+        case 'Github':
+          url_launcher.launch('https://github.com/Guojx123/questwer_flu');
+          break;
+        case 'Mine':
+          url_launcher.launch('https://github.com/Guojx123?tab=repositories');
+          break;
+        case 'Share':
+          url_launcher.launch('https://www.pgyer.com/aytl');
+          break;
+        case 'Email':
+          _service.sendEmail('hdb41348@163.com');
+          break;
+      }
+    }
     return ListTile(
       onTap: (){
-        _service.sendSms(number);
+        activity(function);
       },
-      leading: Icon(Icons.message),
-      title: Text('${Translations.of(context).text('callme')}',style: TextStyle(
-        fontWeight: FontWeight.w300,
-      ),),
+      leading: Icon(iconData),
+      title: Text(
+        title.tr,
+        style: TextStyle(
+          fontWeight: FontWeight.w300,
+        ),
+      ),
     );
   }
 
-  Widget _modifyLanguage(){
+
+
+  Widget _modifyLanguage() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding /2),
+      margin: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding / 2),
       padding: EdgeInsets.only(
-        top: DefaultSize.defaultPadding /2,
+        top: DefaultSize.defaultPadding / 2,
         bottom: DefaultSize.defaultPadding * 2,
-         left: DefaultSize.defaultPadding,
-         right: DefaultSize.defaultPadding,
+        left: DefaultSize.defaultPadding,
+        right: DefaultSize.defaultPadding,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -134,7 +206,7 @@ class SettingPage extends StatelessWidget {
               'Language',
               ["English", "中文", "setting.follow_system".tr],
               ["English", "中文", "setting.follow_system".tr],
-                  (value) {
+              (value) {
                 switch (value) {
                   case "English":
                     LanguageController().changeLanguage("en", "US");
@@ -161,11 +233,11 @@ class SettingPage extends StatelessWidget {
     );
   }
 
-  Widget _answerTime(){
+  Widget _answerTime() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding /2),
+      margin: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding / 2),
       padding: EdgeInsets.only(
-        top: DefaultSize.defaultPadding /2,
+        top: DefaultSize.defaultPadding / 2,
         bottom: DefaultSize.defaultPadding * 2,
         left: DefaultSize.defaultPadding,
         right: DefaultSize.defaultPadding,
@@ -183,7 +255,7 @@ class SettingPage extends StatelessWidget {
               'AnswerTime',
               ["30s", "45s", "60s"],
               ["30s", "45s", "60s"],
-                  (value) {
+              (value) {
                 switch (value) {
                   case "30s":
                     _settingController.setAnswerTime(30);
