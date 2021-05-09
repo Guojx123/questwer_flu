@@ -78,7 +78,7 @@ class Messages extends Translations{
       'setting.answer_time':'Set AnswerTime',
       'setting.answer_time_desc':'Set the countdown for each question',
       //通用
-
+      'common.no_found_question': 'Did not find any of your question bank~',
     },
     "zh_CN":{
       'hi':'你好',
@@ -154,6 +154,8 @@ class Messages extends Translations{
       'setting.choose_language_desc':'设置当前语言环境，即刻生效',
       'setting.answer_time':'答题间隔',
       'setting.answer_time_desc':'设置每道题目的答题倒计时',
+      //通用
+      'common.no_found_question': '没有发现你的任何题库～',
     },
   };
 

@@ -52,7 +52,23 @@ class _QuestionBankListState extends State<QuestionBankList> {
               _questionListController.refreshController.loadComplete();
             },
             footer: RefreshFooter(),
-            child: _buildList(controller.isLoading.value),
+            child: _questionListController.questionBankList.isEmpty ? Align(
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/empty_question_list.png",
+                    width: DefaultSize.largeSize * 5,
+                    height: DefaultSize.largeSize * 5,
+                  ),
+                  Text('common.no_found_question'.tr,style: TextStyle(
+                    color: Colors.grey.shade500,
+                    fontSize: DefaultSize.fontSize,
+                  ),)
+                ],
+              ),
+            ):_buildList(controller.isLoading.value),
           );
         });
   }

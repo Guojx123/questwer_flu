@@ -43,8 +43,8 @@ class SelectLanguageWidget extends StatelessWidget {
                           Radio(
                             activeColor: rBlueColor,
                             hoverColor: rLightPurpleColor,
-                            value: selectValue,
-                            groupValue: value,
+                            value: value,
+                            groupValue: selectValue,
                             onChanged: (value) {
                               onChange(value);
                             },
