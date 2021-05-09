@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/language_controller.dart';
 import 'package:questwer_flu/controller/setting_controller.dart';
@@ -83,7 +82,11 @@ class SettingPage extends StatelessWidget {
               onTap: () {
                 showAboutDialog(
                   context: context,
-                  applicationIcon: Icon(Icons.verified_user),
+                  applicationIcon: Image.asset(
+                    "assets/icon_launcher.png",
+                    width: DefaultSize.middleSize * 6,
+                    height: DefaultSize.middleSize * 6,
+                  ),
                   applicationVersion: '1.0.0',
                   applicationName: 'application.name'.tr,
                   applicationLegalese: 'By Gino',
@@ -129,26 +132,6 @@ class SettingPage extends StatelessWidget {
       'activity': 'Email',
     },
   ];
-
-  Future<Null> openInWebView(String url) async {
-    if (await url_launcher.canLaunch(url)) {
-      Navigator.of(Get.context).push(
-        MaterialPageRoute(
-          builder: (ctx) => WebviewScaffold(
-            initialChild: Center(child: CircularProgressIndicator()),
-            url: url,
-            appBar: AppBar(title: Text(url),backgroundColor: rPurpleColor,),
-          ),
-        ),
-      );
-    } else {
-      Scaffold.of(Get.context).showSnackBar(
-        SnackBar(
-          content: Text('URL $url can not be launched.'),
-        ),
-      );
-    }
-  }
 
   Widget _buildListTile(String title, IconData iconData, String function) {
 

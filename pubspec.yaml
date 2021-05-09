@@ -41,8 +41,8 @@ dependencies:
   # 吐司
   oktoast: ^2.0.1
 
-  # 本地存储
-  shared_preferences: ^0.5.7
+#  # 本地存储
+#  shared_preferences: ^0.5.7
 
   # 后端支持
   leancloud_storage: ^0.6.2
@@ -70,7 +70,6 @@ dependencies:
   decimal: ^0.3.5
 
   # 网站浏览
-  flutter_webview_plugin: ^0.3.2
   url_launcher: 4.1.0
 
 dev_dependencies:
