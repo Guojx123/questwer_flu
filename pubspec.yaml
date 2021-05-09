@@ -72,6 +72,10 @@ dependencies:
   # 网站浏览
   url_launcher: ^4.1.0
 
+  # MD文档支持
+  markdown_widget: ^1.2.4
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

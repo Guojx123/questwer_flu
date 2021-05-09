@@ -5,6 +5,7 @@ import 'package:questwer_flu/model/activity.dart';
 import 'package:questwer_flu/page/answer/answer_question.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
+import 'package:questwer_flu/util/markdown/widget_markdown_page.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
 import 'package:questwer_flu/widget/gradient_image.dart';
 
@@ -19,9 +20,6 @@ class ActivityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    QuestionController questionController = Get.put(QuestionController());
-
     return ValueListenableBuilder(
       valueListenable: valueNotifier,
       builder: (context, value, widget) {
@@ -29,11 +27,13 @@ class ActivityCard extends StatelessWidget {
           onTap: () {
             // TODO：[Gino] 扩展活动类型
             debugPrint('Gino context -> ${activity.context}');
-            if (activity.context == 'question') {
+            if (activity.type == 'official') {
               Get.to(() => AnswerQuestion(
                     name: activity.title,
                     isCategory: false,
                   ));
+            }else if(activity.type == 'markdown'){
+              Get.to(() => MarkdownPage(activity.context,isFilePath: false,title: activity.title,));
             }
           },
           child: Card(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'transparent_image.dart';
+import '../transparent_image.dart';
 
 class DeckFadeInImage extends StatelessWidget {
   final String imgUrl;
