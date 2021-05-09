@@ -70,7 +70,7 @@ dependencies:
   decimal: ^0.3.5
 
   # 网站浏览
-  url_launcher: 4.1.0
+  url_launcher: ^4.1.0
 
 dev_dependencies:
   flutter_test:
