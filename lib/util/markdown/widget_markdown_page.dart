@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:markdown_widget/markdown_widget.dart';
 import 'package:questwer_flu/theme/color.dart';
+import 'package:questwer_flu/theme/size.dart';
 
 import 'syntax_highlighter.dart';
 
@@ -69,7 +70,11 @@ class _MarkdownPageState extends State<MarkdownPage> {
           ? Center(
               child: Text('Not Found'),
             )
-          : MarkdownWidget(data: _markdownCodeString),
+          : MarkdownWidget(
+              data: _markdownCodeString,
+              childMargin: EdgeInsets.all(DefaultSize.defaultPadding),
+              physics: BouncingScrollPhysics(),
+            ),
     );
   }
 }
