@@ -57,7 +57,7 @@ dependencies:
   http: ^0.12.2
 
   # 刷新
-  pull_to_refresh: 1.6.3
+  pull_to_refresh: ^1.6.3
 
   # 指示器
   liquid_progress_indicator: ^0.3.2
