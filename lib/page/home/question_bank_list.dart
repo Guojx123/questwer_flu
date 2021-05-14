@@ -6,7 +6,7 @@ import 'package:questwer_flu/controller/question_list_controller.dart';
 import 'package:questwer_flu/model/question_bank.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/util/shared_preferences.dart';
-import 'package:questwer_flu/widget/question_bank.dart';
+import 'package:questwer_flu/widget/question_item.dart';
 import 'package:questwer_flu/widget/smart_refresh_footer.dart';
 
 class QuestionBankList extends StatefulWidget {
@@ -95,6 +95,8 @@ class _QuestionBankListState extends State<QuestionBankList> {
                 id: item["id"],
                 name: item["name"],
                 description: item["description"],
+                // LCObject.objectId 需要get方法获取
+                objectId: item.objectId,
                 share: item["share"],
                 owner: item["owner"],
                 shareId: item["shareId"],

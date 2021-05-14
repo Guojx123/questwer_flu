@@ -30,8 +30,8 @@ dependencies:
   cupertino_icons: ^1.0.0
 
   # GetX
-  get: ^3.24.0
-  get_storage: ^1.3.2
+  get: ^3.25.6
+  get_storage:
   get_it: ^1.0.3+2
 
   # 网络请求
@@ -70,7 +70,7 @@ dependencies:
   decimal: ^0.3.5
 
   # 网站浏览
-  url_launcher: ^4.1.0
+  url_launcher:
 
   # MD文档支持
   markdown_widget: ^1.2.4

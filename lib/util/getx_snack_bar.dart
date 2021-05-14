@@ -41,7 +41,7 @@ class GetXSnackBar{
     Get.snackbar("netError.create_success".tr, "netError.create_success_context".tr,
         colorText: rBlueColor,
         icon: Icon(Icons.messenger,color: rBlueColor,),
-        snackPosition: SnackPosition.TOP,
+        snackPosition: SnackPosition.BOTTOM,
         backgroundGradient: ColorsTheme.gWelcomeGradient);
   }
 

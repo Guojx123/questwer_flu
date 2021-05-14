@@ -114,7 +114,7 @@ class _QuestionCardState extends State<QuestionCard> {
           title: result.question ?? '',
           subTitle: '',
           difficulty: '',
-          incorrect_answers: json.encode(result.incorrectAnswers),
+          incorrectAnswers: json.encode(result.incorrectAnswers),
           correctAnswer: result.correctAnswer,
           ownedQb: '',
           creator: '',
@@ -128,7 +128,7 @@ class _QuestionCardState extends State<QuestionCard> {
         title: item["title"] ?? '',
         subTitle: item["sub_title"] ?? '',
         difficulty: item["difficulty"] ?? '',
-        incorrect_answers: item["incorrect_answers"],
+        incorrectAnswers: item["incorrect_answers"],
         correctAnswer: item["correct_answer"],
         ownedQb: item["ownedQB"] ?? '',
         creator: item["creator"] ?? '',
@@ -139,12 +139,10 @@ class _QuestionCardState extends State<QuestionCard> {
 
     /// 解析json字符串
     if(_isCategory){
-      print("oobs");
-      print(item.incorrect_answers);
-      answerList = json.decode(item.incorrect_answers);
+      answerList = json.decode(item.incorrectAnswers);
       answerList.add(item.correctAnswer);
     }else{
-      answerList = json.decode(item.incorrect_answers);
+      answerList = json.decode(item.incorrectAnswers);
     }
 
     /// 打乱顺序
