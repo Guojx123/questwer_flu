@@ -5,8 +5,8 @@ import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/page/lead_page.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
-import 'package:questwer_flu/util/getx_snack_bar.dart';
-import 'package:questwer_flu/util/shared_preferences.dart';
+import 'package:questwer_flu/service/getx_snack_bar.dart';
+import 'package:questwer_flu/service/shared_preferences.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
 
 class Welcome extends StatelessWidget {

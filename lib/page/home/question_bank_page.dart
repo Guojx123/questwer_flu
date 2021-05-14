@@ -5,7 +5,7 @@ import 'package:questwer_flu/controller/create_controller.dart';
 import 'package:questwer_flu/page/home/question_bank_list.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
-import 'package:questwer_flu/util/shared_preferences.dart';
+import 'package:questwer_flu/service/shared_preferences.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
 
 class QuestionBankListPage extends StatelessWidget {

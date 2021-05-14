@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:popup_menu/popup_menu.dart';
 import 'package:questwer_flu/http/ApiService.dart';
+import 'package:questwer_flu/model/question_bank.dart';
+import 'package:questwer_flu/service/getx_snack_bar.dart';
 
 import 'question_list_controller.dart';
 
@@ -11,8 +13,7 @@ class PopMenuController extends GetxController {
 
   ScrollController scrollController;
 
-  String objectId;
-  String owner;
+  QuestionBank questionBankItem;
 
   final QuestionListController _questionListController =
       Get.put(QuestionListController());
@@ -48,8 +49,7 @@ class PopMenuController extends GetxController {
             color: Colors.white,
           )),
     ], onClickMenu: onClickMenu, onDismiss: onDismiss, maxColumn: 4);
-    objectId = '';
-    owner = '';
+    questionBankItem = QuestionBank();
     scrollController = ScrollController(keepScrollOffset: true);
   }
 
@@ -67,9 +67,11 @@ class PopMenuController extends GetxController {
   void onClickMenu(MenuItemProvider item) {
     print('Click menu -> ${item.menuTitle}');
     if (item.menuTitle == 'Delete') {
-      ApiService.deleteQuestionBankByObjectId(objectId);
+      ApiService.deleteQuestionBankByObjectId(questionBankItem.objectId);
       Future.delayed(Duration(milliseconds: 1000))
-          .then((value) => _questionListController.refreshList(owner));
+          .then((value) => _questionListController.refreshList(questionBankItem.owner));
+    }else if(item.menuTitle == 'Share'){
+      GetXSnackBar().toShareById(questionBankItem.toShareId);
     }
   }
 

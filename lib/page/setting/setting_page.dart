@@ -7,7 +7,7 @@ import 'package:questwer_flu/service/service_locator.dart';
 import 'package:questwer_flu/service/service_tel_and_sms.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
-import 'package:questwer_flu/util/shared_preferences.dart';
+import 'package:questwer_flu/service/shared_preferences.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
 import 'package:questwer_flu/widget/title_widget.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;

@@ -5,7 +5,7 @@ import 'package:questwer_flu/controller/pop_menu_controller.dart';
 import 'package:questwer_flu/controller/question_list_controller.dart';
 import 'package:questwer_flu/model/question_bank.dart';
 import 'package:questwer_flu/theme/size.dart';
-import 'package:questwer_flu/util/shared_preferences.dart';
+import 'package:questwer_flu/service/shared_preferences.dart';
 import 'package:questwer_flu/widget/question_item.dart';
 import 'package:questwer_flu/widget/smart_refresh_footer.dart';
 
@@ -100,6 +100,7 @@ class _QuestionBankListState extends State<QuestionBankList> {
                 share: item["share"],
                 owner: item["owner"],
                 shareId: item["shareId"],
+                toShareId: item["toShareId"],
               ))
                   .toList();
               var item = questionBank[index];

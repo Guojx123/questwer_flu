@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/create_controller.dart';
 import 'package:questwer_flu/theme/size.dart';
-import 'package:questwer_flu/util/getx_snack_bar.dart';
+import 'package:questwer_flu/service/getx_snack_bar.dart';
 import 'package:questwer_flu/widget/title_widget.dart';
 import '../../widget/my_bottom.dart';
 import '../../widget/my_slider.dart';

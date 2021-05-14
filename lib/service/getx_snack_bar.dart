@@ -45,4 +45,12 @@ class GetXSnackBar{
         backgroundGradient: ColorsTheme.gWelcomeGradient);
   }
 
+  void toShareById(num shareID){
+    Get.snackbar('快让好友下载app体验吧！', '生成的分享id ：${shareID.toString()}',
+        colorText: rBlueColor,
+        icon: Icon(Icons.share,color: rPaleVioletRedColor,),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundGradient: ColorsTheme.gWelcomeGradient);
+  }
+
 }

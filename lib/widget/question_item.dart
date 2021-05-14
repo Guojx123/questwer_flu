@@ -3,7 +3,6 @@ import 'package:get/state_manager.dart';
 import 'package:popup_menu/popup_menu.dart';
 import 'package:questwer_flu/controller/pop_menu_controller.dart';
 import 'package:questwer_flu/controller/question_controller.dart';
-import 'package:questwer_flu/controller/question_list_controller.dart';
 import 'package:questwer_flu/model/question_bank.dart';
 import 'package:questwer_flu/page/answer/answer_question.dart';
 import 'package:questwer_flu/theme/color.dart';
@@ -25,8 +24,6 @@ class QuestionBankItem extends StatefulWidget {
 class _QuestionBankItemState extends State<QuestionBankItem> {
   PopMenuController popMenuController = Get.put(PopMenuController());
   QuestionController questionController = Get.put(QuestionController());
-  final QuestionListController _questionListController =
-  Get.put(QuestionListController());
 
   QuestionBank get _questionBank => widget.questionBank;
 
@@ -111,7 +108,7 @@ class _QuestionBankItemState extends State<QuestionBankItem> {
                       key: widget.btnKey,
                       behavior: HitTestBehavior.translucent,
                       onTap: () {
-                        popMenuController.objectId = _questionBank.objectId;
+                        popMenuController.questionBankItem = _questionBank;
                         popMenuController.menu.show(widgetKey: widget.btnKey);
                       },
                       child: Icon(

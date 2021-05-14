@@ -18,6 +18,7 @@ class QuestionBank {
     this.id,
     this.owner,
     this.shareId,
+    this.toShareId,
     this.objectId,
     this.createdAt,
     this.updatedAt,
@@ -30,6 +31,7 @@ class QuestionBank {
   int id;
   String owner;
   String shareId;
+  num toShareId;
   String objectId;
   DateTime createdAt;
   DateTime updatedAt;
@@ -39,9 +41,10 @@ class QuestionBank {
         acl: Acl.fromJson(json["ACL"]),
         name: json["name"],
         share: json["share"],
-        id: json["id"],
+        id: json["id"] as int,
         owner: json["owner"],
         shareId: json["shareId"],
+        toShareId: json['toShareId'] as num,
         objectId: json["objectId"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
@@ -55,6 +58,7 @@ class QuestionBank {
         "id": id,
         "owner": owner,
         "shareId": shareId,
+        "toShareId": toShareId,
         "objectId": objectId,
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
