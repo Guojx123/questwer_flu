@@ -4,7 +4,11 @@ import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/model/question_by_category.dart';
 
 class ApiService {
-  static var client = http.Client();
+  static var client;
+
+  ApiService(){
+    client = http.Client();
+  }
 
   static fetchActivityList() async {
     LCQuery<LCObject> query = LCQuery('activity');
