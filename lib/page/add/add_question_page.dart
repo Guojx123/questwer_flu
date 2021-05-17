@@ -4,7 +4,7 @@ import 'package:questwer_flu/controller/create_controller.dart';
 import 'package:questwer_flu/widget/my_bottom.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
-import 'package:questwer_flu/util/getx_snack_bar.dart';
+import 'package:questwer_flu/service/getx_snack_bar.dart';
 import 'package:questwer_flu/widget/multi_selection_widget.dart';
 import 'package:questwer_flu/widget/title_widget.dart';
 import '../../widget/custom_tab.dart';

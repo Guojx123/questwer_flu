@@ -85,7 +85,7 @@ class Messages extends Translations{
       'about.share_the_app': 'Share this application.',
       'about.call_me': 'contact me. hdb41348@163.com',
       //通用
-      'common.no_found_question': 'Did not find any of your question bank~',
+      'common.no_found_question': 'Did not find any question bank~',
       'common.cancel': 'Cancel',
       'common.exit': 'Exit',
       'common.confirm': 'Confirm',
@@ -172,7 +172,7 @@ class Messages extends Translations{
       'about.share_the_app': '分享这个应用',
       'about.call_me': '请联系我 hdb41348@163.com',
       //通用
-      'common.no_found_question': '没有发现你的任何题库～',
+      'common.no_found_question': '没有发现任何题库～',
       'common.cancel': '取消',
       'common.exit': '退出',
       'common.confirm': '确认',

@@ -30,6 +30,7 @@ const rMiddlePurpleColor2B = Color(0x2B8B91E5);
 const rDeepPurpleColor = Color(0xFF525487);
 
 const rPinkColor = Color(0xFFE660A0);
+const rPaleVioletRedColor = Color(0xFFDB7093);
 const rYellowColor = Color(0xFFffff00);
 const rOrangeColor = Color(0xFFFF6730);
 const rDeepRedColor = Color(0xFFbf3130);

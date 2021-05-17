@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:leancloud_storage/leancloud.dart';
-import 'package:questwer_flu/util/shared_preferences.dart';
+import 'package:questwer_flu/service/shared_preferences.dart';
 import 'controller/language_controller.dart';
 import 'controller/user_controller.dart';
 import 'intl/i18n.dart';

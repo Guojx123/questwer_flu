@@ -7,7 +7,7 @@ import 'package:questwer_flu/controller/question_controller.dart';
 import 'package:questwer_flu/page/answer/answer_question.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
-import 'package:questwer_flu/util/shared_preferences.dart';
+import 'package:questwer_flu/service/shared_preferences.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
 import 'package:questwer_flu/widget/smart_refresh_footer.dart';
 

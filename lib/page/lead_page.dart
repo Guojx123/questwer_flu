@@ -9,7 +9,7 @@ import 'package:questwer_flu/page/home/question_bank_page.dart';
 import 'package:questwer_flu/service/scroll__behavior.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
-import 'package:questwer_flu/util/shared_preferences.dart';
+import 'package:questwer_flu/service/shared_preferences.dart';
 import 'package:questwer_flu/widget/custom_shape.dart';
 import 'package:questwer_flu/widget/lead_page_layout.dart';
 

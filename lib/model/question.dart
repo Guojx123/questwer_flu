@@ -10,7 +10,7 @@ String questionToJson(Question data) => json.encode(data.toJson());
 
 class Question {
   Question({
-    this.incorrect_answers,
+    this.incorrectAnswers,
     this.correctAnswer,
     this.creator,
     this.difficulty,
@@ -24,7 +24,7 @@ class Question {
     this.acl,
   });
 
-  String incorrect_answers;
+  String incorrectAnswers;
   String correctAnswer;
   String creator;
   String difficulty;
@@ -38,7 +38,7 @@ class Question {
   Acl acl;
 
   factory Question.fromJson(Map<String, dynamic> json) => Question(
-        incorrect_answers: json["incorrect_answers"],
+        incorrectAnswers: json["incorrect_answers"],
         correctAnswer: json["correct_answer"],
         creator: json["creator"],
         difficulty: json["difficulty"],
@@ -58,7 +58,7 @@ class Question {
       );
 
   Map<String, dynamic> toJson() => {
-        "answer": incorrect_answers,
+        "answer": incorrectAnswers,
         "correct_answer": correctAnswer,
         "creator": creator,
         "difficulty": difficulty,

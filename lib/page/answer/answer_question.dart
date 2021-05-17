@@ -4,6 +4,7 @@ import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 import 'package:questwer_flu/controller/question_controller.dart';
 import 'package:questwer_flu/controller/question_list_controller.dart';
 import 'package:questwer_flu/controller/setting_controller.dart';
+import 'package:questwer_flu/page/lead_page.dart';
 import 'package:questwer_flu/page/score/score_screen.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
@@ -147,8 +148,8 @@ class AnswerQuestion extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Get.back();
-//                            Get.offAll(LeadPage());
+//                            Get.back();
+                            Get.offAll(LeadPage());
                           },
                           child: Container(
                             margin: EdgeInsets.symmetric(

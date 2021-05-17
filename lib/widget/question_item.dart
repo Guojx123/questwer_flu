@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
-import 'package:leancloud_storage/leancloud.dart';
 import 'package:popup_menu/popup_menu.dart';
 import 'package:questwer_flu/controller/pop_menu_controller.dart';
 import 'package:questwer_flu/controller/question_controller.dart';
@@ -109,6 +108,7 @@ class _QuestionBankItemState extends State<QuestionBankItem> {
                       key: widget.btnKey,
                       behavior: HitTestBehavior.translucent,
                       onTap: () {
+                        popMenuController.questionBankItem = _questionBank;
                         popMenuController.menu.show(widgetKey: widget.btnKey);
                       },
                       child: Icon(
