@@ -62,9 +62,10 @@ dependencies:
   # 指示器
   liquid_progress_indicator: ^0.3.2
 
-  # 图片
+  # 图片处理
   image: ^2.1.19
   cached_network_image: ^2.4.1
+  wechat_assets_picker:
 
   # 防止精度丢失
   decimal: ^0.3.5
@@ -81,7 +82,8 @@ dependencies:
   flutter_native_timezone:
   package_info: ^0.4.3+4
 
-
+  # 闲鱼框架
+  fish_redux: ^0.3.7
 
 dev_dependencies:
   flutter_test:
