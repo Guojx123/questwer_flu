@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:questwer_flu/controller/language_controller.dart';
 import 'package:questwer_flu/controller/setting_controller.dart';
+import 'package:questwer_flu/page/feedback/page.dart';
 import 'package:questwer_flu/service/scroll__behavior.dart';
 import 'package:questwer_flu/service/service_locator.dart';
 import 'package:questwer_flu/service/service_tel_and_sms.dart';
@@ -44,6 +45,12 @@ class SettingPage extends StatelessWidget {
 
                 /// 设置答题时间间隔
                 _answerTime(),
+                SizedBox(
+                  height: DefaultSize.defaultPadding,
+                ),
+
+                /// 用户反馈
+                _feedback(context),
               ],
             ),
           ),
@@ -281,6 +288,15 @@ class SettingPage extends StatelessWidget {
       ),
       title: "setting.answer_time".tr,
       horizontalMargin: DefaultSize.defaultPadding,
+    );
+  }
+
+  Widget _feedback(BuildContext context){
+    return ListTile(
+      onTap: (){
+        Navigator.of(context).pushNamed(SubmitFeedbackPage.NAME);
+      },
+      title: Text('提交反馈'),
     );
   }
 }
