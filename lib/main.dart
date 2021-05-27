@@ -81,20 +81,20 @@ class MyApp extends StatelessWidget {
 
               ///去掉右上角DEBUG标签
               debugShowCheckedModeBanner: false,
-              onGenerateRoute: (RouteSettings settings) {
-                return MaterialPageRoute<Object>(
-                    builder: (BuildContext context) {
-                      Widget widget = fishRoutes.buildPage(
-                          settings.name, settings.arguments);
-                      if (widget == null) {
-                        widget = routes[settings.name](context);
-                      }
-                      return widget;
-                    },
-                    settings: settings);
-              },
             ),
           ),
+          onGenerateRoute: (RouteSettings settings) {
+            return MaterialPageRoute<Object>(
+                builder: (BuildContext context) {
+                  Widget widget = fishRoutes.buildPage(
+                      settings.name, settings.arguments);
+                  if (widget == null) {
+                    widget = routes[settings.name](context);
+                  }
+                  return widget;
+                },
+                settings: settings);
+          },
         );
       },
     );

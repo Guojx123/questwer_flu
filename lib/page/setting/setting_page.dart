@@ -294,7 +294,7 @@ class SettingPage extends StatelessWidget {
   Widget _feedback(BuildContext context){
     return ListTile(
       onTap: (){
-        Navigator.of(context).pushNamed(SubmitFeedbackPage.NAME,arguments: {});
+        Navigator.of(context).pushNamed(SubmitFeedbackPage.NAME);
       },
       title: Text('提交反馈'),
     );
