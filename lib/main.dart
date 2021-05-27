@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart' hide Get;
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Action, Page;
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:leancloud_storage/leancloud.dart';
@@ -45,55 +45,58 @@ void realRunApp() async {
 }
 
 class MyApp extends StatelessWidget {
-
-  AbstractRoutes fishRoutes = FishRoute.getRoute();
-  Map<String, WidgetBuilder> routes = Routes.getRoute();
-
   @override
   Widget build(BuildContext context) {
+    AbstractRoutes fishRoutes = FishRoute.getRoute();
+    Map<String, WidgetBuilder> routes = Routes.getRoute();
 
-    return GetMaterialApp(
-      translations: Messages(),
-      locale:
-          getLocale(GetStorage().read("deviceLocale")) ?? Locale("zh", "CN"),
-      fallbackLocale: Locale("zh", "CN"),
-      home: OKToast(
-        position: ToastPosition.bottom,
-        child: MaterialApp(
-          title: 'Q&A',
-          theme: _buildThemeStyle(),
-          home: GetBuilder<UserController>(
-            init: UserController(),
-            builder: (controller) {
-              return controller.isAuth.isTrue ? Welcome() : LeadPage();
-            },
-          ),
-
-          /// 字体大小不随系统改变
-          builder: (context, widget) {
-            //屏幕适配
-            AppDimensions.init(context);
-            AppDimensions.initPortrait();
-            return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                child: widget);
-          },
-          ///去掉右上角DEBUG标签
-          debugShowCheckedModeBanner: false,
-          onGenerateRoute: (RouteSettings settings) {
-            return MaterialPageRoute<Object>(
-                builder: (BuildContext context) {
-                  Widget widget =
-                  fishRoutes.buildPage(settings.name, settings.arguments);
-                  if (widget == null) {
-                    widget = routes[settings.name](context);
-                  }
-                  return widget;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return GetMaterialApp(
+          translations: Messages(),
+          locale: getLocale(GetStorage().read("deviceLocale")) ??
+              Locale("zh", "CN"),
+          fallbackLocale: Locale("zh", "CN"),
+          home: OKToast(
+            position: ToastPosition.bottom,
+            child: MaterialApp(
+              title: 'Q&A',
+              theme: _buildThemeStyle(),
+              home: GetBuilder<UserController>(
+                init: UserController(),
+                builder: (controller) {
+                  return controller.isAuth.isTrue ? Welcome() : LeadPage();
                 },
-                settings: settings);
-          },
-        ),
-      ),
+              ),
+
+              /// 字体大小不随系统改变
+              builder: (context, widget) {
+                //屏幕适配
+                AppDimensions.init(context);
+                AppDimensions.initPortrait();
+                return MediaQuery(
+                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                    child: widget);
+              },
+
+              ///去掉右上角DEBUG标签
+              debugShowCheckedModeBanner: false,
+              onGenerateRoute: (RouteSettings settings) {
+                return MaterialPageRoute<Object>(
+                    builder: (BuildContext context) {
+                      Widget widget = fishRoutes.buildPage(
+                          settings.name, settings.arguments);
+                      if (widget == null) {
+                        widget = routes[settings.name](context);
+                      }
+                      return widget;
+                    },
+                    settings: settings);
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 

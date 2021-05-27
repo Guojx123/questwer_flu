@@ -1,7 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:questwer_flu/global/state.dart';
 import 'package:questwer_flu/global/store.dart';
-
 import 'feedback/page.dart';
 
 class FishRoute {
@@ -9,7 +8,7 @@ class FishRoute {
   static AbstractRoutes getRoute() {
     final AbstractRoutes routes = PageRoutes(
       pages: {
-        SubmitFeedbackPage.NAME : SubmitFeedbackPage()
+        SubmitFeedbackPage.NAME : SubmitFeedbackPage(),
       },
       visitor: (String path, Page<Object, dynamic> page) {
         /// 只有特定的范围的 Page 才需要建立和 AppStore 的连接关系
@@ -32,7 +31,6 @@ class FishRoute {
                 return pageState;
               });
         }
-
         /// AOP
         /// 页面可以有一些私有的 AOP 的增强， 但往往会有一些 AOP 是整个应用下，所有页面都会有的。
         /// 这些公共的通用 AOP ，通过遍历路由页面的形式统一加入。
