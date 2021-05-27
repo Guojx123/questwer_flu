@@ -1,18 +1,20 @@
+import 'package:fish_redux/fish_redux.dart' hide Get;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/service/shared_preferences.dart';
-import 'controller/language_controller.dart';
 import 'controller/user_controller.dart';
 import 'intl/i18n.dart';
+import 'page/fish_route.dart';
 import 'page/lead_page.dart';
+import 'page/route.dart';
 import 'page/welcome/welcome_page.dart';
 import 'package:get/get.dart';
 import 'service/restart_service.dart';
 import 'package:oktoast/oktoast.dart';
-
 import 'service/service_locator.dart';
+import 'util/ui/app_dimensions.dart';
 
 void main() => realRunApp();
 
@@ -44,11 +46,16 @@ void realRunApp() async {
 
 class MyApp extends StatelessWidget {
 
+  AbstractRoutes fishRoutes = FishRoute.getRoute();
+  Map<String, WidgetBuilder> routes = Routes.getRoute();
+
   @override
   Widget build(BuildContext context) {
+
     return GetMaterialApp(
       translations: Messages(),
-      locale: getLocale(GetStorage().read("deviceLocale")) ?? Locale("zh", "CN"),
+      locale:
+          getLocale(GetStorage().read("deviceLocale")) ?? Locale("zh", "CN"),
       fallbackLocale: Locale("zh", "CN"),
       home: OKToast(
         position: ToastPosition.bottom,
@@ -57,9 +64,6 @@ class MyApp extends StatelessWidget {
           theme: _buildThemeStyle(),
           home: GetBuilder<UserController>(
             init: UserController(),
-            // initState: (data) async {
-            //   await UserController().isAuthenticated();
-            // },
             builder: (controller) {
               return controller.isAuth.isTrue ? Welcome() : LeadPage();
             },
@@ -67,19 +71,33 @@ class MyApp extends StatelessWidget {
 
           /// 字体大小不随系统改变
           builder: (context, widget) {
+            //屏幕适配
+            AppDimensions.init(context);
+            AppDimensions.initPortrait();
             return MediaQuery(
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
                 child: widget);
           },
-
           ///去掉右上角DEBUG标签
           debugShowCheckedModeBanner: false,
+          onGenerateRoute: (RouteSettings settings) {
+            return MaterialPageRoute<Object>(
+                builder: (BuildContext context) {
+                  Widget widget =
+                  fishRoutes.buildPage(settings.name, settings.arguments);
+                  if (widget == null) {
+                    widget = routes[settings.name](context);
+                  }
+                  return widget;
+                },
+                settings: settings);
+          },
         ),
       ),
     );
   }
 
-  Locale getLocale(String locale){
+  Locale getLocale(String locale) {
     switch (locale) {
       case "English":
         return Locale("en", "US");

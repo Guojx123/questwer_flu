@@ -1,6 +1,8 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:multi_image_picker2/multi_image_picker2.dart';
 import 'package:questwer_flu/util/image/image_compress.dart';
-import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 class UploadProvider {
   Dio _httpClient;
@@ -15,33 +17,22 @@ class UploadProvider {
 
   }
 
-  Future<List<String>> uploadImage(List<AssetEntity> list) async {
-    var imageList = <String>[];
+  Future<String> uploadImage(File file) async {
+    var formData = FormData.fromMap({
+      'app_id': 'regoo-app',
+      'category': 'feedback',
+      'file': await MultipartFile.fromFile(
+        file.path,
+        filename: '${file.path.split('/').last}',
+      )
+    });
 
-    for (var i = 0; i < list.length; i++) {
-      var originFile = await list[i].originFile;
-
-      var file = await ImageCompress().compressImage(originFile);
-
-      var formData = FormData.fromMap({
-        'file': await MultipartFile.fromFile(
-          file.path, //图片路径
-          filename: '${file.path.split('/').last}',
-          // contentType: MediaType('image', '$suffix')
-        )
-      });
-
-      var response = await _httpClient.post(
-        '/file_center/v1/upload',
-        data: formData,
-      );
-      var imageLink = response.data['data']['path'];
-      imageList.add(imageLink);
-    }
-    return imageList;
+    var response = await _httpClient.post(
+      '/file_center/v1/upload',
+      data: formData,
+    );
+    return response.data['data']['path'];
   }
-
-
 
 }
 

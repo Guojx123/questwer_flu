@@ -8,6 +8,7 @@ class UserController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     isAuthenticated();
+
     super.onInit();
   }
 

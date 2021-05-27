@@ -1,8 +1,8 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:wechat_assets_picker/wechat_assets_picker.dart';
+import 'package:multi_image_picker2/multi_image_picker2.dart';
 
 class UploadImageState implements Cloneable<UploadImageState> {
-  List<AssetEntity> imageList;
+  List<Asset> imageList;
 
   @override
   UploadImageState clone() {

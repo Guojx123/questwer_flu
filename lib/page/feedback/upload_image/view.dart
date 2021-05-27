@@ -1,6 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:wechat_assets_picker/wechat_assets_picker.dart';
+import 'package:multi_image_picker2/multi_image_picker2.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -24,12 +24,10 @@ Widget buildView(
         children: [
           ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image(
-                image: AssetEntityImageProvider(state.imageList[i],
-                    isOriginal: false, thumbSize: <int>[240, 240]),
-                width: 58,
-                height: 58,
-                fit: BoxFit.cover,
+              child: AssetThumb(
+                asset: state.imageList[i],
+                width: 360,
+                height: 360,
               )),
           Positioned(
               top: 0.0,
@@ -39,7 +37,7 @@ Widget buildView(
                 onTap: () {
                   FocusScope.of(viewService.context).requestFocus(FocusNode());
                   dispatch(UploadImageActionCreator.deletePictures(
-                      state.imageList[i].title));
+                      state.imageList[i].name));
                 },
                 child: Image.asset(
                   'assets/icon_feedback_delete.png',

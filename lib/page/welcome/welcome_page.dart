@@ -10,6 +10,7 @@ import 'package:questwer_flu/service/shared_preferences.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
 
 class Welcome extends StatelessWidget {
+  static const String NAME = 'welcome_page';
   TextEditingController textEditingController = TextEditingController();
 
   @override

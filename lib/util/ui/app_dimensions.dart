@@ -12,11 +12,11 @@ class AppDimensions {
 
   static init(BuildContext context) {
     UI.init(context);
-    initPortrait();
+    // initPortrait();
 
     size = MediaQuery.of(context).size;
 
-    maxContainerWidth = 540.0;
+    maxContainerWidth = size.width;
     miniContainerWidth = maxContainerWidth * 0.9;
 
     if (UI.lg) {

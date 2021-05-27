@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:wechat_assets_picker/wechat_assets_picker.dart';
+import 'package:multi_image_picker2/multi_image_picker2.dart';
 
 //TODO replace with your own action
 enum SubmitFeedbackPageAction {
@@ -53,7 +53,7 @@ class SubmitFeedbackPageActionCreator {
   }
 
   static Action toSubmit(String type, String msg,
-      {List<AssetEntity> pics, String email}) {
+      {List<Asset> pics, String email}) {
     return Action(SubmitFeedbackPageAction.toSubmit, payload: {
       'type': type,
       'message': msg,

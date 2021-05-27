@@ -1,7 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:math';
 
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action, Page;
+import 'package:get_storage/get_storage.dart';
+import 'package:multi_image_picker2/multi_image_picker2.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:questwer_flu/http/feedback.dart';
 import 'package:questwer_flu/http/upload.dart';
@@ -59,7 +63,25 @@ void _toSubmit(Action action, Context<SubmitFeedbackPageState> ctx) async {
 
   /// a.上传图片
   if (payload['pictures'] != null && payload['pictures'] != []) {
-    imgList = await UploadProvider().uploadImage(payload['pictures']);
+    List<Asset> pictures = payload['pictures'];
+
+    final tempDir = await getTemporaryDirectory();
+    final tempPath = tempDir.path;
+
+    for (var i = 0; i < pictures.length; i++) {
+      var byteData = await pictures[i].getByteData(quality: 65);
+
+      final buffer = byteData.buffer;
+
+      var rand = Random().nextInt(100000);
+      final tempImgPath = '$tempPath/img_$rand.jpg';
+      var compressImg = await File(tempImgPath).writeAsBytes(
+          buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+
+      var imgLink = await UploadProvider().uploadImage(compressImg);
+      imgList.add(imgLink);
+    }
+
   }
 
   /// b.接口提交反馈原因、描述、邮箱
