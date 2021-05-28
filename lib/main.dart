@@ -69,20 +69,21 @@ class MyApp extends StatelessWidget {
                 },
               ),
 
-              /// 字体大小不随系统改变
-              builder: (context, widget) {
-                //屏幕适配
-                AppDimensions.init(context);
-                AppDimensions.initPortrait();
-                return MediaQuery(
-                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                    child: widget);
-              },
+
 
               ///去掉右上角DEBUG标签
               debugShowCheckedModeBanner: false,
             ),
           ),
+          /// 字体大小不随系统改变
+          builder: (context, widget) {
+            //屏幕适配
+            AppDimensions.init(context);
+
+            return MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: widget);
+          },
           onGenerateRoute: (RouteSettings settings) {
             return MaterialPageRoute<Object>(
                 builder: (BuildContext context) {

@@ -12,7 +12,7 @@ class AppDimensions {
 
   static init(BuildContext context) {
     UI.init(context);
-    // initPortrait();
+    initPortrait();
 
     size = MediaQuery.of(context).size;
 
