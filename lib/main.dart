@@ -29,7 +29,7 @@ Future<Null> realRunApp() async {
     Zone.current.handleUncaughtError(details.exception, details.stack);
   };
 
-  runZoned<Future<Null>>(() async {
+  runZonedGuarded<Future<Null>>(() async {
     WidgetsFlutterBinding.ensureInitialized();
 
     // 竖屏
@@ -55,11 +55,11 @@ Future<Null> realRunApp() async {
     ));
 
     SchedulerBinding.instance.addTimingsCallback(onReportTimings);
-    //Flutter 1.12.13之前
-    // orginalCallback = window.onReportTimings;
+    // 在Flutter 1.12.13之前
+    // originalCallback = window.onReportTimings;
     // window.onReportTimings = onReportTimings;
-  }, onError: (error, stackTrace) async {
-    //拦截异常
+  }, (error, stackTrace) async {
+    // 拦截异常
     await reportError(error, stackTrace);
   });
 }
