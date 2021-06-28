@@ -19,9 +19,12 @@ import 'home/activity_card.dart';
 import 'setting/setting_page.dart';
 
 class LeadPage extends StatefulWidget {
-  final String title;
 
-  LeadPage({Key key, this.title}) : super(key: key);
+  LeadPage({Key key, this.title}) : startTime = DateTime.now().millisecondsSinceEpoch,super(key: key);
+
+  final String title;
+  int startTime;
+  int endTime;
 
   @override
   _LeadPageState createState() => _LeadPageState();
@@ -37,6 +40,11 @@ class _LeadPageState extends State<LeadPage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.endTime = DateTime.now().millisecondsSinceEpoch;
+      int timeSpend = widget.endTime - widget.startTime;
+      print("页面渲染时间:${timeSpend ?? "error"} ms");
+    });
     pageController = PageController(viewportFraction: 0.9);
     _leadController.getActivity();
   }
