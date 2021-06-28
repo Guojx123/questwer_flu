@@ -60,7 +60,7 @@ Future<Null> realRunApp() async {
     // window.onReportTimings = onReportTimings;
   }, (error, stackTrace) async {
     // 拦截异常
-    await reportError(error, stackTrace);
+    await PageException().reportError(error, stackTrace);
   });
 }
 
@@ -90,6 +90,8 @@ class MyApp extends StatelessWidget {
 
               ///去掉右上角DEBUG标签
               debugShowCheckedModeBanner: false,
+
+              navigatorObservers: [MyObserver()],
             ),
           ),
 
