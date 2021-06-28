@@ -1,5 +1,7 @@
 import 'dart:ui';
-import 'package:oktoast/oktoast.dart';
+
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 //原始FPS回调
 var originalCallback;
@@ -17,8 +19,7 @@ void onReportTimings(List<FrameTiming> timings) {
   if (originalCallback != null) {
     originalCallback(timings);
   }
-  if (_isDebug()) showToast("fps : ${fps.round()}");
-  print("页面帧率 : ${fps.round()}");
+  if (_isDebug()) Get.log("fps : ${fps.round()}");
 }
 
 _isDebug() {
