@@ -2,7 +2,7 @@
 import 'package:questwer_flu/util/ui/app_dimensions.dart';
 
 const smallSize = 0.4;
-const defaultPadding = 10;
+const defaultPadding = 10.0;
 
 class DefaultSize {
   static double get defaultPadding => 10.0;

@@ -20,7 +20,7 @@ class CachedImage extends StatelessWidget {
       this.height,
       this.placeHolderWidth,
       this.placeHolderHeight,
-      this.padding = 10,
+      this.padding = defaultPadding,
       @required this.url,
       this.fit = BoxFit.fitWidth,
       this.color = rTagGreyColor});
