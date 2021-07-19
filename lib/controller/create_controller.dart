@@ -47,7 +47,6 @@ class CreateController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     inputTitleController.clear();
     inputDescController.clear();
     _pageController = PageController();
@@ -56,7 +55,6 @@ class CreateController extends GetxController {
 
   @override
   void onClose() {
-    // TODO: implement onClose
     inputTitleController.dispose();
     inputDescController.dispose();
 

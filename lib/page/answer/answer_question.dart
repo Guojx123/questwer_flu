@@ -134,7 +134,6 @@ class AnswerQuestion extends StatelessWidget {
                   Divider(thickness: 1.5),
                   Expanded(
                     child: GetBuilder<QuestionListController>(
-                        init: QuestionListController(),
                         builder: (controller) {
                           return _buildList(controller.isLoading.value);
                         }),

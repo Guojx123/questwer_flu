@@ -36,7 +36,6 @@ dependencies:
 
   # 网络请求
   dio_http_cache: ^0.2.6
-  dio: ^3.0.9
 
   # 吐司
   oktoast: ^2.0.1
@@ -54,7 +53,7 @@ dependencies:
   popup_menu: ^1.0.5
 
   # 网络请求
-  http: ^0.12.2
+  dio: ^3.0.10
 
   # 刷新
   pull_to_refresh: ^1.6.3
@@ -84,6 +83,9 @@ dependencies:
 
   # 闲鱼框架
   fish_redux: ^0.3.7
+
+  # Flutter生命周期
+  after_layout: ^1.1.0
 
 dev_dependencies:
   flutter_test:

@@ -20,7 +20,6 @@ class PopMenuController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     menu = PopupMenu(items: [
       // MenuItem(title: 'Copy', image: Image.asset('assets/copy.png')),
@@ -55,7 +54,6 @@ class PopMenuController extends GetxController {
 
   @override
   void onClose() {
-    // TODO: implement onClose
     scrollController.dispose();
     super.onClose();
   }

@@ -8,8 +8,7 @@ class GradientImageWidget extends StatelessWidget {
   final num gradientLength;
   final String imageUrl;
 
-  const GradientImageWidget({Key key, this.gradientLength = 10, this.imageUrl})
-      : super(key: key);
+  const GradientImageWidget({Key key, this.gradientLength = 10, this.imageUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +49,7 @@ class GradientImageWidget extends StatelessWidget {
   }
 
   _getDouble(int index) {
-    double value = ((index.toDouble() / gradientLength));
+    double value = index.toDouble() / gradientLength;
     return value;
   }
 }

@@ -6,7 +6,6 @@ class UserController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     isAuthenticated();
 
     super.onInit();

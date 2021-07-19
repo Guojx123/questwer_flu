@@ -7,7 +7,6 @@ class MyTextEditingController extends TextEditingController {
   }) : super(text: text);
 
 //  void initState() {
-//    // TODO: implement initState
 //    _controller.addListener(() {
 //      final text = _controller.text.toLowerCase();
 //      _controller.value = _controller.value.copyWith(
@@ -21,7 +20,6 @@ class MyTextEditingController extends TextEditingController {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 

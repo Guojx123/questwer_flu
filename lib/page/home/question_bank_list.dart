@@ -28,7 +28,6 @@ class _QuestionBankListState extends State<QuestionBankList> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _questionListController.fetchQuestionBank(_owner);
   }

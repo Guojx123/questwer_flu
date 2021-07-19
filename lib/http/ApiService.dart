@@ -3,6 +3,9 @@ import 'package:http/http.dart' as http;
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/model/question_by_category.dart';
 
+import 'question.dart';
+
+
 class ApiService {
   static var client;
 
@@ -45,16 +48,6 @@ class ApiService {
     LCQuery<LCObject> query = LCQuery('category');
     List<LCObject> categoryList = await query.find();
     return categoryList;
-  }
-
-  /// 根据分类获取题目（10道）
-  static fetchQuestionByCategory(int categoryId) async {
-    var response = await client
-        .get("https://opentdb.com/api.php?amount=10&category=$categoryId");
-    if (response.statusCode == 200) {
-      var jsonString = response.body;
-      return QuestionByCategory.fromJson(convert.jsonDecode(jsonString));
-    }
   }
 
   /// 根据id删除题库（假删除）

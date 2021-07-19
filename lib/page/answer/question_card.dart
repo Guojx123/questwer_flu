@@ -26,22 +26,26 @@ class _QuestionCardState extends State<QuestionCard> {
   List<Question> _question;
 
   bool get _isCategory => widget.isCategory ?? false;
+
   int get _categoryId => widget.categoryId;
+
   String get _name => widget.name;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _question = List();
-    _isCategory ? _questionController.fetchQuestionByCategory(_categoryId) :
-    _questionController.fetchQuestion(_name);
+    _question = [];
+  }
+
+  void afterFirstLayout(BuildContext context) {
+    _isCategory
+        ? _questionController.fetchQuestionByCategoryId(_categoryId)
+        : _questionController.fetchQuestion(_name);
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_questionController.isLoading.value &&
-        _questionController.questionList.length > 0)
+    if (_questionController.isLoading.value && _questionController.questionList.length > 0)
       return Center(
         child: CircularProgressIndicator(),
       );
@@ -58,8 +62,9 @@ class _QuestionCardState extends State<QuestionCard> {
 
   Widget _questionItem(int index) {
     List answerList;
-    if(_isCategory){
+    if (_isCategory) {
       Result result = _questionController.questionList[index];
+
       /// 处理二维数组
       // var menuIconMap = [
       //   [
@@ -108,7 +113,7 @@ class _QuestionCardState extends State<QuestionCard> {
       // }).toList();
       print(result.question);
       List<Question> questionList = [];
-      for(int i = 0 ; i < _questionController.questionList.length ; i++){
+      for (int i = 0; i < _questionController.questionList.length; i++) {
         questionList.add(Question(
           id: 1,
           title: result.question ?? '',
@@ -121,27 +126,28 @@ class _QuestionCardState extends State<QuestionCard> {
         ));
       }
       _question = questionList;
-    }else{
+    } else {
       _question = _questionController.questionList
           .map((item) => Question(
-        id: item["id"] ?? 1,
-        title: item["title"] ?? '',
-        subTitle: item["sub_title"] ?? '',
-        difficulty: item["difficulty"] ?? '',
-        incorrectAnswers: item["incorrect_answers"],
-        correctAnswer: item["correct_answer"],
-        ownedQb: item["ownedQB"] ?? '',
-        creator: item["creator"] ?? '',
-      )).toList();
+                id: item["id"] ?? 1,
+                title: item["title"] ?? '',
+                subTitle: item["sub_title"] ?? '',
+                difficulty: item["difficulty"] ?? '',
+                incorrectAnswers: item["incorrect_answers"],
+                correctAnswer: item["correct_answer"],
+                ownedQb: item["ownedQB"] ?? '',
+                creator: item["creator"] ?? '',
+              ))
+          .toList();
     }
 
     Question item = _question[index];
 
     /// 解析json字符串
-    if(_isCategory){
+    if (_isCategory) {
       answerList = json.decode(item.incorrectAnswers);
       answerList.add(item.correctAnswer);
-    }else{
+    } else {
       answerList = json.decode(item.incorrectAnswers);
     }
 
@@ -152,8 +158,7 @@ class _QuestionCardState extends State<QuestionCard> {
 //    List answerList = item.answer;
     return Container(
       margin: EdgeInsets.symmetric(
-          horizontal: DefaultSize.defaultPadding,
-          vertical: DefaultSize.defaultPadding),
+          horizontal: DefaultSize.defaultPadding, vertical: DefaultSize.defaultPadding),
       padding: EdgeInsets.all(DefaultSize.defaultPadding),
       decoration: BoxDecoration(
         color: ColorsTheme.white.withOpacity(0.94),
@@ -167,17 +172,11 @@ class _QuestionCardState extends State<QuestionCard> {
           ListTile(
             title: Text(
               item.title,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline5
-                  .copyWith(color: ColorsTheme.black),
+              style: Theme.of(context).textTheme.headline5.copyWith(color: ColorsTheme.black),
             ),
             subtitle: Text(
               item.subTitle,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6
-                  .copyWith(color: ColorsTheme.black),
+              style: Theme.of(context).textTheme.headline6.copyWith(color: ColorsTheme.black),
             ),
           ),
           SizedBox(height: DefaultSize.defaultPadding / 2),
@@ -186,8 +185,7 @@ class _QuestionCardState extends State<QuestionCard> {
             (index) => Option(
               index: index,
               text: answerList[index],
-              press: () =>
-                  _questionController.checkAns(item, answerList[index]),
+              press: () => _questionController.checkAns(item, answerList[index]),
             ),
           ),
         ],

@@ -76,7 +76,7 @@ class ActivityCard extends StatelessWidget {
                           height: DefaultSize.middleSize,
                         ),
                         Text(
-                          activity.title ?? "Self-love",
+                          activity.title ?? "Favorite-love",
                           style: TextStyle(
                             color: rBlueColor,
                             fontSize: DefaultSize.middleFontSize,

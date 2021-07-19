@@ -7,7 +7,7 @@ import 'package:questwer_flu/http/ApiService.dart';
 class QuestionListController extends GetxController {
   var isLoading = true.obs;
   var _owner = "Q&A";
-  var questionBankList = List<LCObject>().obs;
+  var questionBankList = <LCObject>[].obs;
 
   RefreshController refreshController;
 
@@ -20,7 +20,6 @@ class QuestionListController extends GetxController {
 
   @override
   void onClose() {
-    // TODO: implement onClose
     refreshController.dispose();
     super.onClose();
   }

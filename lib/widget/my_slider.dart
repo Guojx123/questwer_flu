@@ -15,7 +15,6 @@ class _MySliderState extends State<MySlider> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

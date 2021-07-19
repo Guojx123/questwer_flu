@@ -23,7 +23,7 @@ void onReportTimings(List<FrameTiming> timings) {
 }
 
 _isDebug() {
-  return true;
+  return false;
 }
 
 double get fps {

@@ -19,7 +19,6 @@ class CategoryController extends GetxController{
 
   @override
   void onClose() {
-    // TODO: implement onClose
     refreshController.dispose();
     super.onClose();
   }

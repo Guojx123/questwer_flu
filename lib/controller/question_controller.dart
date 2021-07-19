@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:questwer_flu/http/ApiService.dart';
+import 'package:questwer_flu/http/question.dart';
 import 'package:questwer_flu/model/question.dart';
 import 'package:questwer_flu/model/question_by_category.dart';
 import 'package:questwer_flu/page/score/score_screen.dart';
 
 import 'setting_controller.dart';
 
-class QuestionController extends GetxController
-    with SingleGetTickerProviderMixin {
+class QuestionController extends GetxController with SingleGetTickerProviderMixin {
   /// 加载设置
   SettingController _settingController;
 
   /// 获取题目数据
   var isLoading = true.obs;
-  RxList questionList = List().obs;
+  var questionList = [].obs;
 
   /// 页面控制
   PageController _pageController;
@@ -51,13 +51,11 @@ class QuestionController extends GetxController
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     _pageController = PageController();
     _settingController = Get.put(SettingController());
     _animationController = AnimationController(
-        duration: Duration(seconds: _settingController.getAnswerTime),
-        vsync: this);
+        duration: Duration(seconds: _settingController.getAnswerTime), vsync: this);
     _animation = Tween(begin: 0.0, end: 1.0).animate(_animationController)
       ..addListener(() {
         update();
@@ -100,19 +98,20 @@ class QuestionController extends GetxController
   }
 
   /// 从分类获取题目
-  void fetchQuestionByCategory(int categoryId) async {
+  void fetchQuestionByCategoryId(int categoryId) async {
     try {
       isLoading(true);
-      QuestionByCategory questions =
-          await ApiService.fetchQuestionByCategory(categoryId);
+      QuestionByCategory questions = await QuestionApi().getQuestion(categoryId);
       if (questions != null) {
         questionList.assignAll(questions.results);
         debugPrint("获取分类题目数据");
         debugPrint(questionList.toString());
         isLoading(false);
+      } else {
+        debugPrint("获取分类题目数据失败");
       }
     } finally {
-      isLoading(false);
+      isLoading(true);
     }
     update();
   }
@@ -144,8 +143,7 @@ class QuestionController extends GetxController
     if (_questionNumber.value != questionList.length) {
       _isAnswered = false;
       if (_pageController != null)
-        _pageController?.nextPage(
-            duration: Duration(milliseconds: 250), curve: Curves.ease);
+        _pageController?.nextPage(duration: Duration(milliseconds: 250), curve: Curves.ease);
 
       // 重置计时器
       _animationController?.reset();
