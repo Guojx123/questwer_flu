@@ -27,7 +27,7 @@ class MyTextEditingController extends TextEditingController {
   final TextStyle editingTextStyle;
 
   @override
-  TextSpan buildTextSpan({TextStyle style, bool withComposing}) {
+  TextSpan buildTextSpan({BuildContext context, TextStyle style, bool withComposing}) {
     if (!value.composing.isValid || !withComposing) {
       return TextSpan(style: style, text: text);
     }
