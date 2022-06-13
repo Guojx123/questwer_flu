@@ -4,18 +4,19 @@ import 'package:fish_redux/fish_redux.dart' hide Get;
 import 'package:flutter/material.dart' hide Action, Page;
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:leancloud_storage/leancloud.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:questwer_flu/service/shared_preferences.dart';
+
 import 'controller/user_controller.dart';
 import 'intl/i18n.dart';
 import 'page/fish_route.dart';
 import 'page/lead_page.dart';
 import 'page/route.dart';
 import 'page/welcome/welcome_page.dart';
-import 'package:get/get.dart';
 import 'service/restart_service.dart';
-import 'package:oktoast/oktoast.dart';
 import 'service/service_locator.dart';
 import 'util/performance/fps_calculate.dart';
 import 'util/performance/pv_exception.dart';
@@ -90,7 +91,6 @@ class MyApp extends StatelessWidget {
 
               ///去掉右上角DEBUG标签
               debugShowCheckedModeBanner: false,
-
               navigatorObservers: [MyObserver()],
             ),
           ),
@@ -99,7 +99,6 @@ class MyApp extends StatelessWidget {
           builder: (context, widget) {
             //屏幕适配
             AppDimensions.init(context);
-
             return MediaQuery(
                 data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0), child: widget);
           },

@@ -10,6 +10,7 @@ import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
 import 'package:questwer_flu/widget/common_app_bar.dart';
+
 import 'question_card.dart';
 
 class AnswerQuestion extends StatelessWidget {
@@ -20,12 +21,12 @@ class AnswerQuestion extends StatelessWidget {
   AnswerQuestion({
     Key key,
     this.name,
-    this.categoryId, this.isCategory
+    this.categoryId,
+    this.isCategory,
   }) : super(key: key);
 
-  QuestionController _questionController = Get.put(QuestionController());
-  SettingController _settingController = Get.put(SettingController());
-  DateTime _lastPressedAt; //上次点击时间
+  final QuestionController _questionController = Get.put(QuestionController());
+  final SettingController _settingController = Get.put(SettingController());
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +52,7 @@ class AnswerQuestion extends StatelessWidget {
                           vertical: DefaultSize.basePadding),
                       child: Text(
                         "answerQ.btn".tr,
-                        style: TextStyle(
-                            color: ColorsTheme.white,
-                            fontSize: DefaultSize.fontSize),
+                        style: TextStyle(color: ColorsTheme.white, fontSize: DefaultSize.fontSize),
                       ),
                     ),
                     actionFunction: () {
@@ -82,16 +81,14 @@ class AnswerQuestion extends StatelessWidget {
                                   .copyWith(color: ColorsTheme.greyWhite),
                               children: [
                                 TextSpan(
-                                  text:
-                                      "${_questionController.questionNumber.value}",
+                                  text: "${_questionController.questionNumber.value}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline4
                                       .copyWith(color: ColorsTheme.greyWhite),
                                 ),
                                 TextSpan(
-                                  text:
-                                      " / ${_questionController.questionList.length}",
+                                  text: " / ${_questionController.questionList.length}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline5
@@ -112,8 +109,7 @@ class AnswerQuestion extends StatelessWidget {
                                     value: timestamp,
                                     direction: Axis.vertical,
                                     backgroundColor: Colors.grey[300],
-                                    valueColor: AlwaysStoppedAnimation(
-                                        ColorsTheme.purple),
+                                    valueColor: AlwaysStoppedAnimation(ColorsTheme.purple),
                                     shapePath: _buildSpeechBubblePath(),
                                     center: Text(
                                       "${_settingController.getAnswerTime - (timestamp * _settingController.getAnswerTime).round()} s",
@@ -133,10 +129,9 @@ class AnswerQuestion extends StatelessWidget {
                   ),
                   Divider(thickness: 1.5),
                   Expanded(
-                    child: GetBuilder<QuestionListController>(
-                        builder: (controller) {
-                          return _buildList(controller.isLoading.value);
-                        }),
+                    child: GetBuilder<QuestionListController>(builder: (controller) {
+                      return _buildList(controller.isLoading.value);
+                    }),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
@@ -151,8 +146,7 @@ class AnswerQuestion extends StatelessWidget {
                             Get.offAll(LeadPage());
                           },
                           child: Container(
-                            margin: EdgeInsets.symmetric(
-                                vertical: DefaultSize.defaultPadding * 2),
+                            margin: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding * 2),
                             padding: EdgeInsets.symmetric(
                                 horizontal: DefaultSize.defaultPadding * 2.8,
                                 vertical: DefaultSize.basePadding * 6),
@@ -171,8 +165,7 @@ class AnswerQuestion extends StatelessWidget {
                             _questionController.nextQuestion();
                           },
                           child: Container(
-                            margin: EdgeInsets.symmetric(
-                                vertical: DefaultSize.defaultPadding * 2),
+                            margin: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding * 2),
                             padding: EdgeInsets.symmetric(
                                 horizontal: DefaultSize.defaultPadding * 2.8,
                                 vertical: DefaultSize.basePadding * 6),

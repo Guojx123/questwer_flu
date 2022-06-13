@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:popup_menu/popup_menu.dart';
 import 'package:questwer_flu/controller/pop_menu_controller.dart';
@@ -7,15 +8,12 @@ import 'package:questwer_flu/model/question_bank.dart';
 import 'package:questwer_flu/page/answer/answer_question.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
-import 'package:get/get.dart';
-
 
 class QuestionBankItem extends StatefulWidget {
   final GlobalKey btnKey;
   final QuestionBank questionBank;
 
-  const QuestionBankItem({Key key, this.btnKey, this.questionBank})
-      : super(key: key);
+  const QuestionBankItem({Key key, this.btnKey, this.questionBank}) : super(key: key);
 
   @override
   _QuestionBankItemState createState() => _QuestionBankItemState();
@@ -34,18 +32,19 @@ class _QuestionBankItemState extends State<QuestionBankItem> {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
-        Get.to(() =>AnswerQuestion(
-          name: _questionBank.name,
-          isCategory: false,
-        ));
+        Get.to(
+          () => AnswerQuestion(
+            name: _questionBank.name,
+            isCategory: false,
+          ),
+        );
         questionController.onStart();
         questionController.initValue();
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding),
         padding: EdgeInsets.symmetric(
-            horizontal: DefaultSize.defaultPadding,
-            vertical: DefaultSize.defaultPadding),
+            horizontal: DefaultSize.defaultPadding, vertical: DefaultSize.defaultPadding),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             gradient: ColorsTheme.aCardGradient,
@@ -70,8 +69,7 @@ class _QuestionBankItemState extends State<QuestionBankItem> {
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.symmetric(
-                    horizontal: DefaultSize.defaultPadding),
+                padding: EdgeInsets.symmetric(horizontal: DefaultSize.defaultPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -81,16 +79,14 @@ class _QuestionBankItemState extends State<QuestionBankItem> {
                       textAlign: TextAlign.center,
                       maxLines: 1,
                       overflow: TextOverflow.visible,
-                      style: TextStyle(
-                          fontSize: 20, height: 1.4, color: ColorsTheme.white),
+                      style: TextStyle(fontSize: 20, height: 1.4, color: ColorsTheme.white),
                     ),
                     Text(
                       "${_questionBank.description ?? "Test your love music."}",
                       textAlign: TextAlign.start,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontSize: 16, color: ColorsTheme.grey, height: 1.4),
+                      style: TextStyle(fontSize: 16, color: ColorsTheme.grey, height: 1.4),
                     ),
                   ],
                 ),

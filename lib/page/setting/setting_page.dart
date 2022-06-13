@@ -3,15 +3,16 @@ import 'package:get/get.dart';
 import 'package:questwer_flu/controller/language_controller.dart';
 import 'package:questwer_flu/controller/setting_controller.dart';
 import 'package:questwer_flu/page/feedback/page.dart';
-import 'package:questwer_flu/service/scroll__behavior.dart';
+import 'package:questwer_flu/service/scroll_behavior.dart';
 import 'package:questwer_flu/service/service_locator.dart';
 import 'package:questwer_flu/service/service_tel_and_sms.dart';
+import 'package:questwer_flu/service/shared_preferences.dart';
 import 'package:questwer_flu/theme/color.dart';
 import 'package:questwer_flu/theme/size.dart';
-import 'package:questwer_flu/service/shared_preferences.dart';
 import 'package:questwer_flu/widget/background_widget.dart';
 import 'package:questwer_flu/widget/title_widget.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
+
 import 'select_language_widget.dart';
 import 'set_answer_time_widget.dart';
 
@@ -33,8 +34,7 @@ class SettingPage extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: PersistentStorage.topHeight +
-                      DefaultSize.defaultPadding * 8,
+                  height: PersistentStorage.topHeight + DefaultSize.defaultPadding * 8,
                 ),
 
                 /// 修改语言Widget
@@ -67,8 +67,8 @@ class SettingPage extends StatelessWidget {
                     horizontal: DefaultSize.defaultPadding * 2,
                     vertical: DefaultSize.smallSize * 1.4),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.horizontal(
-                      right: Radius.circular(DefaultSize.largeSize / 2)),
+                  borderRadius:
+                      BorderRadius.horizontal(right: Radius.circular(DefaultSize.largeSize / 2)),
                   color: rBlueColorEB,
                 ),
                 child: Padding(
@@ -98,8 +98,7 @@ class SettingPage extends StatelessWidget {
                   applicationName: 'application.name'.tr,
                   applicationLegalese: 'By Gino',
                   children: tileList
-                      .map((e) => _buildListTile(
-                          e['title'], e['iconData'], e['activity']))
+                      .map((e) => _buildListTile(e['title'], e['iconData'], e['activity']))
                       .toList(),
                 );
               },
@@ -141,8 +140,7 @@ class SettingPage extends StatelessWidget {
   ];
 
   Widget _buildListTile(String title, IconData iconData, String function) {
-
-    activity(String function){
+    activity(String function) {
       switch (function) {
         case 'Github':
           url_launcher.launch('https://github.com/Guojx123/questwer_flu');
@@ -158,8 +156,9 @@ class SettingPage extends StatelessWidget {
           break;
       }
     }
+
     return ListTile(
-      onTap: (){
+      onTap: () {
         activity(function);
       },
       leading: Icon(iconData),
@@ -171,8 +170,6 @@ class SettingPage extends StatelessWidget {
       ),
     );
   }
-
-
 
   Widget _modifyLanguage() {
     return Container(
@@ -291,9 +288,9 @@ class SettingPage extends StatelessWidget {
     );
   }
 
-  Widget _feedback(BuildContext context){
+  Widget _feedback(BuildContext context) {
     return ListTile(
-      onTap: (){
+      onTap: () {
         Navigator.of(context).pushNamed(SubmitFeedbackPage.NAME);
       },
       title: Text('提交反馈'),
