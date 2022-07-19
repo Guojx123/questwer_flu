@@ -140,23 +140,27 @@ class AnswerQuestion extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        GestureDetector(
-                          onTap: () {
+                        Offstage(
+                          offstage: isCategory,
+                          child: GestureDetector(
+                            onTap: () {
 //                            Get.back();
-                            Get.offAll(LeadPage());
-                          },
-                          child: Container(
-                            margin: EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding * 2),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: DefaultSize.defaultPadding * 2.8,
-                                vertical: DefaultSize.basePadding * 6),
-                            decoration: BoxDecoration(
-                                color: ColorsTheme.greyBlue,
-                                borderRadius: BorderRadius.circular(25)),
-                            child: Icon(
-                              Icons.hot_tub_sharp,
-                              color: kMilkWhiteColor,
-                              size: DefaultSize.defaultPadding * 3,
+                              Get.offAll(LeadPage());
+                            },
+                            child: Container(
+                              margin:
+                                  EdgeInsets.symmetric(vertical: DefaultSize.defaultPadding * 2),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: DefaultSize.defaultPadding * 2.8,
+                                  vertical: DefaultSize.basePadding * 6),
+                              decoration: BoxDecoration(
+                                  color: ColorsTheme.greyBlue,
+                                  borderRadius: BorderRadius.circular(25)),
+                              child: Icon(
+                                Icons.hot_tub_sharp,
+                                color: kMilkWhiteColor,
+                                size: DefaultSize.defaultPadding * 3,
+                              ),
                             ),
                           ),
                         ),
